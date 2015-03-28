@@ -29,6 +29,7 @@
 		3B928F9E1AC5C88000F27710 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9D1AC5C88000F27710 /* OpenGLES.framework */; };
 		3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9F1AC5C88700F27710 /* QuartzCore.framework */; };
 		3B928FA21AC5C89100F27710 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */; };
+		3B928FAE1AC720B000F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928FAD1AC720B000F27710 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		3B928F9D1AC5C88000F27710 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3B928F9F1AC5C88700F27710 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3B928FAD1AC720B000F27710 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		3B928E381AC5B71000F27710 /* Reportr */ = {
 			isa = PBXGroup;
 			children = (
+				3B928FAD1AC720B000F27710 /* GoogleMaps.bundle */,
 				3B928FA41AC5FBCA00F27710 /* Resources */,
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
@@ -313,6 +316,7 @@
 				3B928E4D1AC5B71000F27710 /* LaunchScreen.xib in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
 				3B928F8A1AC5C81900F27710 /* GoogleMaps.bundle in Resources */,
+				3B928FAE1AC720B000F27710 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

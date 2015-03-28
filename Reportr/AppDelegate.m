@@ -17,7 +17,9 @@ static NSString *const kGoogleMapKey = @"AIzaSyCjKIBgNIk6bXJAs1tTy45G9eEFs1q6cPk
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate{
+    id services_;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -27,6 +29,7 @@ static NSString *const kGoogleMapKey = @"AIzaSyCjKIBgNIk6bXJAs1tTy45G9eEFs1q6cPk
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
     [GMSServices provideAPIKey:kGoogleMapKey];
+    services_=[GMSServices sharedServices];
     return YES;
 }
 
@@ -55,7 +58,7 @@ static NSString *const kGoogleMapKey = @"AIzaSyCjKIBgNIk6bXJAs1tTy45G9eEFs1q6cPk
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]] && ([(DetailViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[DetailViewController class]]) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
     } else {

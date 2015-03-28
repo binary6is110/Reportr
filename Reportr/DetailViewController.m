@@ -1,61 +1,59 @@
-//
-//  DetailViewController.m
-//  Reportr
-//
-//  Created by Kim Adams on 3/27/15.
-//  Copyright (c) 2015 Lopez Negrete Communications. All rights reserved.
-//
+#if !defined(__has_feature) || !__has_feature(objc_arc)
+#error "This file requires ARC support."
+#endif
 
 #import "DetailViewController.h"
 
-@interface DetailViewController ()
+#import <GoogleMaps/GoogleMaps.h>
 
-@end
-
-@implementation DetailViewController
-
-#pragma mark - Managing the detail item
-
-- (void)setDetailItem:(id)newDetailItem {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
-            
-        // Update the view.
-        [self configureView];
-    }
-}
-
-- (void)configureView {
-    // Update the user interface for the detail item.
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
+@implementation DetailViewController {
+    GMSMapView *mapView_;
+    BOOL firstLocationUpdate_;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0 longitude:0 zoom:6];
-    GMSMapView * mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.868
+                                                            longitude:151.2086
+                                                                 zoom:12];
     
-   // GMSMapView * mapView = [[GMSMapView alloc] initWithFrame:self.view.bounds];
-    mapView.myLocationEnabled = YES;
+    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    //mapView_.settings.compassButton = YES;
+    mapView_.settings.myLocationButton = YES;
     
+    // Listen to the myLocation property of GMSMapView.
+    [mapView_ addObserver:self
+               forKeyPath:@"myLocation"
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
     
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = camera.target;
-    marker.snippet = @"Hello World";
-    marker.appearAnimation = kGMSMarkerAnimationPop;
-    marker.map = mapView;
+    self.view = mapView_;
     
-    self.view = mapView;
-    
-  
+    // Ask for My Location data after the map has already been added to the UI.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        mapView_.myLocationEnabled = YES;
+    });
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)dealloc {
+    [mapView_ removeObserver:self
+                  forKeyPath:@"myLocation"
+                     context:NULL];
 }
 
+#pragma mark - KVO updates
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    if (!firstLocationUpdate_) {
+        // If the first location update has not yet been recieved, then jump to that
+        // location.
+        firstLocationUpdate_ = YES;
+        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
+        mapView_.camera = [GMSCameraPosition cameraWithTarget:location.coordinate zoom:14];
+    }
+}
 
 @end
