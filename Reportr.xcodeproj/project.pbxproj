@@ -10,13 +10,12 @@
 		3B928E3C1AC5B71000F27710 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E3B1AC5B71000F27710 /* main.m */; };
 		3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E3E1AC5B71000F27710 /* AppDelegate.m */; };
 		3B928E421AC5B71000F27710 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E411AC5B71000F27710 /* MasterViewController.m */; };
-		3B928E451AC5B71000F27710 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E441AC5B71000F27710 /* DetailViewController.m */; };
+		3B928E451AC5B71000F27710 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E441AC5B71000F27710 /* MapViewController.m */; };
 		3B928E481AC5B71000F27710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E461AC5B71000F27710 /* Main.storyboard */; };
 		3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E491AC5B71000F27710 /* Images.xcassets */; };
 		3B928E4D1AC5B71000F27710 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */; };
 		3B928E591AC5B71000F27710 /* ReportrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E581AC5B71000F27710 /* ReportrTests.m */; };
 		3B928F861AC5C7C600F27710 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F851AC5C7C600F27710 /* GoogleMaps.framework */; };
-		3B928F8A1AC5C81900F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928F891AC5C81900F27710 /* GoogleMaps.bundle */; };
 		3B928F8C1AC5C83700F27710 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F8B1AC5C83700F27710 /* AVFoundation.framework */; };
 		3B928F8E1AC5C83D00F27710 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F8D1AC5C83D00F27710 /* CoreData.framework */; };
 		3B928F901AC5C84300F27710 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F8F1AC5C84300F27710 /* CoreLocation.framework */; };
@@ -29,7 +28,7 @@
 		3B928F9E1AC5C88000F27710 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9D1AC5C88000F27710 /* OpenGLES.framework */; };
 		3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9F1AC5C88700F27710 /* QuartzCore.framework */; };
 		3B928FA21AC5C89100F27710 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */; };
-		3B928FAE1AC720B000F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928FAD1AC720B000F27710 /* GoogleMaps.bundle */; };
+		3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +49,8 @@
 		3B928E3E1AC5B71000F27710 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3B928E401AC5B71000F27710 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		3B928E411AC5B71000F27710 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
-		3B928E431AC5B71000F27710 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		3B928E441AC5B71000F27710 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		3B928E431AC5B71000F27710 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		3B928E441AC5B71000F27710 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3B928E471AC5B71000F27710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3B928E491AC5B71000F27710 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3B928E4C1AC5B71000F27710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -59,7 +58,6 @@
 		3B928E571AC5B71000F27710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B928E581AC5B71000F27710 /* ReportrTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReportrTests.m; sourceTree = "<group>"; };
 		3B928F851AC5C7C600F27710 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Reportr/GoogleMaps.framework; sourceTree = "<group>"; };
-		3B928F891AC5C81900F27710 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Reportr/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		3B928F8B1AC5C83700F27710 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3B928F8D1AC5C83D00F27710 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3B928F8F1AC5C84300F27710 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -72,7 +70,7 @@
 		3B928F9D1AC5C88000F27710 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		3B928F9F1AC5C88700F27710 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		3B928FAD1AC720B000F27710 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
+		3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,16 +125,8 @@
 		3B928E381AC5B71000F27710 /* Reportr */ = {
 			isa = PBXGroup;
 			children = (
-				3B928FAD1AC720B000F27710 /* GoogleMaps.bundle */,
+				3B928FB11AC84ECA00F27710 /* Classes */,
 				3B928FA41AC5FBCA00F27710 /* Resources */,
-				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
-				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
-				3B928E401AC5B71000F27710 /* MasterViewController.h */,
-				3B928E411AC5B71000F27710 /* MasterViewController.m */,
-				3B928E431AC5B71000F27710 /* DetailViewController.h */,
-				3B928E441AC5B71000F27710 /* DetailViewController.m */,
-				3B928E461AC5B71000F27710 /* Main.storyboard */,
-				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
 				3B928FA31AC5C8E900F27710 /* Frameworks */,
 				3B928E391AC5B71000F27710 /* Supporting Files */,
 			);
@@ -172,7 +162,7 @@
 		3B928FA31AC5C8E900F27710 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3B928F891AC5C81900F27710 /* GoogleMaps.bundle */,
+				3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */,
 				3B928F851AC5C7C600F27710 /* GoogleMaps.framework */,
 				3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */,
 				3B928F9F1AC5C88700F27710 /* QuartzCore.framework */,
@@ -194,9 +184,32 @@
 		3B928FA41AC5FBCA00F27710 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3B928E461AC5B71000F27710 /* Main.storyboard */,
+				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
 				3B928E491AC5B71000F27710 /* Images.xcassets */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		3B928FB11AC84ECA00F27710 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3B928FB21AC84F2E00F27710 /* Map */,
+				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
+				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
+				3B928E401AC5B71000F27710 /* MasterViewController.h */,
+				3B928E411AC5B71000F27710 /* MasterViewController.m */,
+				3B928E431AC5B71000F27710 /* MapViewController.h */,
+				3B928E441AC5B71000F27710 /* MapViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		3B928FB21AC84F2E00F27710 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,8 +328,7 @@
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
 				3B928E4D1AC5B71000F27710 /* LaunchScreen.xib in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
-				3B928F8A1AC5C81900F27710 /* GoogleMaps.bundle in Resources */,
-				3B928FAE1AC720B000F27710 /* GoogleMaps.bundle in Resources */,
+				3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,7 +349,7 @@
 				3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */,
 				3B928E421AC5B71000F27710 /* MasterViewController.m in Sources */,
 				3B928E3C1AC5B71000F27710 /* main.m in Sources */,
-				3B928E451AC5B71000F27710 /* DetailViewController.m in Sources */,
+				3B928E451AC5B71000F27710 /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
