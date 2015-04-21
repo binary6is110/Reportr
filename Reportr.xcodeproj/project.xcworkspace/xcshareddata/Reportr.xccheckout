@@ -10,26 +10,26 @@
 	<string>Reportr</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2C289A6EC8DD22DA5A0CFF083198D99E05B94DC2</key>
-		<string>https://github.com/binary6is110/Reportr.git</string>
 		<key>A01F4BAC31447C5D2D47E70861A5A82EB5EBD273</key>
+		<string>https://github.com/binary6is110/Reportr.git</string>
+		<key>DDF279957C234C382D9FB1450C25D0985DADA12A</key>
 		<string>https://github.com/binary6is110/Reportr.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Reportr.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2C289A6EC8DD22DA5A0CFF083198D99E05B94DC2</key>
-		<string>../..</string>
 		<key>A01F4BAC31447C5D2D47E70861A5A82EB5EBD273</key>
 		<string>../../..</string>
+		<key>DDF279957C234C382D9FB1450C25D0985DADA12A</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/binary6is110/Reportr.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2C289A6EC8DD22DA5A0CFF083198D99E05B94DC2</string>
+	<string>DDF279957C234C382D9FB1450C25D0985DADA12A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -44,7 +44,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2C289A6EC8DD22DA5A0CFF083198D99E05B94DC2</string>
+			<string>DDF279957C234C382D9FB1450C25D0985DADA12A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Reportr</string>
 		</dict>

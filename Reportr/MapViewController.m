@@ -3,8 +3,10 @@
 #endif
 
 #import "MapViewController.h"
-
+#import <Firebase/Firebase.h>
 #import <GoogleMaps/GoogleMaps.h>
+
+
 
 @implementation MapViewController {
     GMSMapView *mapView_;
@@ -25,6 +27,16 @@
                   context:NULL];
     
     self.view = mapView_;
+    
+    // Create a reference to a Firebase location
+    Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://reportr.firebaseio.com"];
+    // Write data to Firebase
+    [myRootRef setValue:@"Do you have data? You'll love Firebase."];
+
+    // Read data and react to changes
+    [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
+    }];
     
     // Ask for My Location data after the map has already been added to the UI.
     dispatch_async(dispatch_get_main_queue(), ^{

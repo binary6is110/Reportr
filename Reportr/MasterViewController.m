@@ -56,7 +56,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+       // NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
       //  NSDate *object = self.objects[indexPath.row];
         MapViewController *controller = (MapViewController *)[[segue destinationViewController] topViewController];
        // [controller setDetailItem:object];
