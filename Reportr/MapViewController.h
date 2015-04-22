@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Firebase/Firebase.h>
 #import "UserModel.h"
 
 @interface MapViewController : UIViewController
--(void) passModel:(UserModel*)model;
--(void) hi;
+@property (nonatomic, strong) Firebase *appointments;
+-(void) passUserModel:(UserModel*) userModel;
 @end

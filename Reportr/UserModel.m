@@ -9,21 +9,23 @@
 #import "UserModel.h"
 
 @interface UserModel()
-@property (nonatomic, strong) NSString * userId;
+@property (nonatomic, strong) NSString * loginId;
+//@property (nonatomic, strong) NSString * employeeId;
 @property (nonatomic, strong) NSString * password;
 
 @end
 
 @implementation UserModel
 
--(id) initWithId:(NSString*)uId andPassword: (NSString*)pass
+-(id) initWithId:(NSString*)lId andPassword: (NSString*)pass andEmployeeId:(NSString*)eId
 {
     if ( self = [super init] ) {
-        _userId=uId;
+        _loginId=lId;
         _password=pass;
+        _employeeID=eId;
+        
     }
-    return self;
-    
+    return self;    
 }
 
 

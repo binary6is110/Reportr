@@ -8,22 +8,23 @@
 
 #import "MapViewController.h"
 #import "MapNavigationController.h"
-
+#import <Firebase/Firebase.h>
 
 @interface MapNavigationController ()
- @property MapViewController  * mvController;
+ @property MapViewController  * mapViewController;
 
 @end
 
 @implementation MapNavigationController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if(!_mvController)
-    {   _mvController = (MapViewController*) self.visibleViewController;
-        _mvController.hi;
+    if(!_mapViewController)
+    {   _mapViewController = (MapViewController*) self.visibleViewController;
+        [_mapViewController passUserModel: _userModel];
     }
-    
+        
     // Do any additional setup after loading the view.
 }
 
@@ -41,9 +42,11 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 -(void) passModel:(UserModel*)model
 {
-    NSLog (@"hi in map navigation view");
+    _userModel=model;
 }
 
 @end

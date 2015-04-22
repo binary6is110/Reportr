@@ -24,6 +24,10 @@
 		3B8F9D161AE6EF7300F74EB0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D141AE6EF7300F74EB0 /* UserModel.m */; };
 		3B8F9D1E1AE70AF500F74EB0 /* MapNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */; };
 		3B8F9D1F1AE70AF500F74EB0 /* MapNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */; };
+		3B8F9D221AE84E7300F74EB0 /* GeocodingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D211AE84E7300F74EB0 /* GeocodingModel.m */; };
+		3B8F9D231AE84E7300F74EB0 /* GeocodingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D211AE84E7300F74EB0 /* GeocodingModel.m */; };
+		3B8F9D2B1AE85F7400F74EB0 /* mapMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8F9D2A1AE85F7400F74EB0 /* mapMarker.png */; };
+		3B8F9D2C1AE85F7400F74EB0 /* mapMarker.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8F9D2A1AE85F7400F74EB0 /* mapMarker.png */; };
 		3B928E3C1AC5B71000F27710 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E3B1AC5B71000F27710 /* main.m */; };
 		3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E3E1AC5B71000F27710 /* AppDelegate.m */; };
 		3B928E451AC5B71000F27710 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E441AC5B71000F27710 /* MapViewController.m */; };
@@ -71,6 +75,9 @@
 		3B8F9D141AE6EF7300F74EB0 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		3B8F9D1C1AE70AF500F74EB0 /* MapNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigationController.h; sourceTree = "<group>"; };
 		3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNavigationController.m; sourceTree = "<group>"; };
+		3B8F9D201AE84E7300F74EB0 /* GeocodingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeocodingModel.h; sourceTree = "<group>"; };
+		3B8F9D211AE84E7300F74EB0 /* GeocodingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeocodingModel.m; sourceTree = "<group>"; };
+		3B8F9D2A1AE85F7400F74EB0 /* mapMarker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mapMarker.png; sourceTree = "<group>"; };
 		3B928E361AC5B71000F27710 /* Reportr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reportr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B928E3A1AC5B71000F27710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B928E3B1AC5B71000F27710 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -155,6 +162,7 @@
 		3B891F301AE5B37C00457517 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3B8F9D2A1AE85F7400F74EB0 /* mapMarker.png */,
 				3B891F311AE5B38500457517 /* ReportrIcon.png */,
 			);
 			name = images;
@@ -165,6 +173,8 @@
 			children = (
 				3B8F9D131AE6EF7300F74EB0 /* UserModel.h */,
 				3B8F9D141AE6EF7300F74EB0 /* UserModel.m */,
+				3B8F9D201AE84E7300F74EB0 /* GeocodingModel.h */,
+				3B8F9D211AE84E7300F74EB0 /* GeocodingModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -405,6 +415,7 @@
 			files = (
 				3B8F9D121AE6D9C400F74EB0 /* LaunchScreen.xib in Resources */,
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
+				3B8F9D2B1AE85F7400F74EB0 /* mapMarker.png in Resources */,
 				3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
 				3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */,
@@ -415,6 +426,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B8F9D2C1AE85F7400F74EB0 /* mapMarker.png in Resources */,
 				3B891F331AE5B38500457517 /* ReportrIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +441,7 @@
 				3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */,
 				3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */,
 				3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */,
+				3B8F9D221AE84E7300F74EB0 /* GeocodingModel.m in Sources */,
 				3B928E3C1AC5B71000F27710 /* main.m in Sources */,
 				3B928E451AC5B71000F27710 /* MapViewController.m in Sources */,
 				3B8F9D1E1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
@@ -442,6 +455,7 @@
 				3B8F9D0B1AE6D53100F74EB0 /* LoginViewController.m in Sources */,
 				3B928E591AC5B71000F27710 /* ReportrTests.m in Sources */,
 				3B8F9D161AE6EF7300F74EB0 /* UserModel.m in Sources */,
+				3B8F9D231AE84E7300F74EB0 /* GeocodingModel.m in Sources */,
 				3B8F9D1F1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface UserModel : NSObject
--(id) initWithId:(NSString*)uId andPassword: (NSString*)pass;
-
+-(id) initWithId:(NSString*)lId andPassword: (NSString*)pass andEmployeeId:(NSString*)eId;
+@property (readonly, getter=employeeId) NSString* employeeID;
 @end

@@ -21,7 +21,8 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 
 @interface LoginViewController ()
 @property BOOL loginSuccess;
-@property (nonatomic, strong) Firebase *ref;
+@property (strong, nonatomic)UserModel * userModel;
+@property (strong, nonatomic) Firebase *ref;
 @property (strong, nonatomic) IBOutlet UITextField *user_tf;
 @property (strong, nonatomic) IBOutlet UITextField *pass_tf;
 @property (strong, nonatomic) IBOutlet UIButton *signin_btn;
@@ -49,9 +50,9 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
      if ([[segue identifier] isEqualToString:@"loginToMapView"]) {
          
-         UserModel * m= [[UserModel alloc] initWithId: kEmail andPassword: kPassword];        
+        
          MapNavigationController* mapViewController = [segue destinationViewController];
-         [mapViewController passModel:m];
+         [mapViewController passModel:_userModel];
      }
  }
 
@@ -67,7 +68,8 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 {   /*validation: username > "", password > ""*/
     if ([_user_tf.text isEqualToString:@""]){
         [self displayError:@"Enter user name"];
-        _loginSuccess=NO;}
+        _loginSuccess=NO;
+    }
     if (_loginSuccess && [_pass_tf.text isEqualToString:@""]){
         [self displayError:@"Enter password"];
         _loginSuccess=NO; }
@@ -82,7 +84,25 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
             } else {
                 // user is logged in, check authData for data
                 _loginSuccess=YES;
-                [self performSegueWithIdentifier:@"loginToMapView" sender:sender];
+                
+                Firebase * employees = [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@", kFirebaseURL, @"employees"]];
+                [[employees queryOrderedByChild:@"employee_id"] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapShot) {
+                    FQuery *queryRef = [[employees queryOrderedByChild:@"user_name"] queryEqualToValue:_user_tf.text];
+                    [queryRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
+                        if(querySnapshot.childrenCount==1){
+                            for (FDataSnapshot* child in querySnapshot.children){
+                                NSString *eId = child.value[@"employee_id"];
+                                _userModel= [[UserModel alloc] initWithId:_user_tf.text andPassword:_pass_tf.text andEmployeeId:eId];
+                                [self performSegueWithIdentifier:@"loginToMapView" sender:sender];
+                            }                            
+                        }
+                        else {
+                            [self displayError:[NSString stringWithFormat:@"Unable to retrieve data for %@.", _user_tf.text]];
+                            _loginSuccess=NO;
+                            
+                        }
+                    }];
+                }];
             }
         }];
     }
