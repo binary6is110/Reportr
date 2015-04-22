@@ -12,22 +12,30 @@
 
 #import <Firebase/Firebase.h>
 #import "LoginViewController.h"
-
+#import "MapNavigationController.h"
+#import "UserModel.h"
 
 static NSString * const kEmail = @"kima@lopeznegrete.com";
 static NSString * const kPassword = @"lnc2015";
 static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface LoginViewController ()
+@property BOOL loginSuccess;
+@property (nonatomic, strong) Firebase *ref;
+@property (strong, nonatomic) IBOutlet UITextField *user_tf;
+@property (strong, nonatomic) IBOutlet UITextField *pass_tf;
+@property (strong, nonatomic) IBOutlet UIButton *signin_btn;
 - (IBAction)signIn:(id)sender;
-- (BOOL) attemptLogin;
 @end
 
 @implementation LoginViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _user_tf.text=kEmail;
+    _pass_tf.text=kPassword;
+    _user_tf.delegate = self;
+    _pass_tf.delegate = self;    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,29 +43,70 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+     if ([[segue identifier] isEqualToString:@"loginToMapView"]) {
+         
+         UserModel * m= [[UserModel alloc] initWithId: kEmail andPassword: kPassword];        
+         MapNavigationController* mapViewController = [segue destinationViewController];
+         [mapViewController passModel:m];
+     }
+ }
 
--(BOOL) attemptLogin
+ #pragma mark - Firebase Login
+// attempt login
+- (IBAction)signIn:(id)sender
 {
-    BOOL loginSuccess;
-    
-    
-    return loginSuccess;
+    _loginSuccess=YES;
+    [self attemptLogin:sender];
 }
 
-- (IBAction)signIn:(id)sender {
-    
-    if ([self attemptLogin])
-        NSLog ( @"success");
-    else
-        NSLog ( @"failure");
+-(BOOL) attemptLogin:(id)sender
+{   /*validation: username > "", password > ""*/
+    if ([_user_tf.text isEqualToString:@""]){
+        [self displayError:@"Enter user name"];
+        _loginSuccess=NO;}
+    if (_loginSuccess && [_pass_tf.text isEqualToString:@""]){
+        [self displayError:@"Enter password"];
+        _loginSuccess=NO; }
+    // only attempt login if username and password is present
+    if( _loginSuccess) {
+        Firebase *ref = [[Firebase alloc] initWithUrl:kFirebaseURL];
+        [ref authUser:_user_tf.text password:_pass_tf.text withCompletionBlock:^(NSError *error, FAuthData *authData) {
+            if (error) {
+                // an error occurred while attempting login
+                [self displayError:@"Unrecognized login credentials"];
+                _loginSuccess=NO;
+            } else {
+                // user is logged in, check authData for data
+                _loginSuccess=YES;
+                [self performSegueWithIdentifier:@"loginToMapView" sender:sender];
+            }
+        }];
+    }
+    return _loginSuccess;
 }
+
+#pragma mark -  Alerts
+-(void) displayError:(NSString*)errorMessage
+{
+    // display error on login failure
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:errorMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+    
+}
+
+#pragma mark - TextField
+// dismiss keyboard
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return NO;
+}
+
 @end

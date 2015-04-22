@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,15 +14,21 @@
 		3B891F391AE6B81700457517 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F381AE6B81700457517 /* AssetsLibrary.framework */; };
 		3B891F3B1AE6B82800457517 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F3A1AE6B82800457517 /* MediaPlayer.framework */; };
 		3B891F3D1AE6B86000457517 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F3C1AE6B86000457517 /* UIKit.framework */; };
-		3B8F9D0A1AE6D53100F74EB0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */; };
 		3B8F9D0B1AE6D53100F74EB0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */; };
+		3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */; };
+		3B8F9D0F1AE6D76F00F74EB0 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8F9D0E1AE6D76F00F74EB0 /* Firebase.framework */; };
+		3B8F9D101AE6D76F00F74EB0 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8F9D0E1AE6D76F00F74EB0 /* Firebase.framework */; };
+		3B8F9D111AE6D97500F74EB0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */; };
+		3B8F9D121AE6D9C400F74EB0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */; };
+		3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D141AE6EF7300F74EB0 /* UserModel.m */; };
+		3B8F9D161AE6EF7300F74EB0 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D141AE6EF7300F74EB0 /* UserModel.m */; };
+		3B8F9D1E1AE70AF500F74EB0 /* MapNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */; };
+		3B8F9D1F1AE70AF500F74EB0 /* MapNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */; };
 		3B928E3C1AC5B71000F27710 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E3B1AC5B71000F27710 /* main.m */; };
 		3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E3E1AC5B71000F27710 /* AppDelegate.m */; };
-		3B928E421AC5B71000F27710 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E411AC5B71000F27710 /* MasterViewController.m */; };
 		3B928E451AC5B71000F27710 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E441AC5B71000F27710 /* MapViewController.m */; };
 		3B928E481AC5B71000F27710 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E461AC5B71000F27710 /* Main.storyboard */; };
 		3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E491AC5B71000F27710 /* Images.xcassets */; };
-		3B928E4D1AC5B71000F27710 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */; };
 		3B928E591AC5B71000F27710 /* ReportrTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B928E581AC5B71000F27710 /* ReportrTests.m */; };
 		3B928F861AC5C7C600F27710 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F851AC5C7C600F27710 /* GoogleMaps.framework */; };
 		3B928F8C1AC5C83700F27710 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F8B1AC5C83700F27710 /* AVFoundation.framework */; };
@@ -36,9 +42,7 @@
 		3B928F9C1AC5C87A00F27710 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9B1AC5C87A00F27710 /* libz.dylib */; };
 		3B928F9E1AC5C88000F27710 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9D1AC5C88000F27710 /* OpenGLES.framework */; };
 		3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9F1AC5C88700F27710 /* QuartzCore.framework */; };
-		3B928FA21AC5C89100F27710 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */; };
 		3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */; };
-		3BC242651ACDAF390061036B /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC242641ACDAF390061036B /* Firebase.framework */; };
 		3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC242661ACDAF650061036B /* CFNetwork.framework */; };
 		3BC242691ACDAF710061036B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC242681ACDAF710061036B /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -62,13 +66,16 @@
 		3B891F3C1AE6B86000457517 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3B8F9D081AE6D53100F74EB0 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3B8F9D0E1AE6D76F00F74EB0 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		3B8F9D131AE6EF7300F74EB0 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		3B8F9D141AE6EF7300F74EB0 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		3B8F9D1C1AE70AF500F74EB0 /* MapNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapNavigationController.h; sourceTree = "<group>"; };
+		3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapNavigationController.m; sourceTree = "<group>"; };
 		3B928E361AC5B71000F27710 /* Reportr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reportr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B928E3A1AC5B71000F27710 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B928E3B1AC5B71000F27710 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3B928E3D1AC5B71000F27710 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3B928E3E1AC5B71000F27710 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3B928E401AC5B71000F27710 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
-		3B928E411AC5B71000F27710 /* MasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MasterViewController.m; sourceTree = "<group>"; };
 		3B928E431AC5B71000F27710 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		3B928E441AC5B71000F27710 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		3B928E471AC5B71000F27710 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,20 +108,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */,
-				3B928F9A1AC5C87400F27710 /* libicucore.dylib in Frameworks */,
+				3B891F351AE6B80200457517 /* Foundation.framework in Frameworks */,
 				3B891F3D1AE6B86000457517 /* UIKit.framework in Frameworks */,
+				3B8F9D111AE6D97500F74EB0 /* SystemConfiguration.framework in Frameworks */,
+				3BC242691ACDAF710061036B /* Security.framework in Frameworks */,
+				3B928F9A1AC5C87400F27710 /* libicucore.dylib in Frameworks */,
+				3B928F981AC5C86800F27710 /* libc++.dylib in Frameworks */,
+				3B928F9C1AC5C87A00F27710 /* libz.dylib in Frameworks */,
+				3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */,
 				3B891F3B1AE6B82800457517 /* MediaPlayer.framework in Frameworks */,
 				3B891F391AE6B81700457517 /* AssetsLibrary.framework in Frameworks */,
 				3B891F371AE6B80E00457517 /* CoreMotion.framework in Frameworks */,
-				3B891F351AE6B80200457517 /* Foundation.framework in Frameworks */,
-				3BC242691ACDAF710061036B /* Security.framework in Frameworks */,
-				3B928FA21AC5C89100F27710 /* SystemConfiguration.framework in Frameworks */,
 				3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */,
 				3B928F9E1AC5C88000F27710 /* OpenGLES.framework in Frameworks */,
-				3BC242651ACDAF390061036B /* Firebase.framework in Frameworks */,
-				3B928F9C1AC5C87A00F27710 /* libz.dylib in Frameworks */,
-				3B928F981AC5C86800F27710 /* libc++.dylib in Frameworks */,
 				3B928F961AC5C85D00F27710 /* ImageIO.framework in Frameworks */,
 				3B928F941AC5C85400F27710 /* GLKit.framework in Frameworks */,
 				3B928F921AC5C84C00F27710 /* CoreText.framework in Frameworks */,
@@ -122,6 +128,7 @@
 				3B928F8E1AC5C83D00F27710 /* CoreData.framework in Frameworks */,
 				3B928F8C1AC5C83700F27710 /* AVFoundation.framework in Frameworks */,
 				3B928F861AC5C7C600F27710 /* GoogleMaps.framework in Frameworks */,
+				3B8F9D0F1AE6D76F00F74EB0 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B8F9D101AE6D76F00F74EB0 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +158,15 @@
 				3B891F311AE5B38500457517 /* ReportrIcon.png */,
 			);
 			name = images;
+			sourceTree = "<group>";
+		};
+		3B8F9D171AE6EF7800F74EB0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B8F9D131AE6EF7300F74EB0 /* UserModel.h */,
+				3B8F9D141AE6EF7300F74EB0 /* UserModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		3B928E2D1AC5B71000F27710 = {
@@ -210,6 +227,7 @@
 		3B928FA31AC5C8E900F27710 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B8F9D0E1AE6D76F00F74EB0 /* Firebase.framework */,
 				3B891F3A1AE6B82800457517 /* MediaPlayer.framework */,
 				3B891F3C1AE6B86000457517 /* UIKit.framework */,
 				3B891F381AE6B81700457517 /* AssetsLibrary.framework */,
@@ -255,8 +273,7 @@
 				3B928FB21AC84F2E00F27710 /* Map */,
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
-				3B928E401AC5B71000F27710 /* MasterViewController.h */,
-				3B928E411AC5B71000F27710 /* MasterViewController.m */,
+				3B8F9D171AE6EF7800F74EB0 /* Model */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -264,6 +281,8 @@
 		3B928FB21AC84F2E00F27710 /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				3B8F9D1C1AE70AF500F74EB0 /* MapNavigationController.h */,
+				3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */,
 				3B928E431AC5B71000F27710 /* MapViewController.h */,
 				3B928E441AC5B71000F27710 /* MapViewController.m */,
 			);
@@ -319,6 +338,7 @@
 				TargetAttributes = {
 					3B928E351AC5B71000F27710 = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = K45SCZ3C29;
 					};
 					3B928E511AC5B71000F27710 = {
 						CreatedOnToolsVersion = 6.2;
@@ -327,7 +347,7 @@
 				};
 			};
 			buildConfigurationList = 3B928E311AC5B71000F27710 /* Build configuration list for PBXProject "Reportr" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -383,8 +403,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B8F9D121AE6D9C400F74EB0 /* LaunchScreen.xib in Resources */,
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
-				3B928E4D1AC5B71000F27710 /* LaunchScreen.xib in Resources */,
 				3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
 				3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */,
@@ -406,11 +426,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */,
 				3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */,
-				3B928E421AC5B71000F27710 /* MasterViewController.m in Sources */,
+				3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */,
 				3B928E3C1AC5B71000F27710 /* main.m in Sources */,
 				3B928E451AC5B71000F27710 /* MapViewController.m in Sources */,
-				3B8F9D0A1AE6D53100F74EB0 /* LoginViewController.m in Sources */,
+				3B8F9D1E1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +441,8 @@
 			files = (
 				3B8F9D0B1AE6D53100F74EB0 /* LoginViewController.m in Sources */,
 				3B928E591AC5B71000F27710 /* ReportrTests.m in Sources */,
+				3B8F9D161AE6EF7300F74EB0 /* UserModel.m in Sources */,
+				3B8F9D1F1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,6 +549,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -537,7 +561,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lopez Negrete Communications, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Reportr/GoogleMaps-iOS-1.9.2",
@@ -546,6 +570,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Reportr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -556,7 +581,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Lopez Negrete Communications, Inc.";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Reportr/GoogleMaps-iOS-1.9.2",
@@ -565,6 +590,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Reportr/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -578,6 +604,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -597,6 +624,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = ReportrTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

@@ -1,5 +1,5 @@
 //
-//  MapViewController.h
+//  MapNavigationController.h
 //  Reportr
 //
 //  Created by Kim Adams on 4/21/15.
@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "UserModel.h"
 
-@interface MapViewController : UIViewController
+@interface MapNavigationController : UINavigationController
 -(void) passModel:(UserModel*)model;
--(void) hi;
 @end

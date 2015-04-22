@@ -1,51 +1,65 @@
+//
+//  MapViewController.m
+//  Reportr
+//
+//  Created by Kim Adams on 4/21/15.
+//  Copyright (c) 2015 Lopez Negrete Communications. All rights reserved.
+//
+
 #if !defined(__has_feature) || !__has_feature(objc_arc)
 #error "This file requires ARC support."
 #endif
 
+#import "UserModel.h"
 #import "MapViewController.h"
+#import "MapNavigationController.h"
 #import <Firebase/Firebase.h>
 #import <GoogleMaps/GoogleMaps.h>
 
 
+@interface MapViewController ()
+   @property GMSMapView *mapView;
+   @property BOOL firstLocationUpdate;
+   @property MapNavigationController * mapNavController;
+@end
 
-@implementation MapViewController {
-    GMSMapView *mapView_;
-    BOOL firstLocationUpdate_;
-}
+
+@implementation MapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0 longitude:0 zoom:12];
     
-    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    mapView_.settings.myLocationButton = YES;
+    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    _mapView.settings.myLocationButton = YES;
     
     // Listen to the myLocation property of GMSMapView.
-    [mapView_ addObserver:self
+    [_mapView addObserver:self
                forKeyPath:@"myLocation"
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
     
-    self.view = mapView_;
+    self.view = _mapView;
+    if(!_mapNavController)
+        _mapNavController= (MapNavigationController*)self.parentViewController;
+    
     
     // Create a reference to a Firebase location
-    Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://reportr.firebaseio.com"];
+  //  Firebase *myRootRef = [[Firebase alloc] initWithUrl:@"https://reportr.firebaseio.com"];
     // Write data to Firebase
-    [myRootRef setValue:@"Do you have data? You'll love Firebase."];
+   // [myRootRef setValue:@"Do you have data? You'll love Firebase."];
 
     // Read data and react to changes
-    [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        NSLog(@"%@ -> %@", snapshot.key, snapshot.value);
-    }];
+  //  [myRootRef observeEventType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {        NSLog(@"%@ -> %@", snapshot.key, snapshot.value);    }];
     
     // Ask for My Location data after the map has already been added to the UI.
     dispatch_async(dispatch_get_main_queue(), ^{
-        mapView_.myLocationEnabled = YES;
+        _mapView.myLocationEnabled = YES;
     });
 }
 
 - (void)dealloc {
-    [mapView_ removeObserver:self
+    [_mapView removeObserver:self
                   forKeyPath:@"myLocation"
                      context:NULL];
 }
@@ -55,9 +69,9 @@
                       ofObject:(id)object
                         change:(NSDictionary *)change
                        context:(void *)context {
-    if (!firstLocationUpdate_) {
+    if (!_firstLocationUpdate) {
         // If the first location update has not yet been recieved, then jump to that location.
-        firstLocationUpdate_ = YES;
+        _firstLocationUpdate = YES;
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         CLLocationCoordinate2D loc1 = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         CLLocationCoordinate2D loc2 = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude+.01);
@@ -74,16 +88,26 @@
         [path addCoordinate:loc1];
         
         GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-        polyline.map = mapView_;
+        polyline.map = _mapView;
         
         GMSCoordinateBounds *bounds= [[GMSCoordinateBounds alloc] initWithPath:path];
-        GMSCameraPosition *camera = [mapView_ cameraForBounds:bounds insets:UIEdgeInsetsZero];
-        mapView_.camera = camera;
+        GMSCameraPosition *camera = [_mapView cameraForBounds:bounds insets:UIEdgeInsetsZero];
+        _mapView.camera = camera;
         
         GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:50.0f];
-        [mapView_ moveCamera:update];
+        [_mapView moveCamera:update];
      
     }
+}
+
+-(void) hi
+{
+    NSLog (@"hi from map view controller");
+}
+
+-(void) passModel:(UserModel*)model
+{
+    NSLog (@"hi in map  view");
 }
 
 @end
