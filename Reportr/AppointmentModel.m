@@ -1,23 +1,21 @@
 //
-//  GeocodingModel.m
+//  AppointmentModel
 //  Reportr
 //
 //  Created by Kim Adams on 4/22/15.
 //  Copyright (c) 2015 Lopez Negrete Communications. All rights reserved.
 //
 
-#import "GeocodingModel.h"
+#import "AppointmentModel.h"
 
-@interface GeocodingModel()
-
-
+@interface AppointmentModel()
 
 @end
 
-@implementation GeocodingModel
+@implementation AppointmentModel
 
 
--(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip
+-(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip startTime:(NSString*)sTime
 {
     if ( self = [super init] ) {
         _company = company;
@@ -26,6 +24,7 @@
         _city=city;
         _state=state;
         _zip = zip;
+        _start_time=sTime;
     }
     return self;
 }

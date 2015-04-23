@@ -13,4 +13,5 @@
 @interface MapViewController : UIViewController
 @property (nonatomic, strong) Firebase *appointments;
 -(void) passUserModel:(UserModel*) userModel;
+- (void)addDirections:(NSDictionary *)json;
 @end

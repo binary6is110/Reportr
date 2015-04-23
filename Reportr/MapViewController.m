@@ -13,7 +13,8 @@
 #import "MapViewController.h"
 #import "MapNavigationController.h"
 #import <GoogleMaps/GoogleMaps.h>
-#import "GeocodingModel.h"
+#import "AppointmentModel.h"
+#import "MDDirectionService.h"
 
 static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
@@ -25,6 +26,8 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 @property UserModel*userModel;
 
 @property NSMutableArray* locations;
+@property  NSMutableArray *waypoints;
+@property NSMutableArray*waypointStrings;
 @end
 
 @implementation MapViewController
@@ -43,6 +46,8 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
                   context:NULL];
     
     _locations= [[NSMutableArray alloc] init];
+    _waypointStrings = [[NSMutableArray alloc]init];
+    _waypoints = [[NSMutableArray alloc]init];
     
     self.view = _mapView;
     if(!_mapNavController){
@@ -50,9 +55,9 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     }
     _userModel = _mapNavController.userModel;
     NSLog(@"userModel set in MapViewController, employeeId: %@",_userModel.employeeId);
-  
+    
     [self retrieveAppointmentsForUser:_mapNavController.userModel];
- 
+    
 }
 
 - (void)dealloc {
@@ -64,7 +69,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 #pragma mark – Firebase queries
 /** -(void) retrieveAppointmentsForUser:(UserModel*)userModel
  *  retrieves appointments for user by ID.
-    TODO: Filter by date & sort
+ TODO: Filter by date & sort
  */
 -(void) retrieveAppointmentsForUser:(UserModel*)userModel
 {
@@ -72,27 +77,21 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     _appointments= [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@", kFirebaseURL, @"appointments"]];
     [[_appointments queryOrderedByChild:@"appointment_id"] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapShot) {
         FQuery *queryRef = [[_appointments queryOrderedByChild:@"employee_id"] queryEqualToValue:empId];
-         [queryRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
-             for (FDataSnapshot* child in querySnapshot.children) {
-                 NSLog(@"child.key %@, child.value %@", child.key, child.value);
-                 GeocodingModel * gModel = [[GeocodingModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"] city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"]];
-                 [_locations insertObject:gModel atIndex:_locations.count];
-             }
-             
-             // Ask for My Location data after the map has already been added to the UI.
-             dispatch_async(dispatch_get_main_queue(), ^{
-                 _mapView.myLocationEnabled = YES;
-             });
+        [queryRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
+            for (FDataSnapshot* child in querySnapshot.children) {
+                NSLog(@"child.key %@, child.value %@", child.key, child.value);
+                AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"] city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"]];
+                [_locations insertObject:gModel atIndex:_locations.count];
+            }
+            // Ask for My Location data after the map has already been added to the UI.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _mapView.myLocationEnabled = YES;
+            });
         }];
     }];
 }
 
--(void) geocodeAddresses
-{
-    
-}
-
-#pragma mark - KVO updates
+#pragma mark - Map Marking
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -101,38 +100,54 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
         // If the first location update has not yet been recieved, then jump to that location.
         _firstLocationUpdate = YES;
         
-        
-        //CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         NSMutableArray * coords = [[NSMutableArray alloc] init];
-        GMSMutablePath *path = [GMSMutablePath path];
-        for (GeocodingModel * obj in _locations)
+        
+        for (AppointmentModel * obj in _locations)
         {
             CLLocationCoordinate2D thisSpot = [self geoCodeUsingAddress: [NSString stringWithFormat:@"%@,%@,%@,%@",obj.address_1, obj.city, obj.state, obj.zip]];
             GMSMarker * marker = [GMSMarker markerWithPosition: thisSpot];
+            [_waypoints addObject:marker];
+            NSString *positionString = [[NSString alloc] initWithFormat:@"%f,%f",thisSpot.latitude,thisSpot.longitude];
+            [_waypointStrings addObject:positionString];
+            
             marker.title= obj.company;
             marker.snippet = obj.address_1;
             marker.flat = YES;
             marker.infoWindowAnchor = CGPointMake(0.5, 0.5);
-          //  marker.icon = [UIImage imageNamed:@"mapMarker.png"];
-          //  marker.icon.alignmentRectInsets;
             marker.map = _mapView;
             obj.latitude= [NSString stringWithFormat:@"%f",thisSpot.latitude];
             obj.longitude= [NSString stringWithFormat:@"%f",thisSpot.longitude];
             [coords insertObject:obj atIndex:coords.count];
-            [path addCoordinate:thisSpot];
         }
-
         
-        GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
-        polyline.map = _mapView;
-        
-        GMSCoordinateBounds *bounds= [[GMSCoordinateBounds alloc] initWithPath:path];
-        GMSCameraPosition *camera = [_mapView cameraForBounds:bounds insets:UIEdgeInsetsZero];
-        _mapView.camera = camera;
-        
-        GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:50.0f];
-        [_mapView moveCamera:update];
+        if([_waypoints count]>1)
+        {
+            NSString *sensor = @"false";
+            NSArray *parameters = [NSArray arrayWithObjects:sensor, _waypointStrings, nil];
+            NSArray *keys = [NSArray arrayWithObjects:@"sensor", @"waypoints", nil];
+            NSDictionary *query = [NSDictionary dictionaryWithObjects:parameters forKeys:keys];
+            MDDirectionService *mds=[[MDDirectionService alloc] init];
+            SEL selector = @selector(addDirections:);
+            [mds setDirectionsQuery:query withSelector:selector withDelegate:self];
+        }
     }
+}
+
+- (void)addDirections:(NSDictionary *)json {
+    
+    NSDictionary *routes = [json objectForKey:@"routes"][0];
+    NSDictionary *route = [routes objectForKey:@"overview_polyline"];
+    NSString *overview_route = [route objectForKey:@"points"];
+    GMSPath *path = [GMSPath pathFromEncodedPath:overview_route];
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.map = _mapView;
+    
+    GMSCoordinateBounds *bounds= [[GMSCoordinateBounds alloc] initWithPath:path];
+    GMSCameraPosition *camera = [_mapView cameraForBounds:bounds insets:UIEdgeInsetsZero];
+    _mapView.camera = camera;
+    
+    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:50.0f];
+    [_mapView moveCamera:update];
 }
 
 - (CLLocationCoordinate2D) geoCodeUsingAddress:(NSString *)address

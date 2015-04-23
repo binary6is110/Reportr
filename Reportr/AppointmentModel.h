@@ -1,5 +1,5 @@
 //
-//  GeocodingModel.h
+//  AppointmentModel
 //  Reportr
 //
 //  Created by Kim Adams on 4/22/15.
@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GeocodingModel : NSObject
--(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip;
+@interface AppointmentModel : NSObject
+-(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip startTime:(NSString*)sTime;
 
 @property (nonatomic, strong) NSString * latitude;
 @property (nonatomic, strong) NSString * longitude;
@@ -19,4 +19,5 @@
 @property (nonatomic, strong) NSString * city;
 @property (nonatomic, strong) NSString * state;
 @property (nonatomic, strong) NSString * zip;
+@property (nonatomic, strong) NSString * start_time;
 @end
