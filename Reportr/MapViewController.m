@@ -19,15 +19,14 @@
 static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface MapViewController ()
-
-@property GMSMapView *mapView;
-@property BOOL firstLocationUpdate;
 @property MapNavigationController * mapNavController;
-@property UserModel*userModel;
-
-@property NSMutableArray* locations;
-@property  NSMutableArray *waypoints;
-@property NSMutableArray*waypointStrings;
+@property GMSMapView * mapView;
+@property UserModel * userModel;
+@property Firebase * appointments;
+@property NSMutableArray * locations;
+@property NSMutableArray * waypoints;
+@property NSMutableArray * waypointStrings;
+@property BOOL firstLocationUpdate;
 @end
 
 @implementation MapViewController
@@ -40,10 +39,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     _mapView.settings.myLocationButton = YES;
     
     // Listen to the myLocation property of GMSMapView.
-    [_mapView addObserver:self
-               forKeyPath:@"myLocation"
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
+    [_mapView addObserver:self forKeyPath:@"myLocation"  options:NSKeyValueObservingOptionNew context:NULL];
     
     _locations= [[NSMutableArray alloc] init];
     _waypointStrings = [[NSMutableArray alloc]init];
@@ -54,48 +50,47 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
         _mapNavController= (MapNavigationController*)self.parentViewController;
     }
     _userModel = _mapNavController.userModel;
-    NSLog(@"userModel set in MapViewController, employeeId: %@",_userModel.employeeId);
     
     [self retrieveAppointmentsForUser:_mapNavController.userModel];
     
 }
 
 - (void)dealloc {
-    [_mapView removeObserver:self
-                  forKeyPath:@"myLocation"
-                     context:NULL];
+    [_mapView removeObserver:self forKeyPath:@"myLocation" context:NULL];
 }
 
-#pragma mark – Firebase queries
+#pragma mark – Firebase Queries
 /** -(void) retrieveAppointmentsForUser:(UserModel*)userModel
- *  retrieves appointments for user by ID.
- TODO: Filter by date & sort
+ *  Retrieves appointments for user by ID & date, sorted by appointment time.
  */
 -(void) retrieveAppointmentsForUser:(UserModel*)userModel
 {
     NSString * empId = _userModel.employeeId;
-    _appointments= [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@", kFirebaseURL, @"appointments"]];
-    [[_appointments queryOrderedByChild:@"appointment_id"] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapShot) {
-        FQuery *queryRef = [[_appointments queryOrderedByChild:@"employee_id"] queryEqualToValue:empId];
-        [queryRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
-            for (FDataSnapshot* child in querySnapshot.children) {
-                NSLog(@"child.key %@, child.value %@", child.key, child.value);
-                AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"] city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"]];
-                [_locations insertObject:gModel atIndex:_locations.count];
-            }
-            // Ask for My Location data after the map has already been added to the UI.
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _mapView.myLocationEnabled = YES;
-            });
-        }];
+    NSString * today = @"2015-04-30";
+    
+    // create drill down query to retrieve appointments for a user on a date
+    _appointments= [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@/%@/%@", kFirebaseURL, @"appointments",empId,today]];
+    [[_appointments queryOrderedByValue]  observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
+        
+        
+        for (FDataSnapshot* child in querySnapshot.children) {
+            NSLog(@"child.key %@, child.value %@", child.key, child.value);
+            AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"]
+                                                                             city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"]];
+            [_locations insertObject:gModel atIndex:_locations.count];
+        }
+        // ask for my location data after the map has already been added to the ui.
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _mapView.myLocationEnabled = YES;
+        });
     }];
 }
 
-#pragma mark - Map Marking
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
+#pragma mark - Google Mapping
+/** - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+ *  Creates markers and gets directions to locations for today's appointment
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
     if (!_firstLocationUpdate) {
         // If the first location update has not yet been recieved, then jump to that location.
         _firstLocationUpdate = YES;
@@ -132,7 +127,9 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
         }
     }
 }
-
+/** - (void)addDirections:(NSDictionary *)json
+ *  Draws routes on map between locations
+ */
 - (void)addDirections:(NSDictionary *)json {
     
     NSDictionary *routes = [json objectForKey:@"routes"][0];
@@ -145,13 +142,14 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     GMSCoordinateBounds *bounds= [[GMSCoordinateBounds alloc] initWithPath:path];
     GMSCameraPosition *camera = [_mapView cameraForBounds:bounds insets:UIEdgeInsetsZero];
     _mapView.camera = camera;
-    
     GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:50.0f];
     [_mapView moveCamera:update];
 }
 
-- (CLLocationCoordinate2D) geoCodeUsingAddress:(NSString *)address
-{
+/** - (CLLocationCoordinate2D) geoCodeUsingAddress:(NSString *)address
+ * Reverse lookup finds coordinates for locations by address.
+ */
+- (CLLocationCoordinate2D) geoCodeUsingAddress:(NSString *)address {
     double latitude = 0, longitude = 0;
     NSString *esc_addr =  [address stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSString *req = [NSString stringWithFormat:@"http://maps.google.com/maps/api/geocode/json?sensor=false&address=%@", esc_addr];
@@ -171,7 +169,11 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     return center;
 }
 
--(void) passUserModel:(UserModel*) userModel{
+#pragma mark - Messaging
+/** -(void) passUserModel:(UserModel*) userModel
+ * Passes UserModel to view controller before transitioning.
+ */
+-(void) passUserModel:(UserModel*) userModel {
     NSLog(@"userModel set in MapViewController, employeeID: %@",userModel.employeeId);
     _userModel=userModel;
 }

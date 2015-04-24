@@ -156,8 +156,8 @@
 		3B891F2B1AE5AAB500457517 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3B8F9D081AE6D53100F74EB0 /* LoginViewController.h */,
 				3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */,
+				3B8F9D081AE6D53100F74EB0 /* LoginViewController.h */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -280,10 +280,10 @@
 		3B928FB11AC84ECA00F27710 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3BA8AE511AE9586E0000C9A8 /* Services */,
-				3BA8AE521AE958760000C9A8 /* Controllers */,
 				3B928E461AC5B71000F27710 /* Main.storyboard */,
 				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
+				3BA8AE511AE9586E0000C9A8 /* Services */,
+				3BA8AE521AE958760000C9A8 /* Controllers */,
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
 				3B8F9D171AE6EF7800F74EB0 /* Model */,
