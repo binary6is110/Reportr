@@ -11,7 +11,7 @@
 #import "UserModel.h"
 
 @interface MapViewController : UIViewController
-
+- (IBAction)showSchedule:(id)sender;
 -(void) passUserModel:(UserModel *) userModel;
 -(void) addDirections:(NSDictionary *) json;
 @end

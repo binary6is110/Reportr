@@ -3,10 +3,26 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B33256A1AEFF4610020F630 /* DetailButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3325691AEFF4610020F630 /* DetailButton.m */; };
+		3B3A61721AF012760059D0B2 /* personIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A616D1AF012760059D0B2 /* personIcon.png */; };
+		3B3A61761AF012760059D0B2 /* backIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A61711AF012760059D0B2 /* backIcon.png */; };
+		3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A61781AF013290059D0B2 /* videoIcon.png */; };
+		3B5254CD1AF1833600E64857 /* micIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CC1AF1833600E64857 /* micIcon.png */; };
+		3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CE1AF1834700E64857 /* cameraIcon.png */; };
+		3B8102D41AEAA02F00C1D076 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8102D31AEAA02F00C1D076 /* hamburger.png */; };
+		3B8102D61AEAA23500C1D076 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8102D51AEAA23500C1D076 /* calendarIcon.png */; };
+		3B8102DA1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102D91AEAA67C00C1D076 /* ScheduleNavigationViewController.m */; };
+		3B8102DB1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102D91AEAA67C00C1D076 /* ScheduleNavigationViewController.m */; };
+		3B8102DE1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */; };
+		3B8102DF1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */; };
+		3B8102E21AEAA73900C1D076 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */; };
+		3B8102E31AEAA73900C1D076 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */; };
+		3B8102E61AEACFB900C1D076 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102E51AEACFB900C1D076 /* AppointmentTableViewCell.m */; };
+		3B8102E71AEACFB900C1D076 /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102E51AEACFB900C1D076 /* AppointmentTableViewCell.m */; };
 		3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B891F311AE5B38500457517 /* ReportrIcon.png */; };
 		3B891F331AE5B38500457517 /* ReportrIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B891F311AE5B38500457517 /* ReportrIcon.png */; };
 		3B891F351AE6B80200457517 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F341AE6B80200457517 /* Foundation.framework */; };
@@ -63,6 +79,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B3325681AEFF4610020F630 /* DetailButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailButton.h; sourceTree = "<group>"; };
+		3B3325691AEFF4610020F630 /* DetailButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailButton.m; sourceTree = "<group>"; };
+		3B3A616D1AF012760059D0B2 /* personIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personIcon.png; sourceTree = "<group>"; };
+		3B3A61711AF012760059D0B2 /* backIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backIcon.png; sourceTree = "<group>"; };
+		3B3A61781AF013290059D0B2 /* videoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoIcon.png; sourceTree = "<group>"; };
+		3B5254CC1AF1833600E64857 /* micIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micIcon.png; sourceTree = "<group>"; };
+		3B5254CE1AF1834700E64857 /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
+		3B8102D31AEAA02F00C1D076 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
+		3B8102D51AEAA23500C1D076 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
+		3B8102D81AEAA67C00C1D076 /* ScheduleNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleNavigationViewController.h; sourceTree = "<group>"; };
+		3B8102D91AEAA67C00C1D076 /* ScheduleNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleNavigationViewController.m; sourceTree = "<group>"; };
+		3B8102DC1AEAA6B700C1D076 /* ScheduleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleTableViewController.h; sourceTree = "<group>"; };
+		3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewController.m; sourceTree = "<group>"; };
+		3B8102E01AEAA73900C1D076 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
+		3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
+		3B8102E41AEACFB900C1D076 /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
+		3B8102E51AEACFB900C1D076 /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		3B891F311AE5B38500457517 /* ReportrIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReportrIcon.png; sourceTree = "<group>"; };
 		3B891F341AE6B80200457517 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3B891F361AE6B80E00457517 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
@@ -153,11 +186,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B8102D71AEAA61C00C1D076 /* Schedule */ = {
+			isa = PBXGroup;
+			children = (
+				3B8102D81AEAA67C00C1D076 /* ScheduleNavigationViewController.h */,
+				3B8102D91AEAA67C00C1D076 /* ScheduleNavigationViewController.m */,
+				3B8102DC1AEAA6B700C1D076 /* ScheduleTableViewController.h */,
+				3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */,
+				3B8102E01AEAA73900C1D076 /* ScheduleViewController.h */,
+				3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */,
+				3B8102E41AEACFB900C1D076 /* AppointmentTableViewCell.h */,
+				3B8102E51AEACFB900C1D076 /* AppointmentTableViewCell.m */,
+				3B3325681AEFF4610020F630 /* DetailButton.h */,
+				3B3325691AEFF4610020F630 /* DetailButton.m */,
+			);
+			name = Schedule;
+			sourceTree = "<group>";
+		};
 		3B891F2B1AE5AAB500457517 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */,
 				3B8F9D081AE6D53100F74EB0 /* LoginViewController.h */,
+				3B8F9D091AE6D53100F74EB0 /* LoginViewController.m */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -165,6 +215,13 @@
 		3B891F301AE5B37C00457517 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3B5254CE1AF1834700E64857 /* cameraIcon.png */,
+				3B5254CC1AF1833600E64857 /* micIcon.png */,
+				3B3A61781AF013290059D0B2 /* videoIcon.png */,
+				3B3A616D1AF012760059D0B2 /* personIcon.png */,
+				3B3A61711AF012760059D0B2 /* backIcon.png */,
+				3B8102D51AEAA23500C1D076 /* calendarIcon.png */,
+				3B8102D31AEAA02F00C1D076 /* hamburger.png */,
 				3B9B2AE61AE946B800CC641E /* reportrCloud.png */,
 				3B891F311AE5B38500457517 /* ReportrIcon.png */,
 			);
@@ -314,6 +371,7 @@
 		3BA8AE521AE958760000C9A8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B8102D71AEAA61C00C1D076 /* Schedule */,
 				3B928FB21AC84F2E00F27710 /* Map */,
 				3B891F2B1AE5AAB500457517 /* Login */,
 			);
@@ -364,7 +422,7 @@
 		3B928E2E1AC5B71000F27710 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Lopez Negrete Communications";
 				TargetAttributes = {
 					3B928E351AC5B71000F27710 = {
@@ -378,7 +436,7 @@
 				};
 			};
 			buildConfigurationList = 3B928E311AC5B71000F27710 /* Build configuration list for PBXProject "Reportr" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -435,10 +493,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B8F9D121AE6D9C400F74EB0 /* LaunchScreen.xib in Resources */,
+				3B5254CD1AF1833600E64857 /* micIcon.png in Resources */,
+				3B8102D41AEAA02F00C1D076 /* hamburger.png in Resources */,
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
 				3B9B2AE71AE946B800CC641E /* reportrCloud.png in Resources */,
+				3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */,
+				3B3A61761AF012760059D0B2 /* backIcon.png in Resources */,
+				3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */,
 				3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
+				3B8102D61AEAA23500C1D076 /* calendarIcon.png in Resources */,
+				3B3A61721AF012760059D0B2 /* personIcon.png in Resources */,
 				3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,13 +524,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */,
+				3B8102E21AEAA73900C1D076 /* ScheduleViewController.m in Sources */,
 				3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */,
 				3BA8AE551AE9589E0000C9A8 /* MDDirectionService.m in Sources */,
+				3B33256A1AEFF4610020F630 /* DetailButton.m in Sources */,
 				3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */,
 				3B8F9D221AE84E7300F74EB0 /* AppointmentModel.m in Sources */,
 				3B928E3C1AC5B71000F27710 /* main.m in Sources */,
+				3B8102E61AEACFB900C1D076 /* AppointmentTableViewCell.m in Sources */,
 				3B928E451AC5B71000F27710 /* MapViewController.m in Sources */,
+				3B8102DA1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */,
 				3B8F9D1E1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
+				3B8102DE1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,8 +546,12 @@
 				3B8F9D0B1AE6D53100F74EB0 /* LoginViewController.m in Sources */,
 				3B928E591AC5B71000F27710 /* ReportrTests.m in Sources */,
 				3BA8AE561AE9589E0000C9A8 /* MDDirectionService.m in Sources */,
+				3B8102E71AEACFB900C1D076 /* AppointmentTableViewCell.m in Sources */,
 				3B8F9D161AE6EF7300F74EB0 /* UserModel.m in Sources */,
 				3B8F9D231AE84E7300F74EB0 /* AppointmentModel.m in Sources */,
+				3B8102DF1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */,
+				3B8102DB1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */,
+				3B8102E31AEAA73900C1D076 /* ScheduleViewController.m in Sources */,
 				3B8F9D1F1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,17 +1,18 @@
 //
 //  MDDirectionService.h
-//  MapsDirections
+//  Reportr
 //
-//  Created by Mano Marks on 4/8/13.
+//  Created by Kim Adams on 4/20/15.
+//  Copyright (c) 2015 Lopez Negrete Communications. All rights reserved.
+//
+//  Based on MapsDirections: Created by Mano Marks on 4/8/13.
 //  Copyright (c) 2013 Google. All rights reserved.
-//
+
 
 #import <Foundation/Foundation.h>
 
 @interface MDDirectionService : NSObject
-- (void)setDirectionsQuery:(NSDictionary *)object withSelector:(SEL)selector
-              withDelegate:(id)delegate;
+- (void)setDirectionsQuery:(NSDictionary *)object withSelector:(SEL)selector withDelegate:(id)delegate;
 - (void)retrieveDirections:(SEL)sel withDelegate:(id)delegate;
-- (void)fetchedData:(NSData *)data withSelector:(SEL)selector
-       withDelegate:(id)delegate;
+- (void)fetchedData:(NSData *)data withSelector:(SEL)selector withDelegate:(id)delegate;
 @end

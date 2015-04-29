@@ -12,6 +12,7 @@
 
 #import "MapViewController.h"
 #import "MapNavigationController.h"
+#import "ScheduleNavigationViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
 #import "AppointmentModel.h"
 #import "MDDirectionService.h"
@@ -75,8 +76,8 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
         
         for (FDataSnapshot* child in querySnapshot.children) {
             NSLog(@"child.key %@, child.value %@", child.key, child.value);
-            AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"]
-                                                                             city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"]];
+            
+            AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"] city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"] notesDesc:child.value[@"notes"] agendaDesc:child.value[@"agenda"] contactId:child.value[@"contact_id"] nextSteps:child.value[@"next_steps"]];
             [_locations insertObject:gModel atIndex:_locations.count];
         }
         // ask for my location data after the map has already been added to the ui.
@@ -97,12 +98,21 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
         
         NSMutableArray * coords = [[NSMutableArray alloc] init];
         
+        CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
+        CLLocationCoordinate2D start = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+        NSString *positionString = [[NSString alloc] initWithFormat:@"%f,%f",start.latitude,start.longitude];
+        [_waypointStrings addObject:positionString];
+        AppointmentModel * aM=[[AppointmentModel alloc] init];
+        aM.latitude= [NSString stringWithFormat:@"%f",start.latitude];
+        aM.longitude= [NSString stringWithFormat:@"%f",start.longitude];
+        [coords insertObject:aM atIndex:coords.count];
+        
         for (AppointmentModel * obj in _locations)
         {
-            CLLocationCoordinate2D thisSpot = [self geoCodeUsingAddress: [NSString stringWithFormat:@"%@,%@,%@,%@",obj.address_1, obj.city, obj.state, obj.zip]];
+            CLLocationCoordinate2D thisSpot = [self geoCodeUsingAddress:[NSString stringWithFormat:@"%@,%@,%@,%@",obj.address_1, obj.city, obj.state, obj.zip]];
             GMSMarker * marker = [GMSMarker markerWithPosition: thisSpot];
             [_waypoints addObject:marker];
-            NSString *positionString = [[NSString alloc] initWithFormat:@"%f,%f",thisSpot.latitude,thisSpot.longitude];
+            positionString = [[NSString alloc] initWithFormat:@"%f,%f",thisSpot.latitude,thisSpot.longitude];
             [_waypointStrings addObject:positionString];
             
             marker.title= obj.company;
@@ -169,10 +179,30 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     return center;
 }
 
-#pragma mark - Messaging
+#pragma mark - Navigation
+
 /** -(void) passUserModel:(UserModel*) userModel
  * Passes UserModel to view controller before transitioning.
  */
+- (IBAction)showSchedule:(id)sender {
+    
+    
+
+    [self performSegueWithIdentifier:@"showSchedule" sender:sender];
+    
+}
+
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+         NSLog(@"passing through map");
+     ScheduleNavigationViewController * target = (ScheduleNavigationViewController*)[segue destinationViewController];
+     [target passAppointments:_locations];
+     
+ }
+
+#pragma mark - Messaging
 -(void) passUserModel:(UserModel*) userModel {
     NSLog(@"userModel set in MapViewController, employeeID: %@",userModel.employeeId);
     _userModel=userModel;
