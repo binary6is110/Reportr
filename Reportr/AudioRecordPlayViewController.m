@@ -15,12 +15,12 @@
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (nonatomic,strong)VisualizerView *visualizer;
 
-
 @end
 
 @implementation AudioRecordPlayViewController{
     BOOL _isBarHide;
     BOOL _isPlaying;
+    BOOL isRecording;
 }
 
 
@@ -36,6 +36,7 @@
     // self.stopButton.enabled = NO;
     
     [self configureBars];
+    [self configureEZAudio];
     
     [self configureAudioSession];
     
@@ -43,11 +44,17 @@
     [self.visualizer setAutoresizingMask:UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth];
     [self.backgroundView addSubview:self.visualizer];
     
+    [self configureAudioPlot];
+   
+    
     [self configureAudioPlayer];
     [self configureAudioRecorder];
-    
-   // [self.audioPlayer setMeteringEnabled:YES];
-    //[self.visualizer setAudioPlayer:self.audioPlayer];
+    /* Start the microphone */
+    [self.microphone startFetchingAudio];
+    self.microphoneTextField.text = @"Microphone On";
+    self.playingTextField.text = @"Not Playing";
+    self.recordingTextField.text = @"Not Recording";
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -55,13 +62,37 @@
     [self toggleBars];
 }
 
--(void) configureAudioRecorder{
-    NSError *error = nil;
+-(void) configureAudioPlot{
+    CGRect cgFrame =CGRectMake(50.0, 50.0, self.view.frame.size.width/2, self.view.frame.size.height/2);
+    self.audioPlot = [[EZAudioPlotGL alloc] initWithFrame:cgFrame];
+    [self.backgroundView addSubview:self.audioPlot];
+    // Background color
+    self.audioPlot.backgroundColor = [UIColor colorWithRed: 0.984 green: 0.71 blue: 0.365 alpha: 1];
+    // Waveform color
+    self.audioPlot.color           = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    // Plot type
+    self.audioPlot.plotType        = EZPlotTypeRolling;
+    // Fill
+    self.audioPlot.shouldFill      = YES;
+    // Mirror
+    self.audioPlot.shouldMirror    = YES;
+    
+}
+-(void) configureEZAudio {
+    // Create an instance of the microphone and tell it to use this view controller instance as the delegate
+    self.microphone = [EZMicrophone microphoneWithDelegate:self];
+}
+
+-(NSURL*)audioURL
+{
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = dirPaths[0];
     NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"sound.caf"];
-    NSURL * soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    return [NSURL fileURLWithPath:soundFilePath];
+}
 
+-(void) configureAudioRecorder{
+    NSError *error;
     NSDictionary *recordSettings = [NSDictionary
                                     dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithInt:AVAudioQualityMin],
@@ -73,7 +104,7 @@
                                     [NSNumber numberWithFloat:44100.0],
                                     AVSampleRateKey,
                                     nil];
-    self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:soundFileURL settings:recordSettings error:&error];
+    self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[self audioURL] settings:recordSettings error:&error];
     if (error) {
         NSLog(@"error: %@", [error localizedDescription]);
     }
@@ -91,33 +122,16 @@
     [_audioPlayer setMeteringEnabled:YES];
     [_visualizer setAudioPlayer:_audioPlayer];
 }
-/*
-- (void)configureAudioPlayer {
-    NSURL *audioFileURL = [[NSBundle mainBundle] URLForResource:@"DemoSong" withExtension:@"m4a"];
-    NSError *error;
-    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:audioFileURL error:&error];
-    if (error) {
-        NSLog(@"%@", [error localizedDescription]);
-    }
-    [_audioPlayer setNumberOfLoops:-1];
-    [_audioPlayer setMeteringEnabled:YES];
-    [_visualizer setAudioPlayer:_audioPlayer];
-}
-*/
+
 -(void) configureAudioSession{
     
     NSError *error;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:&error];
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
     
     if (error) {
         NSLog(@"Error setting category: %@", [error description]);
     }
-   //* recording below
-    /*AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord  error:nil];*/
 }
-
-
 
 #pragma mark view builders
 
@@ -198,8 +212,12 @@
 #pragma mark audio delegate methods
 -(void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)player successfully:(BOOL)flag
 {
-    //self.recordButton.enabled = YES;
-   // self.stopButton.enabled = NO;
+    self.audioPlayer = nil;
+    self.playingTextField.text = @"Finished Playing";
+    
+    [self.microphone startFetchingAudio];
+    self.microphoneSwitch.on = YES;
+    self.microphoneTextField.text = @"Microphone On";
 }
 
 -(void)audioPlayerDecodeErrorDidOccur:(AVAudioPlayer *)player error:(NSError *)error
@@ -219,31 +237,68 @@
 
 #pragma mark - handlers
 - (IBAction)recordAudio:(id)sender {
-    if (!_audioRecorder.recording)
+    if( self.audioPlayer )
     {
-        _playButton.enabled = NO;
-        _stopButton.enabled = YES;
-        _audioPlayer.meteringEnabled=YES;
-        [_audioRecorder record];
+        if( self.audioPlayer.playing )
+        {
+            [self.audioPlayer stop];
+        }
+        self.audioPlayer = nil;
     }
+    self.playButton.hidden = NO;
+    self.playingTextField.text = @"Not Playing";
+
+    if( [sender isOn] )
+    {
+        /*
+         Create the recorder
+         */
+        self.recorder = [EZRecorder recorderWithDestinationURL:[self audioURL]
+                                                  sourceFormat:self.microphone.audioStreamBasicDescription
+                                           destinationFileType:EZRecorderFileTypeM4A];
+    }
+    else
+    {
+        [self.recorder closeAudioFile];
+    }
+    isRecording = (BOOL)[sender isOn];
+    self.recordingTextField.text = isRecording ? @"Recording" : @"Not Recording";
+     _audioPlayer.meteringEnabled=YES;
+    [_audioRecorder record];
 }
 
 - (IBAction)playAudio:(id)sender {
-    if (!_audioRecorder.recording)
+    
+    // Update microphone state
+    [self.microphone stopFetchingAudio];
+    self.microphoneTextField.text = @"Microphone Off";
+    
+    // Update recording state
+    isRecording = NO;
+    self.recordingTextField.text = @"Not Recording";
+    if( self.audioPlayer )
     {
-        _stopButton.enabled = YES;
-        _recordButton.enabled = NO;
-        NSError *error;
-        
-        _audioPlayer = [[AVAudioPlayer alloc]
-                        initWithContentsOfURL:_audioRecorder.url
-                        error:&error];
-        
-        if (error)
-            NSLog(@"Error: %@", [error localizedDescription]);
-        else
-            [_audioPlayer play];
+        if( self.audioPlayer.playing )
+        {
+            [self.audioPlayer stop];
+        }
+        self.audioPlayer = nil;
     }
+    // Close the audio file
+    if( self.recorder )
+    {
+        [self.recorder closeAudioFile];
+    }
+    
+    NSError *error;
+    _audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[self audioURL] error:&error];
+    
+    if (error)
+        NSLog(@"Error: %@", [error localizedDescription]);
+    
+    [self.audioPlayer play];
+    self.audioPlayer.delegate = self;
+    self.playingTextField.text = @"Playing";
 }
 
 - (IBAction)stopAudio:(id)sender {
@@ -256,6 +311,25 @@
         [_audioRecorder stop];
     } else if (_audioPlayer.playing) {
         [_audioPlayer stop];
+    }
+}
+
+/** Toggles the microphone on and off. When the microphone is on it will send its delegate (aka this view controller) the audio data in various ways (check out the EZMicrophoneDelegate documentation for more details); */
+-(IBAction)toggleMicrophone:(id)sender {
+    
+    self.playingTextField.text = @"Not Playing";
+    if( self.audioPlayer ){
+        if( self.audioPlayer.playing ) [self.audioPlayer stop];
+        self.audioPlayer = nil;
+    }
+    
+    if( ![(UISwitch*)sender isOn] ){
+        [self.microphone stopFetchingAudio];
+        self.microphoneTextField.text = @"Microphone Off";
+    }
+    else {
+        [self.microphone startFetchingAudio];
+        self.microphoneTextField.text = @"Microphone On";
     }
 }
 
@@ -345,6 +419,46 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+#pragma mark - EZMicrophoneDelegate
+// Note that any callback that provides streamed audio data (like streaming microphone input) happens on a separate audio thread that should not be blocked. When we feed audio data into any of the UI components we need to explicity create a GCD block on the main thread to properly get the UI to work.
+-(void)microphone:(EZMicrophone *)microphone
+ hasAudioReceived:(float **)buffer
+   withBufferSize:(UInt32)bufferSize
+withNumberOfChannels:(UInt32)numberOfChannels {
+    // Getting audio data as an array of float buffer arrays. What does that mean? Because the audio is coming in as a stereo signal the data is split into a left and right channel. So buffer[0] corresponds to the float* data for the left channel while buffer[1] corresponds to the float* data for the right channel.
+    
+    // See the Thread Safety warning above, but in a nutshell these callbacks happen on a separate audio thread. We wrap any UI updating in a GCD block on the main thread to avoid blocking that audio flow.
+    dispatch_async(dispatch_get_main_queue(),^{
+        // All the audio plot needs is the buffer data (float*) and the size. Internally the audio plot will handle all the drawing related code, history management, and freeing its own resources. Hence, one badass line of code gets you a pretty plot :)
+        [self.audioPlot updateBuffer:buffer[0] withBufferSize:bufferSize];
+    });
+}
+
+-(void)microphone:(EZMicrophone *)microphone
+    hasBufferList:(AudioBufferList *)bufferList
+   withBufferSize:(UInt32)bufferSize
+withNumberOfChannels:(UInt32)numberOfChannels {
+    
+    // Getting audio data as a buffer list that can be directly fed into the EZRecorder. This is happening on the audio thread - any UI updating needs a GCD main queue block. This will keep appending data to the tail of the audio file.
+    if( isRecording ){
+        [self.recorder appendDataFromBufferList:bufferList
+                                 withBufferSize:bufferSize];
+    }
+    
+}
+
+#pragma mark - Utility
+-(NSArray*)applicationDocuments {
+    return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+}
+
+-(NSString*)applicationDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
+}
 
 
 

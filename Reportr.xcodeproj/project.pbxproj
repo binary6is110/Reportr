@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0AB1E91AF42C8400A3876E /* EZAudio in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC8521AF42C4800ADAC64 /* EZAudio */; };
 		3B0CC8351AF3D93A00ADAC64 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC8341AF3D93A00ADAC64 /* MessageModel.m */; };
 		3B0CC83B1AF3F31500ADAC64 /* AudioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC83A1AF3F31500ADAC64 /* AudioViewController.m */; };
 		3B0CC83D1AF3F55C00ADAC64 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CC83C1AF3F55C00ADAC64 /* AVKit.framework */; };
@@ -17,6 +18,7 @@
 		3B0CC84A1AF40D6F00ADAC64 /* MeterTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC8481AF40D6F00ADAC64 /* MeterTable.cpp */; };
 		3B0CC84E1AF4116600ADAC64 /* particleTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CC84D1AF4116600ADAC64 /* particleTexture.png */; };
 		3B0CC84F1AF41D6600ADAC64 /* DemoSong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CC84C1AF40D9B00ADAC64 /* DemoSong.m4a */; };
+		3B0CC8531AF42C4800ADAC64 /* EZAudio in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CC8521AF42C4800ADAC64 /* EZAudio */; };
 		3B33256A1AEFF4610020F630 /* DetailButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B3325691AEFF4610020F630 /* DetailButton.m */; };
 		3B3A61721AF012760059D0B2 /* personIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A616D1AF012760059D0B2 /* personIcon.png */; };
 		3B3A61761AF012760059D0B2 /* backIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A61711AF012760059D0B2 /* backIcon.png */; };
@@ -108,6 +110,7 @@
 		3B0CC8491AF40D6F00ADAC64 /* MeterTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeterTable.h; sourceTree = "<group>"; };
 		3B0CC84C1AF40D9B00ADAC64 /* DemoSong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = DemoSong.m4a; sourceTree = "<group>"; };
 		3B0CC84D1AF4116600ADAC64 /* particleTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particleTexture.png; sourceTree = "<group>"; };
+		3B0CC8521AF42C4800ADAC64 /* EZAudio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = EZAudio; sourceTree = "<group>"; };
 		3B3325681AEFF4610020F630 /* DetailButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailButton.h; sourceTree = "<group>"; };
 		3B3325691AEFF4610020F630 /* DetailButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailButton.m; sourceTree = "<group>"; };
 		3B3A616D1AF012760059D0B2 /* personIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personIcon.png; sourceTree = "<group>"; };
@@ -389,6 +392,7 @@
 		3B928FB11AC84ECA00F27710 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3B0CC8521AF42C4800ADAC64 /* EZAudio */,
 				3B0CC84B1AF40D7300ADAC64 /* MeterTable */,
 				3B928E461AC5B71000F27710 /* Main.storyboard */,
 				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
@@ -582,6 +586,7 @@
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
 				3B9B2AE71AE946B800CC641E /* reportrCloud.png in Resources */,
 				3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */,
+				3B0CC8531AF42C4800ADAC64 /* EZAudio in Resources */,
 				3B0CC84E1AF4116600ADAC64 /* particleTexture.png in Resources */,
 				3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */,
 				3B0CC84F1AF41D6600ADAC64 /* DemoSong.m4a in Resources */,
@@ -610,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B0AB1E91AF42C8400A3876E /* EZAudio in Sources */,
 				3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */,
 				3B8102E21AEAA73900C1D076 /* ScheduleViewController.m in Sources */,
 				3BA784F71AF27FA600ED8EBA /* ImageViewController.m in Sources */,
@@ -774,8 +780,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Reportr/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -794,8 +801,9 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Reportr/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 1;
 			};

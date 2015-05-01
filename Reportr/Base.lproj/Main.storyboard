@@ -1494,56 +1494,81 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="le5-ee-tmQ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="fY8-Uy-Ewf"/>
-                                </constraints>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="fY8-Uy-Ewf"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="fY8-Uy-Ewf"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <action selector="playAudio:" destination="gfF-n2-2s1" eventType="touchUpInside" id="WYv-ZH-QuQ"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXu-ky-mQA">
+                                <rect key="frame" x="-25" y="-15" width="51" height="31"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="99" y="65" width="51" height="31"/>
+                                </variation>
+                                <connections>
+                                    <action selector="toggleMicrophone:" destination="gfF-n2-2s1" eventType="valueChanged" id="w2z-ww-1TW"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mic on" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z63-EC-rsM">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="70" width="53" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Playing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdl-cX-3Vk">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="253" y="351" width="56" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recording" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ig5-aL-HWi">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="48" y="362" width="79" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="le5-ee-tmQ" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6rF-iE-lIw" secondAttribute="trailing" constant="8" symbolic="YES" id="4Ji-i5-v2G">
-                                <variation key="heightClass=regular-widthClass=compact" constant="33"/>
-                            </constraint>
-                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="le5-ee-tmQ" secondAttribute="trailing" constant="23" id="6VT-dC-r3U"/>
-                            <constraint firstItem="6rF-iE-lIw" firstAttribute="baseline" secondItem="le5-ee-tmQ" secondAttribute="baseline" id="GjQ-wp-x3x"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="le5-ee-tmQ" secondAttribute="trailing" constant="53" id="Fk2-P7-yad"/>
                             <constraint firstAttribute="centerX" secondItem="6rF-iE-lIw" secondAttribute="centerX" id="KOW-QC-kNx">
                                 <variation key="heightClass=regular-widthClass=compact" constant="14.5"/>
                             </constraint>
                             <constraint firstItem="Xf5-sY-Xbj" firstAttribute="leading" relation="lessThanOrEqual" secondItem="OJZ-F6-7BV" secondAttribute="leadingMargin" constant="24" id="Ppu-X8-fLu"/>
                             <constraint firstItem="RNx-fE-qrk" firstAttribute="top" secondItem="Xf5-sY-Xbj" secondAttribute="bottom" constant="369" id="UGn-Dh-f8R"/>
+                            <constraint firstItem="le5-ee-tmQ" firstAttribute="baseline" secondItem="6rF-iE-lIw" secondAttribute="baseline" id="cyh-3F-XOc"/>
                             <constraint firstItem="6rF-iE-lIw" firstAttribute="leading" secondItem="Xf5-sY-Xbj" secondAttribute="trailing" constant="3" id="n3f-Hd-DIi"/>
                             <constraint firstItem="Xf5-sY-Xbj" firstAttribute="baseline" secondItem="6rF-iE-lIw" secondAttribute="baseline" id="qJZ-6A-q2U"/>
+                            <constraint firstItem="le5-ee-tmQ" firstAttribute="leading" secondItem="6rF-iE-lIw" secondAttribute="trailing" constant="3" id="r71-6n-0BP"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Xf5-sY-Xbj"/>
                                 <exclude reference="6rF-iE-lIw"/>
                                 <exclude reference="le5-ee-tmQ"/>
+                                <exclude reference="hXu-ky-mQA"/>
+                                <exclude reference="z63-EC-rsM"/>
+                                <exclude reference="sdl-cX-3Vk"/>
+                                <exclude reference="ig5-aL-HWi"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="Ppu-X8-fLu"/>
                                 <exclude reference="qJZ-6A-q2U"/>
-                                <exclude reference="GjQ-wp-x3x"/>
                                 <exclude reference="KOW-QC-kNx"/>
                                 <exclude reference="n3f-Hd-DIi"/>
-                                <exclude reference="4Ji-i5-v2G"/>
-                                <exclude reference="6VT-dC-r3U"/>
+                                <exclude reference="Fk2-P7-yad"/>
+                                <exclude reference="cyh-3F-XOc"/>
+                                <exclude reference="r71-6n-0BP"/>
                                 <exclude reference="UGn-Dh-f8R"/>
                             </mask>
                         </variation>
@@ -1552,23 +1577,31 @@
                                 <include reference="Xf5-sY-Xbj"/>
                                 <include reference="6rF-iE-lIw"/>
                                 <include reference="le5-ee-tmQ"/>
+                                <include reference="hXu-ky-mQA"/>
+                                <include reference="z63-EC-rsM"/>
+                                <include reference="sdl-cX-3Vk"/>
+                                <include reference="ig5-aL-HWi"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="Ppu-X8-fLu"/>
                                 <include reference="qJZ-6A-q2U"/>
-                                <include reference="GjQ-wp-x3x"/>
                                 <include reference="KOW-QC-kNx"/>
                                 <include reference="n3f-Hd-DIi"/>
-                                <include reference="4Ji-i5-v2G"/>
-                                <include reference="6VT-dC-r3U"/>
+                                <include reference="Fk2-P7-yad"/>
+                                <include reference="cyh-3F-XOc"/>
+                                <include reference="r71-6n-0BP"/>
                                 <include reference="UGn-Dh-f8R"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="LhT-kH-Pyh"/>
                     <connections>
+                        <outlet property="microphoneSwitch" destination="hXu-ky-mQA" id="A0s-9l-rbj"/>
+                        <outlet property="microphoneTextField" destination="z63-EC-rsM" id="nuX-ye-B4p"/>
                         <outlet property="playButton" destination="le5-ee-tmQ" id="fM0-Af-4fI"/>
+                        <outlet property="playingTextField" destination="sdl-cX-3Vk" id="aEN-Fj-tGo"/>
                         <outlet property="recordButton" destination="Xf5-sY-Xbj" id="pGB-Q0-9uL"/>
+                        <outlet property="recordingTextField" destination="ig5-aL-HWi" id="lVZ-cV-XFw"/>
                         <outlet property="stopButton" destination="6rF-iE-lIw" id="2rK-7I-R4l"/>
                         <segue destination="n6R-iN-k4J" kind="unwind" identifier="UNWIND_TO_SCHEDULE" unwindAction="prepareForUnwind:" id="lj5-6h-j2P"/>
                     </connections>
