@@ -24,30 +24,31 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 
 @implementation ScheduleViewController
 
-/* - (void)viewWillAppear:(BOOL)animated
-    register notifications*/
+/* -(id) init: register notifications */
+-(id) init {
+    if ( self = [super init] )  {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
+                                                     name:UIKeyboardWillShowNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
+                                                     name:UIKeyboardWillHideNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageIconWithSuccess:)
+                                                     name:@"addImageComplete" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoIconWithSuccess:)
+                                                     name:@"addVideoComplete" object:nil];
+    }
+    return self;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageIconWithSuccess:)
-                                                 name:@"addImageComplete" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoIconWithSuccess:)
-                                                 name:@"addVideoComplete" object:nil];
+
 }
 
 /* -(void) viewWillDisappear:(BOOL)animated
     Tear down/unregister notifications*/
 -(void) viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addImageComplete" object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"addVideoComplete" object:nil];
 }
 
 /* - (void)viewDidLoad 
@@ -72,7 +73,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     
     Firebase *ref = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/%@", kFirebaseURL, @"contacts"]];
     [[[[ref queryOrderedByKey] queryStartingAtValue:_aModel.contactId] queryLimitedToFirst:1] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-         NSLog(@"ScheduleViewController::viewDidLoad contact name: %@ %@", snapshot.key, snapshot.value);
+        // NSLog(@"ScheduleViewController::viewDidLoad contact name: %@ %@", snapshot.key, snapshot.value);
          _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", snapshot.value[@"first_name"],snapshot.value[@"last_name"]];
      }];
 }
@@ -107,7 +108,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     }
 }
 
-/* - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+/*-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
     Hack to get keyboard to resign using done <enter>  */
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if([text isEqualToString:@"\n"]) {

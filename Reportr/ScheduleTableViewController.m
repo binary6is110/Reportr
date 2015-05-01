@@ -20,20 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    //[self.tableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:@"apptCell"];
-
-   /* if(!_scheduleVController)
-    {
-    
-        [_scheduleVController passAppointment: _appointment];
-    }*/
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,7 +30,6 @@
 -(void) passAppointments:(NSMutableArray *) appointments
 {
     _appointments=appointments;
-    NSLog(@"passAppts, scheudle tab view");
 }
 
 
@@ -64,7 +49,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:@"apptCell" forIndexPath:indexPath];
-
     AppointmentModel * appt = (AppointmentModel*)[_appointments objectAtIndex:indexPath.row];   
     cell.textLabel.text=appt.start_time;
     cell.detailTextLabel.text=appt.company;
@@ -80,10 +64,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     _appointment =(AppointmentModel*)[_appointments objectAtIndex:indexPath.row];
-    NSLog(@"didSelectRowAtIndexPath: appt name: %@",_appointment.company);
-   // [self performSegueWithIdentifier:@"showApptDetail" sender:sender];
+   // NSLog(@"didSelectRowAtIndexPath: appt name: %@",_appointment.company);
     [_scheduleVController passAppointment:_appointment];
-
 }
 
 
@@ -125,13 +107,9 @@
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    NSLog(@"prepForSeg, table view controller");
     if ([[segue identifier] isEqualToString:@"showDetailView"]) {
         _scheduleVController = (ScheduleViewController*)[segue destinationViewController];
     }
-    
 }
 
 

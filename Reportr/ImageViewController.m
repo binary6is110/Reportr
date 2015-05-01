@@ -73,7 +73,7 @@
 #pragma mark - Camera Handlers
 - (void)finishAndUpdate
 {
-   [self dismissViewControllerAnimated:NO completion:NULL];
+   [self dismissViewControllerAnimated:NO completion:nil];
     if ([self.capturedImages count] > 0)
     {
         if ([self.capturedImages count] == 1)
@@ -90,7 +90,7 @@
 }
 
 -(void) cancelAndExit
-{   [self dismissViewControllerAnimated:NO completion:NULL];
+{   [self dismissViewControllerAnimated:NO completion:nil];
     self.imagePickerController = nil;
     [self dismissViewControllerAnimated: YES completion: nil];
 }

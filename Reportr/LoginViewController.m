@@ -10,6 +10,7 @@
 #error "This file requires ARC support."
 #endif
 
+#import "MessageModel.h"
 #import <Firebase/Firebase.h>
 #import "LoginViewController.h"
 #import "MapNavigationController.h"
@@ -20,6 +21,7 @@ static NSString * const kPassword = @"lnc2015";
 static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface LoginViewController ()
+//@property (strong, nonatomic) MessageModel *mModel;
 @property BOOL loginSuccess;
 @property BOOL attemptInProgress;
 @property (strong, nonatomic)UserModel * userModel;
@@ -33,6 +35,9 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 @implementation LoginViewController
 
 - (void)viewDidLoad {
+    
+  //  if(!self.mModel)
+   //     self.mModel=[MessageModel messageModel];
     [super viewDidLoad];
     _user_tf.text=kEmail;
     _pass_tf.text=kPassword;

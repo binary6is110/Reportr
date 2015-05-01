@@ -32,9 +32,7 @@
 -(void) passAppointments:(NSMutableArray*) appointments
 {
     _appointments=appointments;
-    NSLog(@"passAppt,%d",(int)[_appointments count]);
 }
-
 
 /*
 #pragma mark - Navigation

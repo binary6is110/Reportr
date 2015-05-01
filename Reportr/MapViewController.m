@@ -52,8 +52,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     }
     _userModel = _mapNavController.userModel;
     
-    [self retrieveAppointmentsForUser:_mapNavController.userModel];
-    
+    [self retrieveAppointmentsForUser:_mapNavController.userModel];    
 }
 
 - (void)dealloc {
@@ -73,9 +72,8 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     _appointments= [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@/%@/%@", kFirebaseURL, @"appointments",empId,today]];
     [[_appointments queryOrderedByValue]  observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
         
-        
         for (FDataSnapshot* child in querySnapshot.children) {
-            NSLog(@"child.key %@, child.value %@", child.key, child.value);
+          //  NSLog(@"child.key %@, child.value %@", child.key, child.value);
             
             AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"] city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"] notesDesc:child.value[@"notes"] agendaDesc:child.value[@"agenda"] contactId:child.value[@"contact_id"] nextSteps:child.value[@"next_steps"]];
             [_locations insertObject:gModel atIndex:_locations.count];
@@ -185,18 +183,14 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
  * Passes UserModel to view controller before transitioning.
  */
 - (IBAction)showSchedule:(id)sender {
-    
-    
-
     [self performSegueWithIdentifier:@"showSchedule" sender:sender];
-    
 }
 
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
-         NSLog(@"passing through map");
+     //NSLog(@"passing through map");
      ScheduleNavigationViewController * target = (ScheduleNavigationViewController*)[segue destinationViewController];
      [target passAppointments:_locations];
      
@@ -204,7 +198,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 
 #pragma mark - Messaging
 -(void) passUserModel:(UserModel*) userModel {
-    NSLog(@"userModel set in MapViewController, employeeID: %@",userModel.employeeId);
+    //NSLog(@"userModel set in MapViewController, employeeID: %@",userModel.employeeId);
     _userModel=userModel;
 }
 
