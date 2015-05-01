@@ -13,6 +13,9 @@
 		3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A61781AF013290059D0B2 /* videoIcon.png */; };
 		3B5254CD1AF1833600E64857 /* micIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CC1AF1833600E64857 /* micIcon.png */; };
 		3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CE1AF1834700E64857 /* cameraIcon.png */; };
+		3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E82031AF29B9900DC3460 /* OverlayView.xib */; };
+		3B7E820A1AF2D20D00DC3460 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7E82091AF2D20D00DC3460 /* VideoViewController.m */; };
+		3B7E820C1AF2D93100DC3460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */; };
 		3B8102D41AEAA02F00C1D076 /* hamburger.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8102D31AEAA02F00C1D076 /* hamburger.png */; };
 		3B8102D61AEAA23500C1D076 /* calendarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B8102D51AEAA23500C1D076 /* calendarIcon.png */; };
 		3B8102DA1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102D91AEAA67C00C1D076 /* ScheduleNavigationViewController.m */; };
@@ -62,6 +65,7 @@
 		3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9F1AC5C88700F27710 /* QuartzCore.framework */; };
 		3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */; };
 		3B9B2AE71AE946B800CC641E /* reportrCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9B2AE61AE946B800CC641E /* reportrCloud.png */; };
+		3BA784F71AF27FA600ED8EBA /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA784F61AF27FA600ED8EBA /* ImageViewController.m */; };
 		3BA8AE551AE9589E0000C9A8 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */; };
 		3BA8AE561AE9589E0000C9A8 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */; };
 		3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC242661ACDAF650061036B /* CFNetwork.framework */; };
@@ -86,6 +90,10 @@
 		3B3A61781AF013290059D0B2 /* videoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoIcon.png; sourceTree = "<group>"; };
 		3B5254CC1AF1833600E64857 /* micIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micIcon.png; sourceTree = "<group>"; };
 		3B5254CE1AF1834700E64857 /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
+		3B7E82031AF29B9900DC3460 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
+		3B7E82081AF2D20D00DC3460 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		3B7E82091AF2D20D00DC3460 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		3B8102D31AEAA02F00C1D076 /* hamburger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburger.png; sourceTree = "<group>"; };
 		3B8102D51AEAA23500C1D076 /* calendarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendarIcon.png; sourceTree = "<group>"; };
 		3B8102D81AEAA67C00C1D076 /* ScheduleNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleNavigationViewController.h; sourceTree = "<group>"; };
@@ -139,6 +147,8 @@
 		3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
 		3B9B2AE61AE946B800CC641E /* reportrCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportrCloud.png; sourceTree = "<group>"; };
+		3BA784F51AF27FA600ED8EBA /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
+		3BA784F61AF27FA600ED8EBA /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		3BA8AE531AE9589E0000C9A8 /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDirectionService.h; sourceTree = "<group>"; };
 		3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDirectionService.m; sourceTree = "<group>"; };
 		3BC242641ACDAF390061036B /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
@@ -151,6 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B7E820C1AF2D93100DC3460 /* CoreGraphics.framework in Frameworks */,
 				3B891F351AE6B80200457517 /* Foundation.framework in Frameworks */,
 				3B891F3D1AE6B86000457517 /* UIKit.framework in Frameworks */,
 				3B8F9D111AE6D97500F74EB0 /* SystemConfiguration.framework in Frameworks */,
@@ -195,10 +206,6 @@
 				3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */,
 				3B8102E01AEAA73900C1D076 /* ScheduleViewController.h */,
 				3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */,
-				3B8102E41AEACFB900C1D076 /* AppointmentTableViewCell.h */,
-				3B8102E51AEACFB900C1D076 /* AppointmentTableViewCell.m */,
-				3B3325681AEFF4610020F630 /* DetailButton.h */,
-				3B3325691AEFF4610020F630 /* DetailButton.m */,
 			);
 			name = Schedule;
 			sourceTree = "<group>";
@@ -297,6 +304,7 @@
 		3B928FA31AC5C8E900F27710 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */,
 				3B8F9D0E1AE6D76F00F74EB0 /* Firebase.framework */,
 				3B891F3A1AE6B82800457517 /* MediaPlayer.framework */,
 				3B891F3C1AE6B86000457517 /* UIKit.framework */,
@@ -339,11 +347,12 @@
 			children = (
 				3B928E461AC5B71000F27710 /* Main.storyboard */,
 				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
-				3BA8AE511AE9586E0000C9A8 /* Services */,
+				3B7E82031AF29B9900DC3460 /* OverlayView.xib */,
 				3BA8AE521AE958760000C9A8 /* Controllers */,
+				3BA8AE511AE9586E0000C9A8 /* Services */,
+				3B8F9D171AE6EF7800F74EB0 /* Model */,
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
-				3B8F9D171AE6EF7800F74EB0 /* Model */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -359,6 +368,28 @@
 			name = Map;
 			sourceTree = "<group>";
 		};
+		3BA784E41AF274CD00ED8EBA /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				3BA784F51AF27FA600ED8EBA /* ImageViewController.h */,
+				3BA784F61AF27FA600ED8EBA /* ImageViewController.m */,
+				3B7E82081AF2D20D00DC3460 /* VideoViewController.h */,
+				3B7E82091AF2D20D00DC3460 /* VideoViewController.m */,
+			);
+			name = Log;
+			sourceTree = "<group>";
+		};
+		3BA784E81AF2757800ED8EBA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3B8102E41AEACFB900C1D076 /* AppointmentTableViewCell.h */,
+				3B8102E51AEACFB900C1D076 /* AppointmentTableViewCell.m */,
+				3B3325681AEFF4610020F630 /* DetailButton.h */,
+				3B3325691AEFF4610020F630 /* DetailButton.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		3BA8AE511AE9586E0000C9A8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,9 +402,11 @@
 		3BA8AE521AE958760000C9A8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				3B8102D71AEAA61C00C1D076 /* Schedule */,
-				3B928FB21AC84F2E00F27710 /* Map */,
 				3B891F2B1AE5AAB500457517 /* Login */,
+				3B928FB21AC84F2E00F27710 /* Map */,
+				3B8102D71AEAA61C00C1D076 /* Schedule */,
+				3BA784E41AF274CD00ED8EBA /* Log */,
+				3BA784E81AF2757800ED8EBA /* UI */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -497,6 +530,7 @@
 				3B8102D41AEAA02F00C1D076 /* hamburger.png in Resources */,
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
 				3B9B2AE71AE946B800CC641E /* reportrCloud.png in Resources */,
+				3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */,
 				3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */,
 				3B3A61761AF012760059D0B2 /* backIcon.png in Resources */,
 				3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */,
@@ -525,8 +559,10 @@
 			files = (
 				3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */,
 				3B8102E21AEAA73900C1D076 /* ScheduleViewController.m in Sources */,
+				3BA784F71AF27FA600ED8EBA /* ImageViewController.m in Sources */,
 				3B928E3F1AC5B71000F27710 /* AppDelegate.m in Sources */,
 				3BA8AE551AE9589E0000C9A8 /* MDDirectionService.m in Sources */,
+				3B7E820A1AF2D20D00DC3460 /* VideoViewController.m in Sources */,
 				3B33256A1AEFF4610020F630 /* DetailButton.m in Sources */,
 				3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */,
 				3B8F9D221AE84E7300F74EB0 /* AppointmentModel.m in Sources */,

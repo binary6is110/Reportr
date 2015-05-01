@@ -11,4 +11,9 @@
 
 @interface ScheduleViewController : UIViewController<UITextViewDelegate, UIScrollViewDelegate>
 -(void) passAppointment:(AppointmentModel *) appointment;
+- (IBAction)callTocuhed:(id)sender;
+- (IBAction)syncTouched:(id)sender;
+- (IBAction)saveTouched:(id)sender;
+-(void) updateImageIconWithSuccess: (NSNotification *)notification;
+
 @end
