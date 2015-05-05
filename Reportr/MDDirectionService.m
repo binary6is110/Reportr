@@ -53,11 +53,11 @@ static NSString *kMDDirectionsURL = @"http://maps.googleapis.com/maps/api/direct
     });
 }
 
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 - (void)fetchedData:(NSData *)data withSelector:(SEL)selector withDelegate:(id)delegate{
-  
   NSError* error;
   NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-  [delegate performSelector:selector withObject:json];
+    [delegate performSelector:selector withObject:json];
 }
 
 @end

@@ -70,7 +70,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     
     // create drill down query to retrieve appointments for a user on a date
     _appointments= [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@/%@/%@", kFirebaseURL, @"appointments",empId,today]];
-    [[_appointments queryOrderedByValue]  observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
+    [[_appointments queryOrderedByValue] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
         
         for (FDataSnapshot* child in querySnapshot.children) {
           //  NSLog(@"child.key %@, child.value %@", child.key, child.value);

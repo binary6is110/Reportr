@@ -88,7 +88,10 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 }
 
 -(BOOL) attemptLogin:(id)sender
-{   /*validation: username > "", password > ""*/
+{
+    if(_attemptInProgress)
+        return NO;
+    /*validation: username > "", password > ""*/
     _attemptInProgress=YES;
     [self updateSignInBtnUI];
     //don't try login if there are empty fields

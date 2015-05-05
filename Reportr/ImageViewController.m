@@ -7,13 +7,17 @@
 //
 #import "ScheduleViewController.h"
 #import "ImageViewController.h"
+//#import "NSStrinAdditions.h"
+#import <Firebase/Firebase.h>
+
+static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface ImageViewController ()
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @property (nonatomic) UIImagePickerController *imagePickerController;
 @property (nonatomic) NSMutableArray *capturedImages;
-
+typedef void (^processImage)(BOOL);
 @end
 
 @implementation ImageViewController
@@ -80,14 +84,40 @@
         {
             // Camera took a single picture.
             [self.imageView setImage:[self.capturedImages objectAtIndex:0]];
+            [self processAndSaveImage:^(BOOL finished) {
+                if(finished){
+                    NSLog(@" dismissViewControllerAnimated block success");
+                    self.imagePickerController = nil;
+                    //** transition back - notifiy schedule view that image has been captured
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"addImageComplete" object:nil];
+                    [self dismissViewControllerAnimated: YES completion: nil];
+                }
+            }];
         }
         [self.capturedImages removeAllObjects];
     }
-    self.imagePickerController = nil;
-    //** transition back - notifiy schedule view that image has been captured
-     [[NSNotificationCenter defaultCenter] postNotificationName:@"addImageComplete" object:nil];
-    [self dismissViewControllerAnimated: YES completion: nil];
 }
+
+-(void) processAndSaveImage:(processImage)imageBlock{
+   
+    NSLog(@"processAndSaveImage");
+  /*  UIImage *uploadImage = self.imageView.image;
+    NSData *imageData = UIImageJPEGRepresentation(uploadImage, 0.9);
+    
+    // using base64StringFromData method, we are able to convert data to string
+    NSString *imageString = [NSString base64StringFromData:imageData length:(int)[imageData length]];
+    
+    Firebase* firebaseRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/%@",kFirebaseURL, @"1"]];
+    
+    [firebaseRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
+        long dataLength = snapshot.childrenCount;
+        NSString *indexPath = [NSString stringWithFormat: @"%ld", dataLength];
+        Firebase* newImageRef = [firebaseRef childByAppendingPath:indexPath];
+        [newImageRef setValue:@{@"myImage": imageString, @"someObjectId": @"null"}] ;
+    }];*/
+imageBlock(YES);
+}
+
 
 -(void) cancelAndExit
 {   [self dismissViewControllerAnimated:NO completion:nil];
