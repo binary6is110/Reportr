@@ -7,10 +7,7 @@
 //
 #import "ScheduleViewController.h"
 #import "ImageViewController.h"
-//#import "NSStrinAdditions.h"
-#import <Firebase/Firebase.h>
-
-static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
+#import <Parse/Parse.h>
 
 @interface ImageViewController ()
 
@@ -74,7 +71,7 @@ typedef void (^processImage)(BOOL);
     [self cancelAndExit];
 }
 
-#pragma mark - Camera Handlers
+#pragma mark - Save/Store Image
 - (void)finishAndUpdate
 {
    [self dismissViewControllerAnimated:NO completion:nil];
@@ -84,8 +81,8 @@ typedef void (^processImage)(BOOL);
         {
             // Camera took a single picture.
             [self.imageView setImage:[self.capturedImages objectAtIndex:0]];
-            [self processAndSaveImage:^(BOOL finished) {
-                if(finished){
+            [self processAndSaveImage:^(BOOL success) {
+                if(success){
                     NSLog(@" dismissViewControllerAnimated block success");
                     self.imagePickerController = nil;
                     //** transition back - notifiy schedule view that image has been captured
@@ -99,23 +96,25 @@ typedef void (^processImage)(BOOL);
 }
 
 -(void) processAndSaveImage:(processImage)imageBlock{
-   
+    
     NSLog(@"processAndSaveImage");
-  /*  UIImage *uploadImage = self.imageView.image;
-    NSData *imageData = UIImageJPEGRepresentation(uploadImage, 0.9);
-    
-    // using base64StringFromData method, we are able to convert data to string
-    NSString *imageString = [NSString base64StringFromData:imageData length:(int)[imageData length]];
-    
-    Firebase* firebaseRef = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/%@",kFirebaseURL, @"1"]];
-    
-    [firebaseRef observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *snapshot) {
-        long dataLength = snapshot.childrenCount;
-        NSString *indexPath = [NSString stringWithFormat: @"%ld", dataLength];
-        Firebase* newImageRef = [firebaseRef childByAppendingPath:indexPath];
-        [newImageRef setValue:@{@"myImage": imageString, @"someObjectId": @"null"}] ;
-    }];*/
-imageBlock(YES);
+    NSString * apptRef= @"JgNj4N9fcw";
+    NSData* data = UIImageJPEGRepresentation(self.imageView.image, 0.5f);
+    NSString*imgName= [NSString stringWithFormat:@"%@.jpg", apptRef];
+    PFFile *imageFile = [PFFile fileWithName:imgName data:data];
+    PFQuery *query = [PFQuery queryWithClassName:@"Appointments"];
+    [query getObjectInBackgroundWithId:@"JgNj4N9fcw" block:^(PFObject *appointment, NSError *error) {
+        if(!error){
+             NSLog(@"success in save image");
+            appointment[@"image_file"] =imageFile;
+            [appointment saveInBackground];
+            imageBlock(YES);
+        }
+        else{
+            NSLog(@"error in save image");
+            imageBlock(NO);
+        }
+    }];
 }
 
 

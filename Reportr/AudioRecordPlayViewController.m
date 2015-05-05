@@ -7,7 +7,7 @@
 //
 
 #import "AudioRecordPlayViewController.h"
-//#import "VisualizerView.h"
+#import <Parse/Parse.h>
 
 static int const kINIT=0;
 static int const kRECORD = 1;
@@ -35,8 +35,8 @@ static int const kSTOP =3;
 @property (strong, nonatomic) AVAudioRecorder *audioRecorder;
 @property (strong, nonatomic) AVAudioPlayer *audioPlayer;
 @property (nonatomic, retain)	NSTimer	*updateTimer;
-@property (nonatomic, retain)	NSTimer	*recordingTimer;
 
+typedef void (^processAudio)(BOOL);
 @end
 
 @implementation AudioRecordPlayViewController{
@@ -68,9 +68,6 @@ static int const kSTOP =3;
     
     if (self.updateTimer)
         [self.updateTimer invalidate];
-    if (self.recordingTimer)
-        [self.recordingTimer invalidate];
-    self.recordingTimer = nil;
     
     if (p.playing)   {
         self.slider.value = 0;
@@ -223,6 +220,7 @@ static int const kSTOP =3;
     
         // stop everything
         isRecording = NO;
+    
         isPlaying = NO;
          showPlayerUI=NO;
     
@@ -251,22 +249,64 @@ static int const kSTOP =3;
         [self.updateTimer invalidate];
     self.updateTimer=nil;
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-    self.audioRecorder = nil;
-    self.audioPlayer = nil;
-    [self dismissViewControllerAnimated: YES completion: nil];
+    [self processAndSaveAudio:^(BOOL success) {
+        if(success){
+            NSLog(@"cancelAndExit block success");
+            //** transition back - notifiy schedule view that image has been captured
+          //  [[NSNotificationCenter defaultCenter] postNotificationName:@"addImageComplete" object:nil];            
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
+            self.audioRecorder = nil;
+            self.audioPlayer = nil;
+            [self dismissViewControllerAnimated: YES completion: nil];
+        }
+        else{
+            NSLog(@"cancelAndExit failure");
+        }
+    }];
 }
+
+-(void) processAndSaveAudio:(processAudio)audioBlock{
+    
+    NSLog(@"processAndSaveAudio");
+    NSString * apptRef= @"JgNj4N9fcw";
+   //
+    NSString*audioName= [NSString stringWithFormat:@"%@.m4a", apptRef];
+    NSData *audioData = [NSData dataWithContentsOfFile:[self audioFilePath]];
+    NSLog(@"audioData = %@", audioData);
+    
+    //create audiofile as a property
+    PFFile *audioFile = [PFFile fileWithName:audioName data:audioData];
+    PFQuery *query = [PFQuery queryWithClassName:@"Appointments"];
+    
+    [query getObjectInBackgroundWithId:@"JgNj4N9fcw" block:^(PFObject *appointment, NSError *error) {
+        if(!error){
+            NSLog(@"success in save audio");
+            appointment[@"audio_file"] =audioFile;
+            [appointment saveInBackground];
+            audioBlock(YES);
+        }
+        else{
+            NSLog(@"error in save audio");
+            audioBlock(NO);
+        }
+    }];
+}
+
 
 
 #pragma mark - Utility methods
 
+-(NSString*)audioFilePath{
+    
+    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsDir = dirPaths[0];
+    return [docsDir stringByAppendingPathComponent:@"sound.m4a"];
+}
 
 -(NSURL*)audioURL
 {
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = dirPaths[0];
-    NSString *soundFilePath = [docsDir stringByAppendingPathComponent:@"sound.caf"];
-    return [NSURL fileURLWithPath:soundFilePath];
+    return [NSURL fileURLWithPath:[self audioFilePath]];
 }
 
 -(void) updateButtons:(int)state
@@ -364,16 +404,14 @@ static int const kSTOP =3;
 
 -(void) configureAudioRecorder{
     NSError *error;
-    NSDictionary *recordSettings = [NSDictionary
-                                    dictionaryWithObjectsAndKeys:
-                                    [NSNumber numberWithInt:AVAudioQualityMin],
-                                    AVEncoderAudioQualityKey,
-                                    [NSNumber numberWithInt:16],
-                                    AVEncoderBitRateKey,
-                                    [NSNumber numberWithInt: 2],
-                                    AVNumberOfChannelsKey,
-                                    [NSNumber numberWithFloat:44100.0],
-                                    AVSampleRateKey,
+    NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
+                                   /* [NSNumber numberWithInt:AVAudioQualityMin], AVEncoderAudioQualityKey,
+                                    [NSNumber numberWithInt:16],AVEncoderBitRateKey,
+                                    [NSNumber numberWithInt: 2],AVNumberOfChannelsKey,
+                                    [NSNumber numberWithFloat:44100.0],AVSampleRateKey,*/
+                                    [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
+                                    [NSNumber numberWithFloat:16000.0], AVSampleRateKey,
+                                    [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
                                     nil];
     self.audioRecorder = [[AVAudioRecorder alloc] initWithURL:[self audioURL] settings:recordSettings error:&error];
     if (error) {

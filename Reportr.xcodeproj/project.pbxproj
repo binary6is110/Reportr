@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B0AB2131AF4324900A3876E /* VisualizerView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC8461AF40B6100ADAC64 /* VisualizerView.mm */; };
 		3B0AB21C1AF4344400A3876E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0AB21B1AF4344400A3876E /* AudioToolbox.framework */; };
 		3B0AB21D1AF4369D00A3876E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CC83E1AF3F57700ADAC64 /* CoreAudio.framework */; };
 		3B0AB21E1AF4369D00A3876E /* CoreAudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CC83F1AF3F57700ADAC64 /* CoreAudioKit.framework */; };
-		3B0AB21F1AF4381000A3876E /* MeterTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC8481AF40D6F00ADAC64 /* MeterTable.cpp */; };
 		3B0AB22B1AF7C8E400A3876E /* sound_meter_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0AB2291AF7C8E400A3876E /* sound_meter_background.png */; };
 		3B0AB22C1AF7C8E400A3876E /* sound_meter_glare.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0AB22A1AF7C8E400A3876E /* sound_meter_glare.png */; };
 		3B0AB22E1AF8261A00A3876E /* emptyThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0AB22D1AF8261A00A3876E /* emptyThumb.png */; };
@@ -27,6 +25,15 @@
 		3B5254CD1AF1833600E64857 /* micIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CC1AF1833600E64857 /* micIcon.png */; };
 		3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CE1AF1834700E64857 /* cameraIcon.png */; };
 		3B6528EB1AF91DD700D1D3F3 /* AudioSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B6528EA1AF91DD700D1D3F3 /* AudioSlider.m */; };
+		3B6528F51AF939BA00D1D3F3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528EF1AF939BA00D1D3F3 /* Bolts.framework */; };
+		3B6528F61AF939BA00D1D3F3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528F01AF939BA00D1D3F3 /* Parse.framework */; };
+		3B6528FA1AF939BA00D1D3F3 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528F41AF939BA00D1D3F3 /* ParseUI.framework */; };
+		3B6528FC1AF939DF00D1D3F3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528FB1AF939DF00D1D3F3 /* StoreKit.framework */; };
+		3B6528FE1AF939F600D1D3F3 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528FD1AF939F600D1D3F3 /* libz.1.1.3.dylib */; };
+		3B6529001AF93A2200D1D3F3 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528FF1AF93A2200D1D3F3 /* MobileCoreServices.framework */; };
+		3B6529021AF93A3E00D1D3F3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6529011AF93A3E00D1D3F3 /* libsqlite3.dylib */; };
+		3B6529041AF93A4D00D1D3F3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6529031AF93A4D00D1D3F3 /* Accounts.framework */; };
+		3B6529061AF93A5300D1D3F3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6529051AF93A5300D1D3F3 /* Social.framework */; };
 		3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E82031AF29B9900DC3460 /* OverlayView.xib */; };
 		3B7E820A1AF2D20D00DC3460 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7E82091AF2D20D00DC3460 /* VideoViewController.m */; };
 		3B7E820C1AF2D93100DC3460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */; };
@@ -147,7 +154,15 @@
 		3B5254CE1AF1834700E64857 /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
 		3B6528E91AF91DD700D1D3F3 /* AudioSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioSlider.h; sourceTree = "<group>"; };
 		3B6528EA1AF91DD700D1D3F3 /* AudioSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioSlider.m; sourceTree = "<group>"; };
-		3B6528EC1AF92AA800D1D3F3 /* NSStrinAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStrinAdditions.h; sourceTree = "<group>"; };
+		3B6528EF1AF939BA00D1D3F3 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		3B6528F01AF939BA00D1D3F3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		3B6528F41AF939BA00D1D3F3 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		3B6528FB1AF939DF00D1D3F3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		3B6528FD1AF939F600D1D3F3 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		3B6528FF1AF93A2200D1D3F3 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		3B6529011AF93A3E00D1D3F3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		3B6529031AF93A4D00D1D3F3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		3B6529051AF93A5300D1D3F3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		3B7E82031AF29B9900DC3460 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		3B7E82081AF2D20D00DC3460 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
 		3B7E82091AF2D20D00DC3460 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
@@ -219,22 +234,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6529061AF93A5300D1D3F3 /* Social.framework in Frameworks */,
+				3B6529041AF93A4D00D1D3F3 /* Accounts.framework in Frameworks */,
+				3B6529021AF93A3E00D1D3F3 /* libsqlite3.dylib in Frameworks */,
+				3B6529001AF93A2200D1D3F3 /* MobileCoreServices.framework in Frameworks */,
+				3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */,
+				3B6528FE1AF939F600D1D3F3 /* libz.1.1.3.dylib in Frameworks */,
+				3B6528FC1AF939DF00D1D3F3 /* StoreKit.framework in Frameworks */,
 				3B0AB21D1AF4369D00A3876E /* CoreAudio.framework in Frameworks */,
 				3B0AB21E1AF4369D00A3876E /* CoreAudioKit.framework in Frameworks */,
 				3B891F391AE6B81700457517 /* AssetsLibrary.framework in Frameworks */,
 				3B0AB21C1AF4344400A3876E /* AudioToolbox.framework in Frameworks */,
 				3B0CC83D1AF3F55C00ADAC64 /* AVKit.framework in Frameworks */,
+				3B6528FA1AF939BA00D1D3F3 /* ParseUI.framework in Frameworks */,
 				3B928F8C1AC5C83700F27710 /* AVFoundation.framework in Frameworks */,
 				3B891F351AE6B80200457517 /* Foundation.framework in Frameworks */,
 				3B891F3B1AE6B82800457517 /* MediaPlayer.framework in Frameworks */,
 				3B8F9D111AE6D97500F74EB0 /* SystemConfiguration.framework in Frameworks */,
 				3BC242691ACDAF710061036B /* Security.framework in Frameworks */,
+				3B6528F61AF939BA00D1D3F3 /* Parse.framework in Frameworks */,
 				3B928F961AC5C85D00F27710 /* ImageIO.framework in Frameworks */,
 				3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */,
 				3B928F9A1AC5C87400F27710 /* libicucore.dylib in Frameworks */,
 				3B928F981AC5C86800F27710 /* libc++.dylib in Frameworks */,
 				3B928F9C1AC5C87A00F27710 /* libz.dylib in Frameworks */,
-				3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */,
+				3B6528F51AF939BA00D1D3F3 /* Bolts.framework in Frameworks */,
 				3B928F9E1AC5C88000F27710 /* OpenGLES.framework in Frameworks */,
 				3B928F941AC5C85400F27710 /* GLKit.framework in Frameworks */,
 				3B928F8E1AC5C83D00F27710 /* CoreData.framework in Frameworks */,
@@ -357,6 +381,12 @@
 		3B928E2D1AC5B71000F27710 = {
 			isa = PBXGroup;
 			children = (
+				3B6529051AF93A5300D1D3F3 /* Social.framework */,
+				3B6529031AF93A4D00D1D3F3 /* Accounts.framework */,
+				3B6529011AF93A3E00D1D3F3 /* libsqlite3.dylib */,
+				3B6528FF1AF93A2200D1D3F3 /* MobileCoreServices.framework */,
+				3B6528FD1AF939F600D1D3F3 /* libz.1.1.3.dylib */,
+				3B6528FB1AF939DF00D1D3F3 /* StoreKit.framework */,
 				3B0AB21B1AF4344400A3876E /* AudioToolbox.framework */,
 				3B0CC83E1AF3F57700ADAC64 /* CoreAudio.framework */,
 				3B0CC83F1AF3F57700ADAC64 /* CoreAudioKit.framework */,
@@ -416,6 +446,9 @@
 		3B928FA31AC5C8E900F27710 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B6528EF1AF939BA00D1D3F3 /* Bolts.framework */,
+				3B6528F01AF939BA00D1D3F3 /* Parse.framework */,
+				3B6528F41AF939BA00D1D3F3 /* ParseUI.framework */,
 				3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */,
 				3B8F9D0E1AE6D76F00F74EB0 /* Firebase.framework */,
 				3B891F3A1AE6B82800457517 /* MediaPlayer.framework */,
@@ -517,7 +550,6 @@
 			children = (
 				3BA8AE531AE9589E0000C9A8 /* MDDirectionService.h */,
 				3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */,
-				3B6528EC1AF92AA800D1D3F3 /* NSStrinAdditions.h */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -684,8 +716,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B0AB21F1AF4381000A3876E /* MeterTable.cpp in Sources */,
-				3B0AB2131AF4324900A3876E /* VisualizerView.mm in Sources */,
 				3B8F9D0D1AE6D6F700F74EB0 /* LoginViewController.m in Sources */,
 				3B8102E21AEAA73900C1D076 /* ScheduleViewController.m in Sources */,
 				3BA784F71AF27FA600ED8EBA /* ImageViewController.m in Sources */,

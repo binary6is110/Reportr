@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "MapViewController.h"
 #import <GoogleMaps/GoogleMaps.h>
+#import <Parse/Parse.h>
 
 static NSString *const kGoogleMapKey = @"AIzaSyCjKIBgNIk6bXJAs1tTy45G9eEFs1q6cPk";
 
@@ -27,6 +28,18 @@ static NSString *const kGoogleMapKey = @"AIzaSyCjKIBgNIk6bXJAs1tTy45G9eEFs1q6cPk
 
     [GMSServices provideAPIKey:kGoogleMapKey];
     services_=[GMSServices sharedServices];
+    
+    // [Optional] Power your app with Local Datastore. For more info, go to
+    // https://parse.com/docs/ios_guide#localdatastore/iOS
+    [Parse enableLocalDatastore];
+    
+    // Initialize Parse.
+    [Parse setApplicationId:@"ufUDKkb5XUmoupzKCBIGJgKyfiiXZKRslssmAJUq"
+                  clientKey:@"j2QJAlvN32Jlprh7v5gUVl4ANnr6gsmYX9MF3Y9C"];
+    
+    // [Optional] Track statistics around application opens.
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     return YES;
 }
 
