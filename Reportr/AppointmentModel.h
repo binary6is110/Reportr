@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface AppointmentModel : NSObject
--(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip startTime:(NSString*)sTime notesDesc:(NSString*)notes agendaDesc:(NSString*)agenda contactId:(NSString*) contact nextSteps:(NSString*)steps;
 
+@property (nonatomic, strong) NSString * appointment_id;
 @property (nonatomic, strong) NSString * latitude;
 @property (nonatomic, strong) NSString * longitude;
 @property (nonatomic, strong) NSString * company;
@@ -28,10 +28,16 @@
 @property (nonatomic, strong) NSString * contact_phone_mobile;
 @property (nonatomic, strong) NSString * contact_phone_office;
 
+@property (nonatomic)BOOL hasImage;
+@property (nonatomic)BOOL hasVideo;
+@property (nonatomic)BOOL hasAudio;
+
 -(NSString*) getContactPhoneMobile;
 -(NSString*) getContactPhoneOffice;
 -(NSString*) getContactName;
+-(NSString*) getAppointmentId;
 
+-(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip startTime:(NSString*)sTime notesDesc:(NSString*)notes agendaDesc:(NSString*)agenda contactId:(NSString*) contact nextSteps:(NSString*)steps apptId:(NSString*)appointmentId;
 -(void) setContactName:(NSString*) name phone_mobile:(NSString*)phone_m phone_office:(NSString*)phone_o;
 
 @end

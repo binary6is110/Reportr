@@ -18,11 +18,7 @@
 #define kKEYBOARD_OFFSET 90.0
 
 
-static NSString * const kEmail = @"kima@lopeznegrete.com";
-static NSString * const kPassword = @"lnc2015";
-
 @interface LoginViewController ()
-//@property (strong, nonatomic) MessageModel *mModel;
 @property BOOL loginSuccess;
 @property BOOL attemptInProgress;
 @property BOOL notificationsDone;
@@ -36,9 +32,14 @@ static NSString * const kPassword = @"lnc2015";
 
 @implementation LoginViewController
 
+static MessageModel *  mModel;
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    mModel = [MessageModel sharedMessageModel];
+    NSLog(@"mModel. message: %@",mModel.message);
     
     if(!_notificationsDone){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
@@ -52,8 +53,8 @@ static NSString * const kPassword = @"lnc2015";
     [[_signin_btn layer] setBorderColor:[UIColor whiteColor].CGColor];
     [[_signin_btn layer] setBorderWidth: 2.0f];
     
-    _user_tf.text=kEmail;
-    _pass_tf.text=kPassword;
+    _user_tf.text= mModel.getUserName;
+    _pass_tf.text=mModel.getPassword;
     
     _user_tf.delegate = self;
     _pass_tf.delegate = self;

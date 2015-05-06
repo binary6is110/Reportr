@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Lopez Negrete Communications. All rights reserved.
 //
 
+#import "MessageModel.h"
 #import "AudioRecordPlayViewController.h"
 #import <Parse/Parse.h>
 
@@ -46,6 +47,8 @@ typedef void (^processAudio)(BOOL);
     BOOL showPlayerUI;
 }
 
+static MessageModel *  mModel;
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -54,6 +57,8 @@ typedef void (^processAudio)(BOOL);
 - (void)viewDidLoad {
    
     [super viewDidLoad];
+    mModel=[MessageModel sharedMessageModel];
+
     [self configureView];
     [self configureAudioSession];
     [self configureAudioRecorder];
@@ -233,7 +238,6 @@ typedef void (^processAudio)(BOOL);
         [self updateViewForRecorderState:_audioRecorder];
 }
 
-
 - (IBAction)cancelTouched:(id)sender {
     [self cancelAndExit];
 }
@@ -253,7 +257,7 @@ typedef void (^processAudio)(BOOL);
         if(success){
             NSLog(@"cancelAndExit block success");
             //** transition back - notifiy schedule view that image has been captured
-          //  [[NSNotificationCenter defaultCenter] postNotificationName:@"addImageComplete" object:nil];            
+           [[NSNotificationCenter defaultCenter] postNotificationName:@"addAudioComplete" object:nil];
             
             [self dismissViewControllerAnimated:YES completion:nil];
             self.audioRecorder = nil;
@@ -269,7 +273,7 @@ typedef void (^processAudio)(BOOL);
 -(void) processAndSaveAudio:(processAudio)audioBlock{
     
     NSLog(@"processAndSaveAudio");
-    NSString * apptRef= @"JgNj4N9fcw";
+    NSString * apptRef= [mModel appointmentId];
    //
     NSString*audioName= [NSString stringWithFormat:@"%@.m4a", apptRef];
     NSData *audioData = [NSData dataWithContentsOfFile:[self audioFilePath]];
@@ -279,7 +283,7 @@ typedef void (^processAudio)(BOOL);
     PFFile *audioFile = [PFFile fileWithName:audioName data:audioData];
     PFQuery *query = [PFQuery queryWithClassName:@"Appointments"];
     
-    [query getObjectInBackgroundWithId:@"JgNj4N9fcw" block:^(PFObject *appointment, NSError *error) {
+    [query getObjectInBackgroundWithId:apptRef block:^(PFObject *appointment, NSError *error) {
         if(!error){
             NSLog(@"success in save audio");
             appointment[@"audio_file"] =audioFile;
@@ -294,9 +298,7 @@ typedef void (^processAudio)(BOOL);
 }
 
 
-
 #pragma mark - Utility methods
-
 -(NSString*)audioFilePath{
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -365,7 +367,6 @@ typedef void (^processAudio)(BOOL);
     }
 }
 
-
 #pragma mark - Configuration / Set up
 -(void) configureAudioSession{
     
@@ -376,7 +377,6 @@ typedef void (^processAudio)(BOOL);
         NSLog(@"Error setting category: %@", [error description]);
     }
 }
-
 
 
 -(void) configureView{
@@ -405,10 +405,6 @@ typedef void (^processAudio)(BOOL);
 -(void) configureAudioRecorder{
     NSError *error;
     NSDictionary *recordSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   /* [NSNumber numberWithInt:AVAudioQualityMin], AVEncoderAudioQualityKey,
-                                    [NSNumber numberWithInt:16],AVEncoderBitRateKey,
-                                    [NSNumber numberWithInt: 2],AVNumberOfChannelsKey,
-                                    [NSNumber numberWithFloat:44100.0],AVSampleRateKey,*/
                                     [NSNumber numberWithInt: kAudioFormatMPEG4AAC], AVFormatIDKey,
                                     [NSNumber numberWithFloat:16000.0], AVSampleRateKey,
                                     [NSNumber numberWithInt: 1], AVNumberOfChannelsKey,
@@ -420,17 +416,4 @@ typedef void (^processAudio)(BOOL);
         [self.audioRecorder prepareToRecord];
     }
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-
-
 @end

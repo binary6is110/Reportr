@@ -8,40 +8,47 @@
 
 #import "MessageModel.h"
 
+#define kUSERNAME @"kima@lopeznegrete.com"
+#define kPASSWORD @"lnc2015"
+
+#define kVIDEO_WARNING @"Keep recording to less than 1 minute"
+#define kVIDEO_SIZE_EXCEEDED @"Video is too large. Keep video around 1 minute."
+
 
 @implementation MessageModel
 
-static MessageModel * ref = nil;
-static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
-static BOOL testMode = false;
+-(NSString *)videoSizeExceeded{
+    return kVIDEO_SIZE_EXCEEDED;
+}
 
--(id) init
-{
-    if ( self = [super init] )
-    {
-        if (ref==nil)
-            ref = [MessageModel new];
+
+-(NSString *)videoWarning{
+    return kVIDEO_WARNING;
+}
+
+-(NSString*) getPassword {
+    return kPASSWORD;
+}
+
+-(NSString*) getUserName {
+    return kUSERNAME;
+}
+
++(id) sharedMessageModel{
+    static MessageModel*sharedModel =nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedModel = [[self alloc] init];
+    });
+    return sharedModel;
+}
+
+-(id) init {
+    if(self=[super init]) {
+        _message = @"default value";
     }
     return self;
 }
-
-+(MessageModel*) messageModel
-{
-    if (ref==nil)
-        ref = [MessageModel new];
-    return ref;
-}
-
-+(BOOL) testMode
-{
-    return testMode;
-}
-
-+(NSString*) firebaseURL
-{
-    return kFirebaseURL;
-}
-
 
 
 @end

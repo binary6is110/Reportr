@@ -7,30 +7,36 @@
 //
 #import "ScheduleViewController.h"
 #import "VideoViewController.h"
+#import "MessageModel.h"
 #import <Parse/Parse.h>
 
 @interface VideoViewController ()
 
+typedef void (^processVideo)(BOOL);
+
+@property(nonatomic,retain) NSURL*videoURLRef;
 @property (nonatomic) NSMutableArray *capturedVideo;
 @property (nonatomic) UIImagePickerController *imagePickerController;
-typedef void (^processVideo)(BOOL);
-@property(nonatomic,retain) NSURL*videoURLRef;
-@property (strong, nonatomic) IBOutlet UITextView *warningTextview;
 
+@property (strong, nonatomic) IBOutlet UITextView *warningTextview;
 @end
 
 @implementation VideoViewController
 
+static MessageModel *  mModel;
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    mModel=[MessageModel sharedMessageModel];
+    
     self.capturedVideo = [[NSMutableArray alloc] init];
     
     if (self.capturedVideo.count > 0)
         [self.capturedVideo removeAllObjects];
     
     [self createImagePicker];
-    [self displayError:@"Keep recording to less than 1 minute"];
+    [self displayError:[mModel videoWarning]];
 }
 
 /* -(void) createImagePicker
@@ -84,9 +90,12 @@ typedef void (^processVideo)(BOOL);
                 // transition back - notifiy schedule view that video has been captured
                 //TODO: Do something with captured video
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"addVideoComplete" object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateVideoStatus" object:nil];
+
                 [self dismissViewControllerAnimated: YES completion: nil];
             }
             else{
+                  //TODO: Handle error
                 NSLog(@"didFinishSavingWithError failure");
             }
         }];
@@ -94,9 +103,8 @@ typedef void (^processVideo)(BOOL);
 }
 
 -(void) processAndSaveVideo:(processVideo)videoBlock{
-    
-    NSLog(@"processAndSaveVideo");
-    NSString * apptRef= @"JgNj4N9fcw";
+
+    NSString * apptRef= [mModel appointmentId];
     NSData *videoData = [NSData dataWithContentsOfURL:self.videoURLRef];
     NSString*audioName= [NSString stringWithFormat:@"%@.mov", apptRef];
 
@@ -109,11 +117,11 @@ typedef void (^processVideo)(BOOL);
     
     if(fileSizeNumber > [NSNumber numberWithInt:10000000])
     {
-        [self displayError:@"Video is too large. Keep video around 1 minute."];
+        [self displayError:[mModel videoSizeExceeded]];
         return;
     }
     
-    [query getObjectInBackgroundWithId:@"JgNj4N9fcw" block:^(PFObject *appointment, NSError *error) {
+    [query getObjectInBackgroundWithId:apptRef block:^(PFObject *appointment, NSError *error) {
         if(!error){
             NSLog(@"success in save video");
             appointment[@"video_file"] =videofile;

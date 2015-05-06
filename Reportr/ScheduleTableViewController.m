@@ -9,7 +9,7 @@
 #import "ScheduleTableViewController.h"
 #import "AppointmentModel.h"
 #import "ScheduleViewController.h"
-#import "AppointmentTableViewCell.h"
+#import "ApptTableViewCell.h"
 
 @interface ScheduleTableViewController ()
 @property (nonatomic,strong) ScheduleViewController*scheduleVController;
@@ -20,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.tableView.estimatedRowHeight=100.0;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,7 +32,6 @@
 {
     _appointments=appointments;
 }
-
 
 #pragma mark - Table view data source
 
@@ -45,71 +45,134 @@
     return [_appointments count];
 }
 
--(NSString*)currentTimeAsString {
-   NSDate *date = [NSDate date];
-   NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-   timeFormatter.dateFormat = @"HH:mm";
-   return [timeFormatter stringFromDate: date];
-}
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:@"apptCell" forIndexPath:indexPath];
-    AppointmentModel * appt = (AppointmentModel*)[_appointments objectAtIndex:indexPath.row];   
-    cell.textLabel.text=appt.start_time;
-    cell.detailTextLabel.text=appt.company;
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    ApptTableViewCell*cell = [tableView dequeueReusableCellWithIdentifier:@"apptCell" ];
+    if(!cell){
+        [tableView registerNib: [UINib nibWithNibName:@"ApptTableViewCell" bundle:nil] forCellReuseIdentifier:@"apptCell"];
+        cell=[tableView dequeueReusableCellWithIdentifier:@"apptCell"];
+    }
     return cell;
 }
 
--(void) tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{
+-(void) tableView:(UITableView *)tableView willDisplayCell:(ApptTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    AppointmentModel * appt = (AppointmentModel*)[_appointments objectAtIndex:indexPath.row];
+    ApptTableViewCell*aCell = (ApptTableViewCell*) cell;
+    [aCell setCompany:appt.company];
+    [aCell setTime:[self formattedTime: appt.start_time]];
+    [aCell setAgenda:appt.agenda];
+    aCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
+    if ([self shouldHighlightCell: indexPath.row])
+    {
+        //do stuff
+        [aCell highlightCell];
+    }
+    else{
+        [aCell resetCell];
+    }
+}
+
+-(BOOL) shouldHighlightCell:(NSInteger)index{
+    
+    BOOL lastAppointmentEarlierThanNow = YES;
+    BOOL nowEarlierThanNextAppointment = NO;
+    
+    AppointmentModel*lastAppt;
+    AppointmentModel*thisAppt;
+
+    // is the last appoitnment start time earlier than now?
+    // is this appointment start time later than now?-> this time should be highlighted
+    if(index>0)
+    {
+        lastAppt =[_appointments objectAtIndex:index-1];
+        if ([self isThisTime:lastAppt.start_time earlierThanThisTime:[self currentTimeAsString]]) {
+            NSLog(@" this time: %@ IS earlier than now: %@", lastAppt.start_time,[self currentTimeAsString] );
+            lastAppointmentEarlierThanNow = YES;
+        }else{
+            lastAppointmentEarlierThanNow = NO;
+        }
+    }
+    
+    thisAppt =[_appointments objectAtIndex:index];
+    if ([self isThisTime:[self currentTimeAsString] earlierThanThisTime:thisAppt.start_time]) {
+        NSLog(@" this time: %@ IS earlier than now: %@", [self currentTimeAsString],thisAppt.start_time );
+        nowEarlierThanNextAppointment = YES;
+    }else{
+        nowEarlierThanNextAppointment = NO;
+    }    
+    
+    return (lastAppointmentEarlierThanNow && nowEarlierThanNextAppointment);
+}
+
+-(BOOL) isThisTime:(NSString*)time earlierThanThisTime:(NSString*)time2{
+   
+    NSArray * timeChunks = [time componentsSeparatedByString: @":"];
+    int lastHours = (int)[timeChunks[0] integerValue];
+    int lastMinutes = (int)[timeChunks[1] integerValue];
+    
+    NSArray * time2Chunks = [time2 componentsSeparatedByString: @":"];
+    int nextHours = (int)[time2Chunks[0] integerValue];
+    int nextMinutes = (int)[time2Chunks[1] integerValue];
+    
+    if(lastHours<nextHours)
+        return YES;
+    if(lastHours == nextHours && lastMinutes<nextMinutes)
+        return YES;
+    
+    return NO;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    AppointmentModel*appt = [_appointments objectAtIndex:indexPath.row];
+    if(appt.hasVideo){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addVideoComplete" object:nil];
+    }
+    else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"resetVideoImage" object:nil];
+    }
+    
+    if(appt.hasImage){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addImageComplete" object:nil];
+    }
+    else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"resetPhotoImage" object:nil];
+    }
+    
+    if(appt.hasAudio){
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"addAudioComplete" object:nil];
+    }
+    else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"resetAudioImage" object:nil];
+    }
+
     _appointment =(AppointmentModel*)[_appointments objectAtIndex:indexPath.row];
-   // NSLog(@"didSelectRowAtIndexPath: appt name: %@",_appointment.company);
     [_scheduleVController passAppointment:_appointment];
 }
 
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - Utility
+-(NSString*)currentTimeAsString {
+    NSDate *date = [NSDate date];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    timeFormatter.dateFormat = @"HH:mm";
+    return [timeFormatter stringFromDate: date];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+-(NSString*)formattedTime:(NSString*)time {
+    
+    NSArray * timeChunks = [time componentsSeparatedByString: @":"];
+    int hours = (int)[timeChunks[0] integerValue];
+    int minutes = (int)[timeChunks[1] integerValue];
+    NSString * suffix = @"AM";
+    if (hours>=12){
+        suffix = @"PM";
+        if(hours>12)
+            hours-=12;
+    }
+    return [NSString stringWithFormat:@"%d:%02d %@", hours, minutes, suffix, nil];
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation

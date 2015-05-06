@@ -17,13 +17,11 @@
 #import "AppointmentModel.h"
 #import "MDDirectionService.h"
 
-//static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface MapViewController ()
 @property MapNavigationController * mapNavController;
 @property GMSMapView * mapView;
 @property UserModel * userModel;
-//@property Firebase * appointments;
 @property NSMutableArray * locations;
 @property NSMutableArray * waypoints;
 @property NSMutableArray * waypointStrings;
@@ -80,7 +78,10 @@
         if (!error ) {
             for(PFObject*appt in results){
                // NSLog(@"appt.time: %@", appt[@"start"]);
-                AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:appt[@"company"] address1:appt[@"address_1"] address2:appt[@"address_2"] city:appt[@"city"] state:appt[@"state"] zip:appt[@"zip"] startTime:appt[@"start"] notesDesc:appt[@"notes"] agendaDesc:appt[@"agenda"] contactId:appt[@"contact"] nextSteps:appt[@"next_steps"]];
+                AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:appt[@"company"] address1:appt[@"address_1"] address2:appt[@"address_2"] city:appt[@"city"] state:appt[@"state"] zip:appt[@"zip"] startTime:appt[@"start"] notesDesc:appt[@"notes"] agendaDesc:appt[@"agenda"] contactId:appt[@"contact"] nextSteps:appt[@"next_steps"] apptId:appt.objectId];
+                gModel.hasAudio=(appt[@"audio_file"] == nil);
+                gModel.hasVideo=(appt[@"video_file"] == nil);
+                gModel.hasImage=(appt[@"image_file"] == nil);
                 [_locations insertObject:gModel atIndex:_locations.count];
             }
             // ask for my location data after the map has already been added to the ui.

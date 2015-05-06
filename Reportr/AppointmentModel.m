@@ -15,10 +15,7 @@
 @implementation AppointmentModel
 
 
--(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip
-            startTime:(NSString*)sTime notesDesc:(NSString*)notes agendaDesc:(NSString*)agenda contactId:(NSString*) contact nextSteps:(NSString*)steps
-
-{
+-(id) initWithCompany: (NSString*)company address1:(NSString*)add1 address2: (NSString*)add2 city:(NSString*)city state:(NSString*)state zip:(NSString*)zip startTime:(NSString*)sTime notesDesc:(NSString*)notes agendaDesc:(NSString*)agenda contactId:(NSString*) contact nextSteps:(NSString*)steps apptId:(NSString*)appointmentId {
     if ( self = [super init] ) {
         _company = company;
         _address_1=add1;
@@ -34,8 +31,13 @@
         _contact_phone_mobile=@"";
         _contact_phone_office=@"";
         _next_steps=steps;
+        _appointment_id= appointmentId;
     }
     return self;
+}
+
+-(NSString*) getAppointmentId{
+    return _appointment_id;
 }
 
 -(NSString*) getContactPhoneMobile{

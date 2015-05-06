@@ -17,5 +17,7 @@
 - (IBAction)syncTouched:(id)sender;
 - (IBAction)saveTouched:(id)sender;
 -(void) updateImageIconWithSuccess: (NSNotification *)notification;
+-(void) updateVideoIconWithSuccess: (NSNotification *)notification;
+-(void) updateVideoStatusWithSuccess: (NSNotification *)notification;
 
 @end

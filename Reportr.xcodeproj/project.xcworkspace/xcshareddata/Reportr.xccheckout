@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>747098AE-6C54-47CE-BF21-96ACB76506B6</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Reportr</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A01F4BAC31447C5D2D47E70861A5A82EB5EBD273</key>
@@ -16,7 +16,7 @@
 		<string>https://github.com/binary6is110/Reportr.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Reportr.xcodeproj/project.xcworkspace</string>
+	<string>Reportr.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A01F4BAC31447C5D2D47E70861A5A82EB5EBD273</key>

@@ -7,6 +7,7 @@
 //
 
 #import "ScheduleViewController.h"
+#import "MessageModel.h"
 
 #define kKEYBOARD_OFFSET 80.0
 
@@ -21,6 +22,8 @@
 
 @implementation ScheduleViewController
 
+static MessageModel *  mModel;
+
 /* -(id) init: register notifications */
 -(id) init {
     if ( self = [super init] )  {
@@ -32,6 +35,11 @@
                                                      name:@"addImageComplete" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoIconWithSuccess:)
                                                      name:@"addVideoComplete" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoStatusWithSuccess:)
+                                                     name:@"updateVideoStatus" object:nil];
+        
+        
+        mModel = [MessageModel sharedMessageModel];
     }
     return self;
 }
@@ -53,6 +61,8 @@
     update view and set up text views for legibility */
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    mModel.appointmentId=_aModel.appointment_id;
 
     _nextSteps_tview.delegate=self;
     _nextSteps_tview.text=_aModel.next_steps;
@@ -66,6 +76,7 @@
     
     _company_lbl.text=_aModel.company;
     _date_lbl.text=_aModel.start_time;
+    
     
     PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
     [query whereKey:@"contact_id" equalTo:_aModel.contactId];
@@ -82,7 +93,6 @@
 }
 
 #pragma mark - Keyboard/Textview
-
 /* -(void)keyboardWillShow
     Notification handler: Prepares view for editing/keyboard showing*/
 -(void)keyboardWillShow{
@@ -153,6 +163,7 @@
      TODO: Update icon image to reflect image for appointment */
 -(void) updateImageIconWithSuccess: (NSNotification *)notification{
     NSLog(@"ScheduleViewController::updateImageIconWithSuccess, %@",notification.object);
+    //[ setImage:[UIImage imageNamed:@"anyImageName"]];
 }
 
 /**-(void) updateVideoIconWithSuccessvid: (NSNotification *)notification
@@ -161,8 +172,13 @@
     NSLog(@"ScheduleViewController::updateVideoIconWithSuccess, %@",notification.object);
 }
 
-#pragma mark - Messaging
+/**-(void) updateVideoStatus: (NSNotification *)notification
+ TODO: Update icon image to reflect video for appointment */
+-(void) updateVideoStatusWithSuccess: (NSNotification *)notification{
+    NSLog(@"ScheduleViewController::updateVideoStatus, %@",notification.object);
+}
 
+#pragma mark - Messaging
 /** -(void) passAppointment: (AppointmentModel *) appointment
     Passes appointment object to view before segue
  */
@@ -171,7 +187,6 @@
 }
 
 #pragma mark - Navigation
- 
  /** -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
  Unwind stub.
  */

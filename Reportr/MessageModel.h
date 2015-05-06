@@ -9,7 +9,18 @@
 #import <Foundation/Foundation.h>
 
 @interface MessageModel : NSObject
-+(MessageModel*) messageModel;
-+(BOOL) testMode;
-+(NSString*) firebaseURL;
+
+@property (nonatomic, retain) NSString * message;
+
+@property (nonatomic, retain, getter=getUserName) NSString * userName;
+@property (nonatomic, retain, getter=getPassword) NSString * password;
+
+@property (nonatomic, retain) NSString * appointmentId;
+
+@property (nonatomic,retain, readonly) NSString * videoSizeExceeded;
+@property (nonatomic,retain, readonly) NSString * videoWarning;
+
+
++(id) sharedMessageModel;
+
 @end
