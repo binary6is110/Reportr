@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Firebase/Firebase.h>
 #import "UserModel.h"
+#import <Parse/Parse.h>
+
 
 @interface MapViewController : UIViewController
 - (IBAction)showSchedule:(id)sender;

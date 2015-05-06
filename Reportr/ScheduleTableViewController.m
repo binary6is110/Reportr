@@ -45,6 +45,13 @@
     return [_appointments count];
 }
 
+-(NSString*)currentTimeAsString {
+   NSDate *date = [NSDate date];
+   NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+   timeFormatter.dateFormat = @"HH:mm";
+   return [timeFormatter stringFromDate: date];
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     

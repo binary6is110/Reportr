@@ -8,7 +8,6 @@
 
 #import "MapViewController.h"
 #import "MapNavigationController.h"
-#import <Firebase/Firebase.h>
 
 @interface MapNavigationController ()
  @property MapViewController  * mapViewController;

@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "AppointmentModel.h"
+#import <Parse/Parse.h>
+
 
 @interface ScheduleViewController : UIViewController<UITextViewDelegate, UIScrollViewDelegate>
 -(void) passAppointment:(AppointmentModel *) appointment;
-- (IBAction)callTocuhed:(id)sender;
+- (IBAction)callTouched:(id)sender;
 - (IBAction)syncTouched:(id)sender;
 - (IBAction)saveTouched:(id)sender;
 -(void) updateImageIconWithSuccess: (NSNotification *)notification;

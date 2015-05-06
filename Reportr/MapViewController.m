@@ -17,13 +17,13 @@
 #import "AppointmentModel.h"
 #import "MDDirectionService.h"
 
-static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
+//static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface MapViewController ()
 @property MapNavigationController * mapNavController;
 @property GMSMapView * mapView;
 @property UserModel * userModel;
-@property Firebase * appointments;
+//@property Firebase * appointments;
 @property NSMutableArray * locations;
 @property NSMutableArray * waypoints;
 @property NSMutableArray * waypointStrings;
@@ -66,22 +66,28 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 -(void) retrieveAppointmentsForUser:(UserModel*)userModel
 {
     NSString * empId = _userModel.employeeId;
-    NSString * today = @"2015-04-30";
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    NSString *dateString = [dateFormatter stringFromDate: date];
     
-    // create drill down query to retrieve appointments for a user on a date
-    _appointments= [ [Firebase alloc] initWithUrl: [NSString stringWithFormat:@"%@/%@/%@/%@", kFirebaseURL, @"appointments",empId,today]];
-    [[_appointments queryOrderedByValue] observeSingleEventOfType:FEventTypeValue withBlock:^(FDataSnapshot *querySnapshot) {
+    PFQuery *query = [PFQuery queryWithClassName:@"Appointments"];
+    [query whereKey:@"emp_id" equalTo:empId];
+    [query whereKey:@"date" equalTo:dateString];
+    [query orderByAscending:@"start"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error){
         
-        for (FDataSnapshot* child in querySnapshot.children) {
-          //  NSLog(@"child.key %@, child.value %@", child.key, child.value);
-            
-            AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:child.value[@"company"] address1:child.value[@"address_1"] address2:child.value[@"address_2"] city:child.value[@"city"] state:child.value[@"state"] zip:child.value[@"zip"] startTime:child.value[@"start_time"] notesDesc:child.value[@"notes"] agendaDesc:child.value[@"agenda"] contactId:child.value[@"contact_id"] nextSteps:child.value[@"next_steps"]];
-            [_locations insertObject:gModel atIndex:_locations.count];
+        if (!error ) {
+            for(PFObject*appt in results){
+               // NSLog(@"appt.time: %@", appt[@"start"]);
+                AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:appt[@"company"] address1:appt[@"address_1"] address2:appt[@"address_2"] city:appt[@"city"] state:appt[@"state"] zip:appt[@"zip"] startTime:appt[@"start"] notesDesc:appt[@"notes"] agendaDesc:appt[@"agenda"] contactId:appt[@"contact"] nextSteps:appt[@"next_steps"]];
+                [_locations insertObject:gModel atIndex:_locations.count];
+            }
+            // ask for my location data after the map has already been added to the ui.
+            dispatch_async(dispatch_get_main_queue(), ^{
+                _mapView.myLocationEnabled = YES;
+            });
         }
-        // ask for my location data after the map has already been added to the ui.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            _mapView.myLocationEnabled = YES;
-        });
     }];
 }
 

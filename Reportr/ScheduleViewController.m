@@ -7,11 +7,8 @@
 //
 
 #import "ScheduleViewController.h"
-#import <Firebase/Firebase.h>
 
 #define kKEYBOARD_OFFSET 80.0
-
-static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com";
 
 @interface ScheduleViewController () 
 @property (nonatomic,strong) AppointmentModel * aModel;
@@ -42,7 +39,6 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
 }
 
 /* -(void) viewWillDisappear:(BOOL)animated
@@ -71,11 +67,13 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
     _company_lbl.text=_aModel.company;
     _date_lbl.text=_aModel.start_time;
     
-    Firebase *ref = [[Firebase alloc] initWithUrl:[NSString stringWithFormat:@"%@/%@", kFirebaseURL, @"contacts"]];
-    [[[[ref queryOrderedByKey] queryStartingAtValue:_aModel.contactId] queryLimitedToFirst:1] observeEventType:FEventTypeChildAdded withBlock:^(FDataSnapshot *snapshot) {
-        // NSLog(@"ScheduleViewController::viewDidLoad contact name: %@ %@", snapshot.key, snapshot.value);
-         _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", snapshot.value[@"first_name"],snapshot.value[@"last_name"]];
-     }];
+    PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
+    [query whereKey:@"contact_id" equalTo:_aModel.contactId];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *contact, NSError *error) {
+        if (!error ) {
+            _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", contact[@"first_name"],contact[@"last_name"]];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,7 +138,7 @@ static NSString * const kFirebaseURL = @"https://reportrplatform.firebaseio.com"
 
 #pragma mark - Event Handlers
 
-- (IBAction)callTocuhed:(id)sender {
+- (IBAction)callTouched:(id)sender {
 }
 
 - (IBAction)syncTouched:(id)sender {

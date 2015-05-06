@@ -16,7 +16,10 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="  Reportr - 2015 Lopez Negrete Communications" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ie-xW-0ye">
                     <rect key="frame" x="90" y="441" width="300" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="Waw-RY-ETE"/>
+                        <constraint firstAttribute="height" constant="21" id="Waw-RY-ETE">
+                            <variation key="heightClass=regular-widthClass=compact" constant="25"/>
+                        </constraint>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="eTJ-zK-oYx"/>
                         <constraint firstAttribute="width" priority="200" constant="300" id="m3A-0c-yfn">
                             <variation key="heightClass=regular-widthClass=compact" constant="300"/>
                         </constraint>
@@ -27,24 +30,32 @@
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="Waw-RY-ETE"/>
+                            <exclude reference="eTJ-zK-oYx"/>
                             <exclude reference="m3A-0c-yfn"/>
                         </mask>
                     </variation>
                     <variation key="heightClass=regular-widthClass=compact">
                         <mask key="constraints">
                             <include reference="Waw-RY-ETE"/>
-                            <include reference="m3A-0c-yfn"/>
+                            <exclude reference="eTJ-zK-oYx"/>
+                            <exclude reference="m3A-0c-yfn"/>
                         </mask>
                     </variation>
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.1905281908" green="0.80404653979999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="bOp-wY-kZP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="1RB-0A-BBh"/>
+                <constraint firstItem="bOp-wY-kZP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="1RB-0A-BBh">
+                    <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                </constraint>
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="18" id="7Ro-xC-etC"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="90" id="9Lk-wr-ZPM"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="centerX" secondItem="bOp-wY-kZP" secondAttribute="centerX" id="Asn-G5-A3r"/>
-                <constraint firstItem="bOp-wY-kZP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="33" id="S5k-8Y-bUJ"/>
+                <constraint firstAttribute="trailing" secondItem="8ie-xW-0ye" secondAttribute="trailing" constant="15" id="GA8-Cg-HPY"/>
+                <constraint firstItem="bOp-wY-kZP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="33" id="S5k-8Y-bUJ">
+                    <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                </constraint>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="15" id="giR-I0-gvw"/>
                 <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="90" id="mLz-y8-7bo">
                     <variation key="heightClass=regular-widthClass=compact" constant="65"/>
                 </constraint>
@@ -52,15 +63,21 @@
                 <constraint firstAttribute="bottom" secondItem="8ie-xW-0ye" secondAttribute="bottom" constant="18" id="sgi-Sf-IBI">
                     <variation key="heightClass=regular-widthClass=compact" constant="14"/>
                 </constraint>
-                <constraint firstAttribute="trailing" secondItem="bOp-wY-kZP" secondAttribute="trailing" constant="33" id="xkY-Yx-nCj"/>
+                <constraint firstAttribute="trailing" secondItem="bOp-wY-kZP" secondAttribute="trailing" constant="33" id="xkY-Yx-nCj">
+                    <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                </constraint>
+                <constraint firstItem="8ie-xW-0ye" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="zE7-js-fno"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="Asn-G5-A3r"/>
+                    <exclude reference="GA8-Cg-HPY"/>
+                    <exclude reference="giR-I0-gvw"/>
                     <exclude reference="mLz-y8-7bo"/>
                     <exclude reference="sgi-Sf-IBI"/>
+                    <exclude reference="zE7-js-fno"/>
                 </mask>
             </variation>
             <variation key="heightClass=regular-widthClass=compact">
@@ -68,15 +85,18 @@
                     <exclude reference="7Ro-xC-etC"/>
                     <exclude reference="9Lk-wr-ZPM"/>
                     <include reference="Asn-G5-A3r"/>
-                    <include reference="mLz-y8-7bo"/>
+                    <include reference="GA8-Cg-HPY"/>
+                    <exclude reference="giR-I0-gvw"/>
+                    <exclude reference="mLz-y8-7bo"/>
                     <exclude reference="pW6-dj-f0x"/>
                     <include reference="sgi-Sf-IBI"/>
+                    <include reference="zE7-js-fno"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="519" y="619.5"/>
         </view>
     </objects>
     <resources>
-        <image name="reportrCloud.png" width="383" height="298"/>
+        <image name="reportrCloud.png" width="381" height="292"/>
     </resources>
 </document>
