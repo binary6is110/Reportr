@@ -16,6 +16,16 @@
 		3B0CC84F1AF41D6600ADAC64 /* DemoSong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CC84C1AF40D9B00ADAC64 /* DemoSong.m4a */; };
 		3B210A4D1AFA6CD8004CD7F9 /* reportrCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B210A4C1AFA6CD8004CD7F9 /* reportrCloud.png */; };
 		3B210A511AFA767D004CD7F9 /* ApptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B210A4F1AFA767D004CD7F9 /* ApptTableViewCell.m */; };
+		3B300B841AFBACE90019A5BD /* InfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B300B831AFBACE90019A5BD /* InfoWindow.m */; };
+		3B300B861AFBAD100019A5BD /* InfoWindowView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B300B851AFBAD100019A5BD /* InfoWindowView.xib */; };
+		3B300B961AFBCF380019A5BD /* markerImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300B951AFBCF380019A5BD /* markerImage@3x.png */; };
+		3B300B981AFBD1F50019A5BD /* markerImage-wide@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300B971AFBD1F50019A5BD /* markerImage-wide@3x.png */; };
+		3B300B9E1AFBD8F00019A5BD /* editButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300B9D1AFBD8F00019A5BD /* editButton@3x.png */; };
+		3B300BA21AFBDA9A0019A5BD /* blueStroke.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300BA11AFBDA9A0019A5BD /* blueStroke.png */; };
+		3B300BA51AFBE3580019A5BD /* ApplicationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B300BA41AFBE3580019A5BD /* ApplicationModel.m */; };
+		3B300BA71AFC046E0019A5BD /* mapButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300BA61AFC046E0019A5BD /* mapButton@3x.png */; };
+		3B300BA91AFC04770019A5BD /* bluePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300BA81AFC04770019A5BD /* bluePhone.png */; };
+		3B300BAC1AFC1C3D0019A5BD /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B300BAB1AFC1C3D0019A5BD /* ContactModel.m */; };
 		3B3A61721AF012760059D0B2 /* personIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A616D1AF012760059D0B2 /* personIcon.png */; };
 		3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A61781AF013290059D0B2 /* videoIcon.png */; };
 		3B5254CD1AF1833600E64857 /* micIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CC1AF1833600E64857 /* micIcon.png */; };
@@ -113,6 +123,19 @@
 		3B210A4C1AFA6CD8004CD7F9 /* reportrCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportrCloud.png; sourceTree = "<group>"; };
 		3B210A4E1AFA767D004CD7F9 /* ApptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApptTableViewCell.h; sourceTree = "<group>"; };
 		3B210A4F1AFA767D004CD7F9 /* ApptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApptTableViewCell.m; sourceTree = "<group>"; };
+		3B300B821AFBACE90019A5BD /* InfoWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoWindow.h; sourceTree = "<group>"; };
+		3B300B831AFBACE90019A5BD /* InfoWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoWindow.m; sourceTree = "<group>"; };
+		3B300B851AFBAD100019A5BD /* InfoWindowView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoWindowView.xib; sourceTree = "<group>"; };
+		3B300B951AFBCF380019A5BD /* markerImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerImage@3x.png"; sourceTree = "<group>"; };
+		3B300B971AFBD1F50019A5BD /* markerImage-wide@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerImage-wide@3x.png"; sourceTree = "<group>"; };
+		3B300B9D1AFBD8F00019A5BD /* editButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editButton@3x.png"; sourceTree = "<group>"; };
+		3B300BA11AFBDA9A0019A5BD /* blueStroke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueStroke.png; sourceTree = "<group>"; };
+		3B300BA31AFBE3580019A5BD /* ApplicationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationModel.h; sourceTree = "<group>"; };
+		3B300BA41AFBE3580019A5BD /* ApplicationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationModel.m; sourceTree = "<group>"; };
+		3B300BA61AFC046E0019A5BD /* mapButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapButton@3x.png"; sourceTree = "<group>"; };
+		3B300BA81AFC04770019A5BD /* bluePhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluePhone.png; sourceTree = "<group>"; };
+		3B300BAA1AFC1C3D0019A5BD /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		3B300BAB1AFC1C3D0019A5BD /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		3B3A616D1AF012760059D0B2 /* personIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personIcon.png; sourceTree = "<group>"; };
 		3B3A61781AF013290059D0B2 /* videoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoIcon.png; sourceTree = "<group>"; };
 		3B5254CC1AF1833600E64857 /* micIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micIcon.png; sourceTree = "<group>"; };
@@ -293,6 +316,12 @@
 		3B891F301AE5B37C00457517 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3B300BA81AFC04770019A5BD /* bluePhone.png */,
+				3B300BA61AFC046E0019A5BD /* mapButton@3x.png */,
+				3B300BA11AFBDA9A0019A5BD /* blueStroke.png */,
+				3B300B9D1AFBD8F00019A5BD /* editButton@3x.png */,
+				3B300B971AFBD1F50019A5BD /* markerImage-wide@3x.png */,
+				3B300B951AFBCF380019A5BD /* markerImage@3x.png */,
 				3B9538571AFAC45100A59555 /* videoIcon_recording.png */,
 				3B9538551AFAC44900A59555 /* micIcon_recording.png */,
 				3B9538531AFAC43F00A59555 /* cameraIcon_recording.png */,
@@ -316,6 +345,10 @@
 				3B8F9D211AE84E7300F74EB0 /* AppointmentModel.m */,
 				3B0CC8331AF3D93A00ADAC64 /* MessageModel.h */,
 				3B0CC8341AF3D93A00ADAC64 /* MessageModel.m */,
+				3B300BA31AFBE3580019A5BD /* ApplicationModel.h */,
+				3B300BA41AFBE3580019A5BD /* ApplicationModel.m */,
+				3B300BAA1AFC1C3D0019A5BD /* ContactModel.h */,
+				3B300BAB1AFC1C3D0019A5BD /* ContactModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -435,6 +468,7 @@
 			children = (
 				3B928E461AC5B71000F27710 /* Main.storyboard */,
 				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
+				3B300B851AFBAD100019A5BD /* InfoWindowView.xib */,
 				3B7E82031AF29B9900DC3460 /* OverlayView.xib */,
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
@@ -452,6 +486,8 @@
 				3B8F9D1D1AE70AF500F74EB0 /* MapNavigationController.m */,
 				3B928E431AC5B71000F27710 /* MapViewController.h */,
 				3B928E441AC5B71000F27710 /* MapViewController.m */,
+				3B300B821AFBACE90019A5BD /* InfoWindow.h */,
+				3B300B831AFBACE90019A5BD /* InfoWindow.m */,
 			);
 			name = MapView;
 			sourceTree = "<group>";
@@ -605,15 +641,22 @@
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
 				3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */,
 				3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */,
+				3B300B9E1AFBD8F00019A5BD /* editButton@3x.png in Resources */,
 				3B0CC84F1AF41D6600ADAC64 /* DemoSong.m4a in Resources */,
+				3B300B981AFBD1F50019A5BD /* markerImage-wide@3x.png in Resources */,
 				3B9538581AFAC45100A59555 /* videoIcon_recording.png in Resources */,
 				3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */,
+				3B300BA71AFC046E0019A5BD /* mapButton@3x.png in Resources */,
+				3B300BA91AFC04770019A5BD /* bluePhone.png in Resources */,
 				3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */,
+				3B300B861AFBAD100019A5BD /* InfoWindowView.xib in Resources */,
 				3B0AB22E1AF8261A00A3876E /* emptyThumb.png in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
 				3B3A61721AF012760059D0B2 /* personIcon.png in Resources */,
+				3B300B961AFBCF380019A5BD /* markerImage@3x.png in Resources */,
 				3B9538561AFAC44900A59555 /* micIcon_recording.png in Resources */,
 				3B9538541AFAC43F00A59555 /* cameraIcon_recording.png in Resources */,
+				3B300BA21AFBDA9A0019A5BD /* blueStroke.png in Resources */,
 				3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */,
 				3B210A4D1AFA6CD8004CD7F9 /* reportrCloud.png in Resources */,
 			);
@@ -644,6 +687,8 @@
 				3BA8AE551AE9589E0000C9A8 /* MDDirectionService.m in Sources */,
 				3B7E820A1AF2D20D00DC3460 /* VideoViewController.m in Sources */,
 				3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */,
+				3B300BAC1AFC1C3D0019A5BD /* ContactModel.m in Sources */,
+				3B300BA51AFBE3580019A5BD /* ApplicationModel.m in Sources */,
 				3B8F9D221AE84E7300F74EB0 /* AppointmentModel.m in Sources */,
 				3B928E3C1AC5B71000F27710 /* main.m in Sources */,
 				3B928E451AC5B71000F27710 /* MapViewController.m in Sources */,
@@ -653,6 +698,7 @@
 				3B8102DE1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */,
 				3B0CC8441AF4047E00ADAC64 /* AudioRecordPlayViewController.m in Sources */,
 				3B0CC8351AF3D93A00ADAC64 /* MessageModel.m in Sources */,
+				3B300B841AFBACE90019A5BD /* InfoWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

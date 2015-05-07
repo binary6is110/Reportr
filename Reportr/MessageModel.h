@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface MessageModel : NSObject
+
 
 @property (nonatomic, retain) NSString * message;
 
@@ -22,5 +24,6 @@
 
 
 +(id) sharedMessageModel;
+-(NSString*)formattedTime:(NSString*)time;
 
 @end

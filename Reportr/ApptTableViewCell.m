@@ -7,6 +7,7 @@
 //
 
 #import "ApptTableViewCell.h"
+#import "ApplicationModel.h"
 
 @interface ApptTableViewCell()
 @property (nonatomic) IBOutlet UILabel * timeLbl;
@@ -14,8 +15,8 @@
 @property (nonatomic) IBOutlet UILabel * agendaLbl;
 @end
 
-
 @implementation ApptTableViewCell
+
 
 - (void)awakeFromNib {
     // Initialization code
@@ -29,17 +30,18 @@
 
 -(void) highlightCell{
     if(!_isHighlighted){
-        _timeLbl.textColor = [UIColor blackColor];
+      
         [_timeLbl setFont:[UIFont boldSystemFontOfSize:18]];
+        _companyLbl.textColor=[[ApplicationModel sharedApplicationModel] lightBlueColor];
+        self.contentView.backgroundColor = [[ApplicationModel sharedApplicationModel] lightGreyColor];
 
-        self.contentView.backgroundColor = [UIColor colorWithRed:(228.0/255.0) green:(231.0/255.0) blue:(231.0/255.0) alpha:0.6];
         _isHighlighted=YES;
     }
 }
 
 -(void) resetCell{
     if(_isHighlighted){
-        _timeLbl.textColor = [UIColor grayColor ];
+        _companyLbl.textColor = [UIColor grayColor ];
         [_timeLbl setFont:[UIFont systemFontOfSize:18]];
 
          self.contentView.backgroundColor = [UIColor whiteColor];

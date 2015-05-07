@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoWindow"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleAspectFit" id="iN0-l3-epB" customClass="InfoWindow">
+            <rect key="frame" x="0.0" y="0.0" width="208" height="90"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-Oh-Jkn">
+                    <rect key="frame" x="1" y="0.0" width="207" height="86"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="markerImage-wide@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-5Y-bvj">
+                            <rect key="frame" x="0.0" y="2" width="207" height="84"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:30 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNm-YP-kMP">
+                            <rect key="frame" x="10" y="5" width="137" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="ono-md-0el"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1234 Eldridge Parkway" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nkd-6n-Eyk">
+                            <rect key="frame" x="10" y="43" width="147" height="33"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="33" id="JpZ-0m-MuB"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxy-PJ-FWV">
+                            <rect key="frame" x="10" y="25" width="147" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="16" id="VxZ-Jj-Cpb"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6W-MN-qAx">
+                            <rect key="frame" x="152" y="20" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="Fn0-Jm-VHm"/>
+                                <constraint firstAttribute="width" constant="45" id="Rcn-8E-Coi"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="f4X-Qp-ZQ5"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="xip-6n-Dni"/>
+                            </constraints>
+                            <state key="normal" image="editButton@3x.png"/>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="f4X-Qp-ZQ5"/>
+                                    <exclude reference="xip-6n-Dni"/>
+                                </mask>
+                            </variation>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="i6W-MN-qAx" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="20" id="3Of-qx-QLs"/>
+                        <constraint firstItem="bRC-5Y-bvj" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" id="6cC-Xr-fGE"/>
+                        <constraint firstItem="nkd-6n-Eyk" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="10" id="8dW-0d-Tnq"/>
+                        <constraint firstAttribute="bottom" secondItem="oNm-YP-kMP" secondAttribute="bottom" id="8hp-Nf-c5g"/>
+                        <constraint firstItem="oNm-YP-kMP" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="10" id="AlW-NR-9Ty"/>
+                        <constraint firstAttribute="trailing" secondItem="i6W-MN-qAx" secondAttribute="trailing" constant="10" id="E5R-Ju-1Ik"/>
+                        <constraint firstItem="bRC-5Y-bvj" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" id="GOD-RN-ScD"/>
+                        <constraint firstItem="i6W-MN-qAx" firstAttribute="leading" secondItem="oNm-YP-kMP" secondAttribute="trailing" constant="5" id="Jel-gD-lJo"/>
+                        <constraint firstItem="nkd-6n-Eyk" firstAttribute="top" secondItem="lxy-PJ-FWV" secondAttribute="bottom" constant="2" id="L4z-jx-FRb"/>
+                        <constraint firstAttribute="bottom" secondItem="bRC-5Y-bvj" secondAttribute="bottom" id="NYX-ah-fPA"/>
+                        <constraint firstItem="lxy-PJ-FWV" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="10" id="QEB-pe-Zqe"/>
+                        <constraint firstItem="oNm-YP-kMP" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="10" id="Qc7-mR-JjZ"/>
+                        <constraint firstItem="lxy-PJ-FWV" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="10" id="R35-wn-Qxc"/>
+                        <constraint firstAttribute="trailing" secondItem="lxy-PJ-FWV" secondAttribute="trailing" constant="10" id="Suo-qN-ZTz"/>
+                        <constraint firstItem="oNm-YP-kMP" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="5" id="VPz-1H-F95"/>
+                        <constraint firstAttribute="bottom" secondItem="bRC-5Y-bvj" secondAttribute="bottom" id="Wdw-l8-pZl"/>
+                        <constraint firstAttribute="trailing" secondItem="bRC-5Y-bvj" secondAttribute="trailing" id="WpL-ib-wbv"/>
+                        <constraint firstAttribute="trailing" secondItem="lxy-PJ-FWV" secondAttribute="trailing" constant="50" id="Ylk-9k-twR"/>
+                        <constraint firstItem="lxy-PJ-FWV" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="8" id="bvg-NC-1nc"/>
+                        <constraint firstItem="lxy-PJ-FWV" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="25" id="c9N-9q-IcD"/>
+                        <constraint firstItem="bRC-5Y-bvj" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" id="iHN-2W-5We"/>
+                        <constraint firstAttribute="trailing" secondItem="bRC-5Y-bvj" secondAttribute="trailing" id="j99-Rd-n6l"/>
+                        <constraint firstItem="oNm-YP-kMP" firstAttribute="top" secondItem="lxy-PJ-FWV" secondAttribute="bottom" constant="5" id="nAh-nH-PZv"/>
+                        <constraint firstItem="nkd-6n-Eyk" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="10" id="v82-ka-cZ4"/>
+                        <constraint firstAttribute="trailing" secondItem="nkd-6n-Eyk" secondAttribute="trailing" constant="10" id="vmM-Kh-Xvf"/>
+                        <constraint firstItem="bRC-5Y-bvj" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="2" id="xGa-qj-RBk"/>
+                        <constraint firstItem="oNm-YP-kMP" firstAttribute="top" secondItem="lxy-PJ-FWV" secondAttribute="bottom" constant="5" id="yQM-H1-pSZ"/>
+                        <constraint firstAttribute="trailing" secondItem="nkd-6n-Eyk" secondAttribute="trailing" constant="50" id="zA7-AJ-EKq"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GOD-RN-ScD"/>
+                            <exclude reference="Wdw-l8-pZl"/>
+                            <exclude reference="WpL-ib-wbv"/>
+                            <exclude reference="iHN-2W-5We"/>
+                            <exclude reference="8hp-Nf-c5g"/>
+                            <exclude reference="AlW-NR-9Ty"/>
+                            <exclude reference="nAh-nH-PZv"/>
+                            <exclude reference="yQM-H1-pSZ"/>
+                            <exclude reference="QEB-pe-Zqe"/>
+                            <exclude reference="Suo-qN-ZTz"/>
+                            <exclude reference="bvg-NC-1nc"/>
+                            <exclude reference="v82-ka-cZ4"/>
+                            <exclude reference="vmM-Kh-Xvf"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="gGb-Oh-Jkn" secondAttribute="bottom" id="079-zR-Pnr"/>
+                <constraint firstAttribute="bottom" secondItem="gGb-Oh-Jkn" secondAttribute="bottom" constant="4" id="2qt-EX-3Xy"/>
+                <constraint firstAttribute="trailing" secondItem="gGb-Oh-Jkn" secondAttribute="trailing" id="DCM-Oa-Vcw"/>
+                <constraint firstItem="gGb-Oh-Jkn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Y6E-u4-Ob9"/>
+                <constraint firstItem="gGb-Oh-Jkn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="1" id="eck-EG-7XG"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="079-zR-Pnr"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="address_1" destination="nkd-6n-Eyk" id="FLD-ZJ-PcS"/>
+                <outlet property="backView" destination="gGb-Oh-Jkn" id="9Sd-4z-KWW"/>
+                <outlet property="companyName" destination="lxy-PJ-FWV" id="Qi7-Zy-6PE"/>
+                <outlet property="editAppointmentButton" destination="i6W-MN-qAx" id="iiz-2a-EFf"/>
+                <outlet property="time" destination="oNm-YP-kMP" id="VBe-aR-LfJ"/>
+            </connections>
+            <point key="canvasLocation" x="379" y="648"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="editButton@3x.png" width="60" height="60"/>
+        <image name="markerImage-wide@3x.png" width="180" height="75"/>
+    </resources>
+</document>

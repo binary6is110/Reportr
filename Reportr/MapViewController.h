@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "UserModel.h"
 #import <Parse/Parse.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController <GMSMapViewDelegate,CLLocationManagerDelegate>
 - (IBAction)showSchedule:(id)sender;
 -(void) passUserModel:(UserModel *) userModel;
 -(void) addDirections:(NSDictionary *) json;

@@ -8,19 +8,30 @@
 
 #import "ScheduleTableViewController.h"
 #import "AppointmentModel.h"
-#import "ScheduleViewController.h"
 #import "ApptTableViewCell.h"
+#import "ApplicationModel.h"
+
 
 @interface ScheduleTableViewController ()
-@property (nonatomic,strong) ScheduleViewController*scheduleVController;
-@property (nonatomic,strong) AppointmentModel*appointment;
 @end
 
 @implementation ScheduleTableViewController
+static ApplicationModel * appModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.estimatedRowHeight=100.0;
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    appModel = [ApplicationModel sharedApplicationModel];
+    //_appointments=appModel.appointments;
+}
+
+-(void)viewWillDisappear:(BOOL)animated  {
+    [super viewWillDisappear:animated];
+    appModel=nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,10 +39,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) passAppointments:(NSMutableArray *) appointments
-{
-    _appointments=appointments;
-}
+
 
 #pragma mark - Table view data source
 
@@ -42,7 +50,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [_appointments count];
+    return [appModel.appointments count];
 }
 
 
@@ -57,7 +65,7 @@
 }
 
 -(void) tableView:(UITableView *)tableView willDisplayCell:(ApptTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-    AppointmentModel * appt = (AppointmentModel*)[_appointments objectAtIndex:indexPath.row];
+    AppointmentModel * appt = [appModel getAppointmentAtIndex:indexPath.row];
     ApptTableViewCell*aCell = (ApptTableViewCell*) cell;
     [aCell setCompany:appt.company];
     [aCell setTime:[self formattedTime: appt.start_time]];
@@ -86,18 +94,18 @@
     // is this appointment start time later than now?-> this time should be highlighted
     if(index>0)
     {
-        lastAppt =[_appointments objectAtIndex:index-1];
+        lastAppt = [appModel getAppointmentAtIndex:index-1];
         if ([self isThisTime:lastAppt.start_time earlierThanThisTime:[self currentTimeAsString]]) {
-            NSLog(@" this time: %@ IS earlier than now: %@", lastAppt.start_time,[self currentTimeAsString] );
+            NSLog(@" last time: %@ IS earlier than now: %@", lastAppt.start_time,[self currentTimeAsString] );
             lastAppointmentEarlierThanNow = YES;
         }else{
             lastAppointmentEarlierThanNow = NO;
         }
     }
     
-    thisAppt =[_appointments objectAtIndex:index];
+    thisAppt =[appModel getAppointmentAtIndex:index];
     if ([self isThisTime:[self currentTimeAsString] earlierThanThisTime:thisAppt.start_time]) {
-        NSLog(@" this time: %@ IS earlier than now: %@", [self currentTimeAsString],thisAppt.start_time );
+        NSLog(@" now: %@ IS earlier than next time: %@", [self currentTimeAsString],thisAppt.start_time );
         nowEarlierThanNextAppointment = YES;
     }else{
         nowEarlierThanNextAppointment = NO;
@@ -126,7 +134,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AppointmentModel*appt = [_appointments objectAtIndex:indexPath.row];
+    AppointmentModel*appt = [appModel getAppointmentAtIndex:indexPath.row];
+    appModel.appointment=appt;
+    
     if(appt.hasVideo){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addVideoComplete" object:nil];
     }
@@ -147,9 +157,6 @@
     else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"resetAudioImage" object:nil];
     }
-
-    _appointment =(AppointmentModel*)[_appointments objectAtIndex:indexPath.row];
-    [_scheduleVController passAppointment:_appointment];
 }
 
 #pragma mark - Utility
@@ -178,7 +185,6 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetailView"]) {
-        _scheduleVController = (ScheduleViewController*)[segue destinationViewController];
     }
 }
 

@@ -9,15 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "AppointmentModel.h"
 #import <Parse/Parse.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 
-@interface ScheduleViewController : UIViewController<UITextViewDelegate, UIScrollViewDelegate>
+
+@interface ScheduleViewController : UIViewController<UITextViewDelegate, UIScrollViewDelegate,GMSMapViewDelegate>
 -(void) passAppointment:(AppointmentModel *) appointment;
 - (IBAction)callTouched:(id)sender;
-- (IBAction)syncTouched:(id)sender;
-- (IBAction)saveTouched:(id)sender;
--(void) updateImageIconWithSuccess: (NSNotification *)notification;
--(void) updateVideoIconWithSuccess: (NSNotification *)notification;
--(void) updateVideoStatusWithSuccess: (NSNotification *)notification;
+- (IBAction)routeTouched:(id)sender;
+
+-(void) updateImageFlagWithSuccess: (NSNotification *)notification;
+-(void) updateVideoFlagWithSuccess: (NSNotification *)notification;
+-(void) updateAudioFlagWithSuccess: (NSNotification *)notification;
 
 @end

@@ -21,7 +21,6 @@
     return kVIDEO_SIZE_EXCEEDED;
 }
 
-
 -(NSString *)videoWarning{
     return kVIDEO_WARNING;
 }
@@ -49,6 +48,22 @@
     }
     return self;
 }
+
+
+-(NSString*)formattedTime:(NSString*)time {
+    
+    NSArray * timeChunks = [time componentsSeparatedByString: @":"];
+    int hours = (int)[timeChunks[0] integerValue];
+    int minutes = (int)[timeChunks[1] integerValue];
+    NSString * suffix = @"AM";
+    if (hours>=12){
+        suffix = @"PM";
+        if(hours>12)
+            hours-=12;
+    }
+    return [NSString stringWithFormat:@"%d:%02d %@", hours, minutes, suffix, nil];
+}
+
 
 
 @end

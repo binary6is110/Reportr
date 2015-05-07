@@ -11,8 +11,8 @@
 @interface AppointmentModel : NSObject
 
 @property (nonatomic, strong) NSString * appointment_id;
-@property (nonatomic, strong) NSString * latitude;
-@property (nonatomic, strong) NSString * longitude;
+@property (nonatomic) float latitude;
+@property (nonatomic) float longitude;
 @property (nonatomic, strong) NSString * company;
 @property (nonatomic, strong) NSString * address_1;
 @property (nonatomic, strong) NSString * address_2;

@@ -9,7 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface ScheduleTableViewController : UITableViewController
-@property (strong,nonatomic) NSMutableArray * appointments;
--(void) passAppointments:(NSMutableArray *) appointments;
-
 @end

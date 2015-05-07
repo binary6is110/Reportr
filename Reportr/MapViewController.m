@@ -10,12 +10,14 @@
 #error "This file requires ARC support."
 #endif
 
+#import "MessageModel.h"
+#import "ApplicationModel.h"
 #import "MapViewController.h"
 #import "MapNavigationController.h"
 #import "ScheduleNavigationViewController.h"
-#import <GoogleMaps/GoogleMaps.h>
 #import "AppointmentModel.h"
 #import "MDDirectionService.h"
+#import "InfoWindow.h"
 
 
 @interface MapViewController ()
@@ -29,16 +31,22 @@
 @end
 
 @implementation MapViewController
+static MessageModel *  mModel;
+static ApplicationModel * appModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    mModel = [MessageModel sharedMessageModel];
+    appModel = [ApplicationModel sharedApplicationModel];
+    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0 longitude:0 zoom:12];
     
     _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     _mapView.settings.myLocationButton = YES;
     
     // Listen to the myLocation property of GMSMapView.
-    [_mapView addObserver:self forKeyPath:@"myLocation"  options:NSKeyValueObservingOptionNew context:NULL];
+    [_mapView addObserver:self forKeyPath:@"myLocation" options:NSKeyValueObservingOptionNew context:NULL];
     
     _locations= [[NSMutableArray alloc] init];
     _waypointStrings = [[NSMutableArray alloc]init];
@@ -49,12 +57,29 @@
         _mapNavController= (MapNavigationController*)self.parentViewController;
     }
     _userModel = _mapNavController.userModel;
+    _mapView.delegate=self;
     
-    [self retrieveAppointmentsForUser:_mapNavController.userModel];    
+    [self retrieveAppointmentsForUser:_mapNavController.userModel];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelectedEditAppointmentFromMapMarker:)
+                                                 name:@"shouldSegueToDetailView" object:nil];
+}
+
+-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    appModel.currentLocation=newLocation;
+    NSLog(@"updating location");
 }
 
 - (void)dealloc {
     [_mapView removeObserver:self forKeyPath:@"myLocation" context:NULL];
+    mModel=nil;
+    appModel=nil;
+}
+
+
+/**-(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification */
+-(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification{
+    NSLog(@"MapViewController::userSelectedEditAppointmentFromMapMarker, %@",notification.object);
+    [self performSegueWithIdentifier:@"showDetailViewFromMap" sender:self];
 }
 
 #pragma mark – Firebase Queries
@@ -84,6 +109,7 @@
                 gModel.hasImage=(appt[@"image_file"] == nil);
                 [_locations insertObject:gModel atIndex:_locations.count];
             }
+            appModel.appointments=_locations;
             // ask for my location data after the map has already been added to the ui.
             dispatch_async(dispatch_get_main_queue(), ^{
                 _mapView.myLocationEnabled = YES;
@@ -102,31 +128,37 @@
         _firstLocationUpdate = YES;
         
         NSMutableArray * coords = [[NSMutableArray alloc] init];
-        
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
+        appModel.currentLocation=location;
         CLLocationCoordinate2D start = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
         NSString *positionString = [[NSString alloc] initWithFormat:@"%f,%f",start.latitude,start.longitude];
         [_waypointStrings addObject:positionString];
-        AppointmentModel * aM=[[AppointmentModel alloc] init];
-        aM.latitude= [NSString stringWithFormat:@"%f",start.latitude];
-        aM.longitude= [NSString stringWithFormat:@"%f",start.longitude];
-        [coords insertObject:aM atIndex:coords.count];
         
+        AppointmentModel * aM=[[AppointmentModel alloc] init];
+        aM.latitude= start.latitude;
+        aM.longitude= start.longitude;
+        [coords insertObject:aM atIndex:coords.count];
+        int index =0;
         for (AppointmentModel * obj in _locations)
         {
             CLLocationCoordinate2D thisSpot = [self geoCodeUsingAddress:[NSString stringWithFormat:@"%@,%@,%@,%@",obj.address_1, obj.city, obj.state, obj.zip]];
-            GMSMarker * marker = [GMSMarker markerWithPosition: thisSpot];
+            AppointmentModel * m= [appModel getAppointmentAtIndex:(NSInteger)index];
+            m.latitude= thisSpot.latitude;
+            m.longitude=thisSpot.longitude;
+            
+            GMSMarker * marker = [[GMSMarker alloc] init];
+            marker.userData = [NSString stringWithFormat:@"%d",index++];
+            marker.position = thisSpot;
+            marker.infoWindowAnchor = CGPointMake(0.5, 0.5);
+            marker.flat = YES;
+            marker.map = _mapView;
             [_waypoints addObject:marker];
+            
             positionString = [[NSString alloc] initWithFormat:@"%f,%f",thisSpot.latitude,thisSpot.longitude];
             [_waypointStrings addObject:positionString];
             
-            marker.title= obj.company;
-            marker.snippet = obj.address_1;
-            marker.flat = YES;
-            marker.infoWindowAnchor = CGPointMake(0.5, 0.5);
-            marker.map = _mapView;
-            obj.latitude= [NSString stringWithFormat:@"%f",thisSpot.latitude];
-            obj.longitude= [NSString stringWithFormat:@"%f",thisSpot.longitude];
+            obj.latitude= thisSpot.latitude;
+            obj.longitude= thisSpot.longitude;
             [coords insertObject:obj atIndex:coords.count];
         }
         
@@ -142,6 +174,29 @@
         }
     }
 }
+
+
+-(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
+   
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSegueToDetailView" object:nil];
+}
+
+
+-(UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
+    InfoWindow *view =  [[[NSBundle mainBundle] loadNibNamed:@"InfoWindowView" owner:self options:nil] objectAtIndex:0];
+    //retrieve appointment details & update selected appointment from mapview
+    AppointmentModel*thisAppt = [appModel getAppointmentAtIndex:[marker.userData integerValue]];
+    appModel.appointment=thisAppt;
+    
+    view.time.text = [mModel formattedTime:thisAppt.start_time];
+    view.address_1.text = thisAppt.address_1;
+    view.address_1.numberOfLines=0;
+    [view.address_1 sizeToFit];
+    view.companyName.text = thisAppt.company;
+    view.companyName.textColor=[UIColor colorWithRed:(57/255.0) green:(198/255.0) blue:(244/255.0) alpha:1.0];
+    return view;
+}
+
 /** - (void)addDirections:(NSDictionary *)json
  *  Draws routes on map between locations
  */
@@ -184,6 +239,7 @@
     return center;
 }
 
+
 #pragma mark - Navigation
 
 /** -(void) passUserModel:(UserModel*) userModel
@@ -198,8 +254,8 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
      //NSLog(@"passing through map");
-     ScheduleNavigationViewController * target = (ScheduleNavigationViewController*)[segue destinationViewController];
-     [target passAppointments:_locations];
+  //   ScheduleNavigationViewController * target = (ScheduleNavigationViewController*)[segue destinationViewController];
+    // [target passAppointments:_locations];
      
  }
 

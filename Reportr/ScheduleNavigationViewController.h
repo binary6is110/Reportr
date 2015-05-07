@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ScheduleNavigationViewController : UINavigationController
--(void) passAppointments:(NSMutableArray*) appointments;
+//-(void) passAppointments:(NSMutableArray*) appointments;
 @end

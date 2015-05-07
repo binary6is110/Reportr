@@ -11,6 +11,8 @@
 #endif
 
 #import "MessageModel.h"
+#import "ApplicationModel.h"
+
 #import "LoginViewController.h"
 #import "MapNavigationController.h"
 #import "UserModel.h"
@@ -32,6 +34,7 @@
 
 @implementation LoginViewController
 
+static ApplicationModel * appModel;
 static MessageModel *  mModel;
 
 - (void)viewDidLoad {
@@ -39,16 +42,13 @@ static MessageModel *  mModel;
     [super viewDidLoad];
     
     mModel = [MessageModel sharedMessageModel];
-    NSLog(@"mModel. message: %@",mModel.message);
+    appModel = [ApplicationModel sharedApplicationModel];
     
-    if(!_notificationsDone){
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
                                                      name:UIKeyboardWillShowNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
                                                      name:UIKeyboardWillHideNotification object:nil];
-        _notificationsDone=YES;
-       _viewY= (float)self.view.frame.origin.y;
-    }
+    _viewY= (float)self.view.frame.origin.y;    
     
     [[_signin_btn layer] setBorderColor:[UIColor whiteColor].CGColor];
     [[_signin_btn layer] setBorderWidth: 2.0f];
@@ -59,6 +59,15 @@ static MessageModel *  mModel;
     _user_tf.delegate = self;
     _pass_tf.delegate = self;
     _attemptInProgress=NO;
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillShowNotification
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIKeyboardWillHideNotification
+                                                  object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -108,6 +117,7 @@ static MessageModel *  mModel;
                 [query getFirstObjectInBackgroundWithBlock:^(PFObject *employee, NSError *error) {
                     if (!error ) {
                         _userModel= [[UserModel alloc] initWithId:_user_tf.text andPassword:_pass_tf.text andEmployeeId:empId.objectId];
+                        appModel.user=_userModel;
                         [self performSegueWithIdentifier:@"loginToMapView" sender:sender];
                     }
                 }];

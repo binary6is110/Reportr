@@ -7,21 +7,26 @@
 //
 
 #import "ScheduleNavigationViewController.h"
+#import "ApplicationModel.h"
+
 
 @interface ScheduleNavigationViewController ()
 @property ScheduleNavigationViewController  * scheduleTabVController;
-@property NSMutableArray*appointments;
+//@property NSMutableArray*appointments;
 @end
 
 @implementation ScheduleNavigationViewController
+static ApplicationModel * appModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if(!_scheduleTabVController)
+   /* if(!_scheduleTabVController)
     {
         _scheduleTabVController = (ScheduleNavigationViewController*) self.visibleViewController;
         [_scheduleTabVController passAppointments: _appointments];
-    }    
+    }*/
+    appModel = [ApplicationModel sharedApplicationModel];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,10 +34,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) passAppointments:(NSMutableArray*) appointments
+/*-(void) passAppointments:(NSMutableArray*) appointments
 {
-    _appointments=appointments;
-}
+  //  _appointments=appointments;
+}*/
 
 /*
 #pragma mark - Navigation

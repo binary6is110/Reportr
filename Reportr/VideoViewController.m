@@ -90,7 +90,6 @@ static MessageModel *  mModel;
                 // transition back - notifiy schedule view that video has been captured
                 //TODO: Do something with captured video
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"addVideoComplete" object:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"updateVideoStatus" object:nil];
 
                 [self dismissViewControllerAnimated: YES completion: nil];
             }
