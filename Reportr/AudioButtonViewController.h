@@ -13,4 +13,5 @@
 @property (strong, nonatomic) IBOutlet UIImageView *micImg;
 -(void) updateAudioIconWithSuccess: (NSNotification *)notification;
 -(void) resetAudioIconWithSuccess: (NSNotification *)notification;
+
 @end

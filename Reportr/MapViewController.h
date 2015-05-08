@@ -14,6 +14,5 @@
 
 @interface MapViewController : UIViewController <GMSMapViewDelegate,CLLocationManagerDelegate>
 - (IBAction)showSchedule:(id)sender;
--(void) passUserModel:(UserModel *) userModel;
 -(void) addDirections:(NSDictionary *) json;
 @end

@@ -15,7 +15,6 @@
 #define kVIDEO_SIZE_EXCEEDED @"Video is too large. Keep video around 1 minute."
 
 
-
 @implementation MessageModel
 
 -(NSString *)videoSizeExceeded{
@@ -49,7 +48,6 @@
     }
     return self;
 }
-
 
 -(NSString*)formattedTime:(NSString*)time {
     

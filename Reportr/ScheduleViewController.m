@@ -11,11 +11,11 @@
 #import "ApplicationModel.h"
 #import "ContactModel.h"
 
-
 #define kKEYBOARD_OFFSET 80.0
+#define kCANT_CALL_ON_DEVICE @"Sorry, cannot place phone call with this device."
+
 
 @interface ScheduleViewController () 
-@property (nonatomic,strong) AppointmentModel * aModel;
 @property (strong, nonatomic) IBOutlet UILabel *contact_lbl;
 @property (strong, nonatomic) IBOutlet UILabel *company_lbl;
 @property (strong, nonatomic) IBOutlet UILabel *date_lbl;
@@ -32,39 +32,17 @@
 static MessageModel *  mModel;
 static ApplicationModel * appModel;
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self registerNotifications];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
-    [query whereKey:@"contact_id" equalTo:_aModel.contactId];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *contact, NSError *error) {
-        if (!error ) {
-            ContactModel * contactM = [[ContactModel alloc] initWithFirstName:contact[@"first_name"] lastName:contact[@"last_name"] company:contact[@"company"] address1:contact[@"address_1"] address2:contact[@"address_1"] city:contact[@"city"] state:contact[@"state"] zip:contact[@"zip"] contactId:contact[@"contact_id"] officePhone:contact[@"phone_office"] mobilePhone:contact[@"phone_mobile"]];
-            [appModel setContact:contactM];
-            _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", contact[@"first_name"],contact[@"last_name"]];
-        }
-    }];
-    
-    [self updateView];
-}
-
-/* -(void) viewWillDisappear:(BOOL)animated
-    Tear down/unregister notifications*/
--(void) viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    appModel=nil;
-}
-
 /* - (void)viewDidLoad 
-    update fields to reflect selected appointment details
-    Query Firebase data store to get contact information for appointment
-    update view and set up text views for legibility */
+    egisters notifications, updates UI and populates fields with data. */
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    appModel = [ApplicationModel sharedApplicationModel];
+    mModel = [MessageModel sharedMessageModel];
     
+    [self updateContact];
+    [self registerNotifications];
+    [self updateView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,7 +50,7 @@ static ApplicationModel * appModel;
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Keyboard/Textview
+#pragma mark - Keyboard/Textview Visibility
 /* -(void)keyboardWillShow
     Notification handler: Prepares view for editing/keyboard showing*/
 -(void)keyboardWillShow{
@@ -126,7 +104,7 @@ static ApplicationModel * appModel;
     [UIView commitAnimations];
 }
 
-#pragma mark - Event Handlers
+#pragma mark - UI Button Handlers
 /* - (IBAction)callTouched:(id)sender {
     Call button handler*/
 - (IBAction)callTouched:(id)sender {
@@ -134,7 +112,7 @@ static ApplicationModel * appModel;
     [self makeCall:[contactM contact_phone_mobile]];
 }
 
-/*  -(BOOL)makeCall:(NSString *)number
+/*-(BOOL)makeCall:(NSString *)number
    Tests for device capability & makes call if possible*/
 -(BOOL)makeCall:(NSString *)number {
     NSString *readyNumber = [NSString stringWithFormat:@"tel:%@",number];
@@ -143,15 +121,15 @@ static ApplicationModel * appModel;
         [[UIApplication sharedApplication] openURL:tel];
         return YES;
     } else {
-        [mModel displayError:@"Incompatible Hardware" withMessage:@"Sorry, cannot place phone call with this device"];
+        [mModel displayError:@"Incompatible Hardware" withMessage:kCANT_CALL_ON_DEVICE];
         return NO;
     }
 }
 
 /* - (IBAction)routeTouched:(id)sender {
-    Route button handler*/
+    Route button handler - dispatches notification to mapviewcontroller.*/
 - (IBAction)routeTouched:(id)sender {
-    NSLog(@"need directions to latitude: %f longitude: %f",[[appModel appointment] latitude], [[appModel appointment] longitude],nil);
+    NSLog(@"need directions to latitude: %f longitude: %f",[[appModel appointment] latitude],[[appModel appointment] longitude],nil);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldRouteToAppointment" object:nil];
 }
 
@@ -161,32 +139,51 @@ static ApplicationModel * appModel;
 -(void) updateImageFlagWithSuccess: (NSNotification *)notification{
     NSLog(@"ScheduleViewController::updateImageFlagWithSuccess, %@",notification.object);
     //[ setImage:[UIImage imageNamed:@"anyImageName"]];
-   _aModel.hasImage=YES;
+   appModel.appointment.hasImage=YES;
 }
 
 /**-(void) updateVideoFlagWithSuccess: (NSNotification *)notification
  TODO: Update icon flag to reflect video for appointment */
 -(void) updateVideoFlagWithSuccess: (NSNotification *)notification{
     NSLog(@"ScheduleViewController::updateVideoFlagWithSuccess, %@",notification.object);
-    _aModel.hasVideo=YES;
+    appModel.appointment.hasVideo=YES;
 }
 
 /**-(void) updateAudioFlagWithSuccess: (NSNotification *)notification
  TODO: Update audio flag to reflect video for appointment */
 -(void) updateAudioFlagWithSuccess: (NSNotification *)notification{
     NSLog(@"ScheduleViewController::updateAudioFlagWithSuccess, %@",notification.object);
-    _aModel.hasAudio=YES;
+    appModel.appointment.hasAudio=YES;
 }
 
 #pragma mark - Navigation
  /** -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
- Unwind stub.
- */
+ Unwind stub. */
 -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue {
     NSLog(@"ScheduleViewController::prepareForUnwind");
 }
 
 #pragma mark - Setup Methods
+
+/**-(void) updateContact
+ Check if contact matches selected appointment, if not - query for contact information, else update text field.*/
+-(void) updateContact{
+    
+    if(appModel.contact.contactId!= appModel.appointment.contactId){
+        PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
+        [query whereKey:@"contact_id" equalTo:appModel.appointment.contactId];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *contact, NSError *error) {
+            if (!error ) {
+                ContactModel * contactM = [[ContactModel alloc] initWithFirstName:contact[@"first_name"] lastName:contact[@"last_name"] company:contact[@"company"] address1:contact[@"address_1"] address2:contact[@"address_1"] city:contact[@"city"] state:contact[@"state"] zip:contact[@"zip"] contactId:contact[@"contact_id"] officePhone:contact[@"phone_office"] mobilePhone:contact[@"phone_mobile"]];
+                [appModel setContact:contactM];
+                _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", contact[@"first_name"],contact[@"last_name"]];
+            }
+        }];
+    } else{
+        _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", appModel.contact.first_name,appModel.contact.last_name];
+    }
+}
+
 /** -(void) registerNotifications - Registers notification for ScheduleView */
 -(void) registerNotifications{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
@@ -200,27 +197,20 @@ static ApplicationModel * appModel;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAudioFlagWithSuccess:)
                                                  name:@"addAudioComplete" object:nil];
 }
-
 /** -(void) updateView - Updates storyboard UI*/
 -(void) updateView{
-    
-    appModel = [ApplicationModel sharedApplicationModel];
-    mModel = [MessageModel sharedMessageModel];
-    _aModel=appModel.appointment;
-    mModel.appointmentId=_aModel.appointment_id;
-    
     _nextSteps_tview.delegate=self;
-    _nextSteps_tview.text=_aModel.next_steps;
+    _nextSteps_tview.text=appModel.appointment.next_steps;
     [_nextSteps_tview setContentOffset:CGPointMake(0.0,0.0) animated:YES];
     [_nextSteps_tview scrollRangeToVisible:NSMakeRange(0,1)];
     
     _notes_tview.delegate=self;
-    _notes_tview.text=_aModel.notes;
+    _notes_tview.text=appModel.appointment.notes;
     [_notes_tview setContentOffset:CGPointMake(0.0,0.0) animated:YES];
     [_notes_tview scrollRangeToVisible:NSMakeRange(0,1)];
     
-    _company_lbl.text=_aModel.company;
-    _date_lbl.text=_aModel.start_time;
+    _company_lbl.text=appModel.appointment.company;
+    _date_lbl.text=appModel.appointment.start_time;
 
     [[self.callBtn layer] setBorderWidth:1.0f];
     [[self.callBtn layer] setBorderColor:[appModel darkBlueColor].CGColor];
@@ -229,11 +219,17 @@ static ApplicationModel * appModel;
     
     [[self.meetingNotesBkgd layer] setCornerRadius:5.0f];
     [[self.meetingNotesBkgd layer] setBorderWidth:1.0f];
-    [[self.meetingNotesBkgd layer] setBorderColor:[appModel lightGreyColor].CGColor];
+    [[self.meetingNotesBkgd layer] setBorderColor:[appModel darkGreyColor].CGColor];
     
     [[self.nextStepsBkgrd layer] setCornerRadius:5.0f];
     [[self.nextStepsBkgrd layer] setBorderWidth:1.0f];
-    [[self.nextStepsBkgrd layer] setBorderColor:[appModel lightGreyColor].CGColor];
+    [[self.nextStepsBkgrd layer] setBorderColor:[appModel darkGreyColor].CGColor];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkImageIcon" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkAudioIcon" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"checkVideoIcon" object:nil];
+
+
 }
 
 @end

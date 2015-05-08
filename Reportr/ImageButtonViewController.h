@@ -13,5 +13,4 @@
 @property (strong, nonatomic) IBOutlet UIImageView *cameraImg;
 -(void) updateImageIconWithSuccess: (NSNotification *)notification;
 -(void) resetImageIconWithSuccess: (NSNotification *)notification;
-
 @end

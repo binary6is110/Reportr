@@ -12,5 +12,4 @@
 
 -(void) updateVideoIconWithSuccess: (NSNotification *)notification;
 -(void) resetVideoIconWithSuccess: (NSNotification *)notification;
-
 @end

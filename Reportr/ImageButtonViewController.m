@@ -7,20 +7,27 @@
 //
 
 #import "ImageButtonViewController.h"
+#import "ApplicationModel.h"
+#import "AppointmentModel.h"
 
 @interface ImageButtonViewController ()
 
 @end
 
 @implementation ImageButtonViewController
+static ApplicationModel * appModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    appModel = [ApplicationModel sharedApplicationModel];
+
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageIconWithSuccess:)
                                                  name:@"addImageComplete" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetImageIconWithSuccess:)
-                                                 name:@"resetPhotoImage" object:nil];
+                                                 name:@"resetPhotoImage" object:nil];   
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageIcon)
+                                                 name:@"checkImageIcon" object:nil];
 
 }
 
@@ -29,18 +36,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**-(void) updateImageIcon
+ Sets icon image to reflect image for appointment */
+-(void) updateImageIcon{
+    if(appModel.appointment.hasImage){
+        [_cameraImg setImage:[UIImage imageNamed:@"cameraRecorded_125x122.png"]];
+    }else {
+        [_cameraImg setImage:[UIImage imageNamed:@"camera_125x122.png"]];
+    }
+}
+
 /**-(void) updateImageIconWithSuccess: (NSNotification *)notification
  TODO: Update icon image to reflect image for appointment */
 -(void) updateImageIconWithSuccess: (NSNotification *)notification{
-    NSLog(@"VideoButtonViewController::updateVideoIconWithSuccess, %@",notification.object);
-    [_cameraImg setImage:[UIImage imageNamed:@"cameraIcon_recording.png"]];
+    //NSLog(@"VideoButtonViewController::updateVideoIconWithSuccess, %@",notification.object);
+    [_cameraImg setImage:[UIImage imageNamed:@"cameraRecorded_125x122.png"]];
 }
 
 /**-(void) resetImageIconWithSuccess: (NSNotification *)notification
  TODO: Reset icon image to reflect image for appointment */
 -(void) resetImageIconWithSuccess: (NSNotification *)notification{
-    NSLog(@"VideoButtonViewController::resetVideoIconWithSuccess, %@",notification.object);
-    [_cameraImg setImage:[UIImage imageNamed:@"cameraIcon.png"]];
+   // NSLog(@"VideoButtonViewController::resetVideoIconWithSuccess, %@",notification.object);
+    [_cameraImg setImage:[UIImage imageNamed:@"camera_125x122.png"]];
 }
 
 @end

@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserModel.h"
 
 @interface MapNavigationController : UINavigationController
-@property (strong,nonatomic) UserModel * userModel;
--(void) passModel:(UserModel*)model;
 
 @end

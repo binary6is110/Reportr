@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B0649B11AFD5CEA000B9AAB /* videoRecorded_125x122.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0649B01AFD5CEA000B9AAB /* videoRecorded_125x122.png */; };
+		3B0649B31AFD5CF0000B9AAB /* video_125x122.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0649B21AFD5CF0000B9AAB /* video_125x122.png */; };
+		3B0649B51AFD5CF5000B9AAB /* camera_125x122.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0649B41AFD5CF5000B9AAB /* camera_125x122.png */; };
+		3B0649BB1AFD5D16000B9AAB /* mic_125x122.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0649BA1AFD5D16000B9AAB /* mic_125x122.png */; };
+		3B0649BD1AFD5D1E000B9AAB /* micRecorded_125x122.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0649BC1AFD5D1E000B9AAB /* micRecorded_125x122.png */; };
+		3B0649BF1AFD66CB000B9AAB /* cameraRecorded_125x122.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0649BE1AFD66CB000B9AAB /* cameraRecorded_125x122.png */; };
 		3B0AB21C1AF4344400A3876E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0AB21B1AF4344400A3876E /* AudioToolbox.framework */; };
 		3B0AB21D1AF4369D00A3876E /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CC83E1AF3F57700ADAC64 /* CoreAudio.framework */; };
 		3B0AB22E1AF8261A00A3876E /* emptyThumb.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B0AB22D1AF8261A00A3876E /* emptyThumb.png */; };
@@ -24,9 +30,6 @@
 		3B300BA91AFC04770019A5BD /* bluePhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B300BA81AFC04770019A5BD /* bluePhone.png */; };
 		3B300BAC1AFC1C3D0019A5BD /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B300BAB1AFC1C3D0019A5BD /* ContactModel.m */; };
 		3B3A61721AF012760059D0B2 /* personIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A616D1AF012760059D0B2 /* personIcon.png */; };
-		3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B3A61781AF013290059D0B2 /* videoIcon.png */; };
-		3B5254CD1AF1833600E64857 /* micIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CC1AF1833600E64857 /* micIcon.png */; };
-		3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B5254CE1AF1834700E64857 /* cameraIcon.png */; };
 		3B6528F51AF939BA00D1D3F3 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528EF1AF939BA00D1D3F3 /* Bolts.framework */; };
 		3B6528F61AF939BA00D1D3F3 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528F01AF939BA00D1D3F3 /* Parse.framework */; };
 		3B6528FA1AF939BA00D1D3F3 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6528F41AF939BA00D1D3F3 /* ParseUI.framework */; };
@@ -36,7 +39,6 @@
 		3B6529021AF93A3E00D1D3F3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6529011AF93A3E00D1D3F3 /* libsqlite3.dylib */; };
 		3B6529041AF93A4D00D1D3F3 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6529031AF93A4D00D1D3F3 /* Accounts.framework */; };
 		3B6529061AF93A5300D1D3F3 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B6529051AF93A5300D1D3F3 /* Social.framework */; };
-		3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B7E82031AF29B9900DC3460 /* OverlayView.xib */; };
 		3B7E820A1AF2D20D00DC3460 /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B7E82091AF2D20D00DC3460 /* VideoViewController.m */; };
 		3B7E820C1AF2D93100DC3460 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */; };
 		3B8102DA1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102D91AEAA67C00C1D076 /* ScheduleNavigationViewController.m */; };
@@ -45,8 +47,6 @@
 		3B8102DF1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */; };
 		3B8102E21AEAA73900C1D076 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */; };
 		3B8102E31AEAA73900C1D076 /* ScheduleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */; };
-		3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B891F311AE5B38500457517 /* ReportrIcon.png */; };
-		3B891F331AE5B38500457517 /* ReportrIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B891F311AE5B38500457517 /* ReportrIcon.png */; };
 		3B891F351AE6B80200457517 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F341AE6B80200457517 /* Foundation.framework */; };
 		3B891F371AE6B80E00457517 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F361AE6B80E00457517 /* CoreMotion.framework */; };
 		3B891F391AE6B81700457517 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B891F381AE6B81700457517 /* AssetsLibrary.framework */; };
@@ -83,19 +83,16 @@
 		3B928F9E1AC5C88000F27710 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9D1AC5C88000F27710 /* OpenGLES.framework */; };
 		3B928FA01AC5C88700F27710 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B928F9F1AC5C88700F27710 /* QuartzCore.framework */; };
 		3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */; };
-		3B9538541AFAC43F00A59555 /* cameraIcon_recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538531AFAC43F00A59555 /* cameraIcon_recording.png */; };
-		3B9538561AFAC44900A59555 /* micIcon_recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538551AFAC44900A59555 /* micIcon_recording.png */; };
-		3B9538581AFAC45100A59555 /* videoIcon_recording.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B9538571AFAC45100A59555 /* videoIcon_recording.png */; };
 		3B95385B1AFAC4F000A59555 /* VideoButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B95385A1AFAC4F000A59555 /* VideoButtonViewController.m */; };
 		3B95385E1AFAC9E000A59555 /* ImageButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B95385D1AFAC9E000A59555 /* ImageButtonViewController.m */; };
 		3B9538611AFACB1F00A59555 /* AudioButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B9538601AFACB1F00A59555 /* AudioButtonViewController.m */; };
 		3BA784F71AF27FA600ED8EBA /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA784F61AF27FA600ED8EBA /* ImageViewController.m */; };
 		3BA8AE551AE9589E0000C9A8 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */; };
 		3BA8AE561AE9589E0000C9A8 /* MDDirectionService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */; };
-		3BB210071AFD085200DF6E64 /* markerBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB210061AFD085200DF6E64 /* markerBackground.png */; };
 		3BB210091AFD08B000DF6E64 /* blueMarkerOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB210081AFD08B000DF6E64 /* blueMarkerOutline.png */; };
-		3BB2100B1AFD0AB500DF6E64 /* markerImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB2100A1AFD0AB500DF6E64 /* markerImage@3x.png */; };
 		3BB2100D1AFD110A00DF6E64 /* editButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB2100C1AFD110A00DF6E64 /* editButton@3x.png */; };
+		3BB210191AFD171600DF6E64 /* markerImageHollow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB210181AFD171600DF6E64 /* markerImageHollow@3x.png */; };
+		3BB2101B1AFD178A00DF6E64 /* markerImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BB2101A1AFD178A00DF6E64 /* markerImage@3x.png */; };
 		3BC242671ACDAF650061036B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC242661ACDAF650061036B /* CFNetwork.framework */; };
 		3BC242691ACDAF710061036B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BC242681ACDAF710061036B /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -111,6 +108,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B0649B01AFD5CEA000B9AAB /* videoRecorded_125x122.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoRecorded_125x122.png; sourceTree = "<group>"; };
+		3B0649B21AFD5CF0000B9AAB /* video_125x122.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video_125x122.png; sourceTree = "<group>"; };
+		3B0649B41AFD5CF5000B9AAB /* camera_125x122.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_125x122.png; sourceTree = "<group>"; };
+		3B0649BA1AFD5D16000B9AAB /* mic_125x122.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_125x122.png; sourceTree = "<group>"; };
+		3B0649BC1AFD5D1E000B9AAB /* micRecorded_125x122.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micRecorded_125x122.png; sourceTree = "<group>"; };
+		3B0649BE1AFD66CB000B9AAB /* cameraRecorded_125x122.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraRecorded_125x122.png; sourceTree = "<group>"; };
 		3B0AB21B1AF4344400A3876E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3B0AB22D1AF8261A00A3876E /* emptyThumb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyThumb.png; sourceTree = "<group>"; };
 		3B0CC8331AF3D93A00ADAC64 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
@@ -135,9 +138,6 @@
 		3B300BAA1AFC1C3D0019A5BD /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
 		3B300BAB1AFC1C3D0019A5BD /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		3B3A616D1AF012760059D0B2 /* personIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = personIcon.png; sourceTree = "<group>"; };
-		3B3A61781AF013290059D0B2 /* videoIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoIcon.png; sourceTree = "<group>"; };
-		3B5254CC1AF1833600E64857 /* micIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micIcon.png; sourceTree = "<group>"; };
-		3B5254CE1AF1834700E64857 /* cameraIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon.png; sourceTree = "<group>"; };
 		3B6528EF1AF939BA00D1D3F3 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		3B6528F01AF939BA00D1D3F3 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		3B6528F41AF939BA00D1D3F3 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
@@ -147,7 +147,6 @@
 		3B6529011AF93A3E00D1D3F3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		3B6529031AF93A4D00D1D3F3 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		3B6529051AF93A5300D1D3F3 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		3B7E82031AF29B9900DC3460 /* OverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverlayView.xib; sourceTree = "<group>"; };
 		3B7E82081AF2D20D00DC3460 /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
 		3B7E82091AF2D20D00DC3460 /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		3B7E820B1AF2D93100DC3460 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -157,7 +156,6 @@
 		3B8102DD1AEAA6B700C1D076 /* ScheduleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleTableViewController.m; sourceTree = "<group>"; };
 		3B8102E01AEAA73900C1D076 /* ScheduleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduleViewController.h; sourceTree = "<group>"; };
 		3B8102E11AEAA73900C1D076 /* ScheduleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduleViewController.m; sourceTree = "<group>"; };
-		3B891F311AE5B38500457517 /* ReportrIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ReportrIcon.png; sourceTree = "<group>"; };
 		3B891F341AE6B80200457517 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3B891F361AE6B80E00457517 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		3B891F381AE6B81700457517 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -199,9 +197,6 @@
 		3B928F9F1AC5C88700F27710 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3B928FA11AC5C89100F27710 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3B928FAF1AC84CD400F27710 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleMaps.bundle; sourceTree = "<group>"; };
-		3B9538531AFAC43F00A59555 /* cameraIcon_recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraIcon_recording.png; sourceTree = "<group>"; };
-		3B9538551AFAC44900A59555 /* micIcon_recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micIcon_recording.png; sourceTree = "<group>"; };
-		3B9538571AFAC45100A59555 /* videoIcon_recording.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = videoIcon_recording.png; sourceTree = "<group>"; };
 		3B9538591AFAC4F000A59555 /* VideoButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoButtonViewController.h; sourceTree = "<group>"; };
 		3B95385A1AFAC4F000A59555 /* VideoButtonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoButtonViewController.m; sourceTree = "<group>"; };
 		3B95385C1AFAC9E000A59555 /* ImageButtonViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageButtonViewController.h; sourceTree = "<group>"; };
@@ -212,10 +207,10 @@
 		3BA784F61AF27FA600ED8EBA /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		3BA8AE531AE9589E0000C9A8 /* MDDirectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDDirectionService.h; sourceTree = "<group>"; };
 		3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDDirectionService.m; sourceTree = "<group>"; };
-		3BB210061AFD085200DF6E64 /* markerBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = markerBackground.png; sourceTree = "<group>"; };
 		3BB210081AFD08B000DF6E64 /* blueMarkerOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueMarkerOutline.png; sourceTree = "<group>"; };
-		3BB2100A1AFD0AB500DF6E64 /* markerImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerImage@3x.png"; sourceTree = "<group>"; };
 		3BB2100C1AFD110A00DF6E64 /* editButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "editButton@3x.png"; sourceTree = "<group>"; };
+		3BB210181AFD171600DF6E64 /* markerImageHollow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerImageHollow@3x.png"; sourceTree = "<group>"; };
+		3BB2101A1AFD178A00DF6E64 /* markerImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "markerImage@3x.png"; sourceTree = "<group>"; };
 		3BC242641ACDAF390061036B /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
 		3BC242661ACDAF650061036B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		3BC242681ACDAF710061036B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -318,23 +313,22 @@
 		3B891F301AE5B37C00457517 /* images */ = {
 			isa = PBXGroup;
 			children = (
-				3BB2100C1AFD110A00DF6E64 /* editButton@3x.png */,
-				3BB2100A1AFD0AB500DF6E64 /* markerImage@3x.png */,
+				3B0649B41AFD5CF5000B9AAB /* camera_125x122.png */,
+				3B0649BE1AFD66CB000B9AAB /* cameraRecorded_125x122.png */,
+				3B0649BA1AFD5D16000B9AAB /* mic_125x122.png */,
+				3B0649BC1AFD5D1E000B9AAB /* micRecorded_125x122.png */,
+				3B0649B21AFD5CF0000B9AAB /* video_125x122.png */,
+				3B0649B01AFD5CEA000B9AAB /* videoRecorded_125x122.png */,
+				3BB2101A1AFD178A00DF6E64 /* markerImage@3x.png */,
+				3BB210181AFD171600DF6E64 /* markerImageHollow@3x.png */,
 				3BB210081AFD08B000DF6E64 /* blueMarkerOutline.png */,
-				3BB210061AFD085200DF6E64 /* markerBackground.png */,
+				3BB2100C1AFD110A00DF6E64 /* editButton@3x.png */,
 				3B300BA81AFC04770019A5BD /* bluePhone.png */,
 				3B300BA61AFC046E0019A5BD /* mapButton@3x.png */,
 				3B300BA11AFBDA9A0019A5BD /* blueStroke.png */,
-				3B9538571AFAC45100A59555 /* videoIcon_recording.png */,
-				3B9538551AFAC44900A59555 /* micIcon_recording.png */,
-				3B9538531AFAC43F00A59555 /* cameraIcon_recording.png */,
 				3B210A4C1AFA6CD8004CD7F9 /* reportrCloud.png */,
 				3B0AB22D1AF8261A00A3876E /* emptyThumb.png */,
-				3B5254CE1AF1834700E64857 /* cameraIcon.png */,
-				3B5254CC1AF1833600E64857 /* micIcon.png */,
-				3B3A61781AF013290059D0B2 /* videoIcon.png */,
 				3B3A616D1AF012760059D0B2 /* personIcon.png */,
-				3B891F311AE5B38500457517 /* ReportrIcon.png */,
 			);
 			name = images;
 			sourceTree = "<group>";
@@ -472,7 +466,6 @@
 				3B928E461AC5B71000F27710 /* Main.storyboard */,
 				3B928E4B1AC5B71000F27710 /* LaunchScreen.xib */,
 				3B300B851AFBAD100019A5BD /* InfoWindowView.xib */,
-				3B7E82031AF29B9900DC3460 /* OverlayView.xib */,
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
 				3BA8AE521AE958760000C9A8 /* States */,
@@ -640,26 +633,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B8F9D121AE6D9C400F74EB0 /* LaunchScreen.xib in Resources */,
-				3B5254CD1AF1833600E64857 /* micIcon.png in Resources */,
 				3BB210091AFD08B000DF6E64 /* blueMarkerOutline.png in Resources */,
+				3B0649BD1AFD5D1E000B9AAB /* micRecorded_125x122.png in Resources */,
 				3B928E481AC5B71000F27710 /* Main.storyboard in Resources */,
-				3B7E82041AF29B9900DC3460 /* OverlayView.xib in Resources */,
-				3B3A617B1AF013290059D0B2 /* videoIcon.png in Resources */,
 				3B0CC84F1AF41D6600ADAC64 /* DemoSong.m4a in Resources */,
-				3B9538581AFAC45100A59555 /* videoIcon_recording.png in Resources */,
-				3B5254CF1AF1834700E64857 /* cameraIcon.png in Resources */,
+				3B0649BF1AFD66CB000B9AAB /* cameraRecorded_125x122.png in Resources */,
+				3B0649B11AFD5CEA000B9AAB /* videoRecorded_125x122.png in Resources */,
 				3B300BA71AFC046E0019A5BD /* mapButton@3x.png in Resources */,
+				3B0649B51AFD5CF5000B9AAB /* camera_125x122.png in Resources */,
 				3B300BA91AFC04770019A5BD /* bluePhone.png in Resources */,
-				3BB210071AFD085200DF6E64 /* markerBackground.png in Resources */,
-				3BB2100B1AFD0AB500DF6E64 /* markerImage@3x.png in Resources */,
-				3B891F321AE5B38500457517 /* ReportrIcon.png in Resources */,
+				3BB210191AFD171600DF6E64 /* markerImageHollow@3x.png in Resources */,
+				3B0649B31AFD5CF0000B9AAB /* video_125x122.png in Resources */,
+				3B0649BB1AFD5D16000B9AAB /* mic_125x122.png in Resources */,
+				3BB2101B1AFD178A00DF6E64 /* markerImage@3x.png in Resources */,
 				3B300B861AFBAD100019A5BD /* InfoWindowView.xib in Resources */,
 				3B0AB22E1AF8261A00A3876E /* emptyThumb.png in Resources */,
 				3B928E4A1AC5B71000F27710 /* Images.xcassets in Resources */,
 				3BB2100D1AFD110A00DF6E64 /* editButton@3x.png in Resources */,
 				3B3A61721AF012760059D0B2 /* personIcon.png in Resources */,
-				3B9538561AFAC44900A59555 /* micIcon_recording.png in Resources */,
-				3B9538541AFAC43F00A59555 /* cameraIcon_recording.png in Resources */,
 				3B300BA21AFBDA9A0019A5BD /* blueStroke.png in Resources */,
 				3B928FB01AC84CD400F27710 /* GoogleMaps.bundle in Resources */,
 				3B210A4D1AFA6CD8004CD7F9 /* reportrCloud.png in Resources */,
@@ -670,7 +661,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B891F331AE5B38500457517 /* ReportrIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

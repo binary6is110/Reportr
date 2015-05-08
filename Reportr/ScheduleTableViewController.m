@@ -11,27 +11,21 @@
 #import "ApptTableViewCell.h"
 #import "ApplicationModel.h"
 
-
 @interface ScheduleTableViewController ()
 @end
 
 @implementation ScheduleTableViewController
+
 static ApplicationModel * appModel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    appModel = [ApplicationModel sharedApplicationModel];
     self.tableView.estimatedRowHeight=100.0;
 }
 
 -(void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    appModel = [ApplicationModel sharedApplicationModel];
-    //_appointments=appModel.appointments;
-}
-
--(void)viewWillDisappear:(BOOL)animated  {
-    [super viewWillDisappear:animated];
-    appModel=nil;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,10 +33,7 @@ static ApplicationModel * appModel;
     // Dispose of any resources that can be recreated.
 }
 
-
-
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     return 1;
@@ -52,7 +43,6 @@ static ApplicationModel * appModel;
     // Return the number of rows in the section.
     return [appModel.appointments count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -68,13 +58,12 @@ static ApplicationModel * appModel;
     AppointmentModel * appt = [appModel getAppointmentAtIndex:indexPath.row];
     ApptTableViewCell*aCell = (ApptTableViewCell*) cell;
     [aCell setCompany:appt.company];
-    [aCell setTime:[self formattedTime: appt.start_time]];
+    [aCell setTime:[appModel formattedTime: appt.start_time]];
     [aCell setAgenda:appt.agenda];
     aCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     if ([self shouldHighlightCell: indexPath.row])
     {
-        //do stuff
         [aCell highlightCell];
     }
     else{
@@ -82,62 +71,12 @@ static ApplicationModel * appModel;
     }
 }
 
--(BOOL) shouldHighlightCell:(NSInteger)index{
-    
-    BOOL lastAppointmentEarlierThanNow = YES;
-    BOOL nowEarlierThanNextAppointment = NO;
-    
-    AppointmentModel*lastAppt;
-    AppointmentModel*thisAppt;
-
-    // is the last appoitnment start time earlier than now?
-    // is this appointment start time later than now?-> this time should be highlighted
-    if(index>0)
-    {
-        lastAppt = [appModel getAppointmentAtIndex:index-1];
-        if ([self isThisTime:lastAppt.start_time earlierThanThisTime:[self currentTimeAsString]]) {
-            NSLog(@" last time: %@ IS earlier than now: %@", lastAppt.start_time,[self currentTimeAsString] );
-            lastAppointmentEarlierThanNow = YES;
-        }else{
-            lastAppointmentEarlierThanNow = NO;
-        }
-    }
-    
-    thisAppt =[appModel getAppointmentAtIndex:index];
-    if ([self isThisTime:[self currentTimeAsString] earlierThanThisTime:thisAppt.start_time]) {
-        NSLog(@" now: %@ IS earlier than next time: %@", [self currentTimeAsString],thisAppt.start_time );
-        nowEarlierThanNextAppointment = YES;
-    }else{
-        nowEarlierThanNextAppointment = NO;
-    }    
-    
-    return (lastAppointmentEarlierThanNow && nowEarlierThanNextAppointment);
-}
-
--(BOOL) isThisTime:(NSString*)time earlierThanThisTime:(NSString*)time2{
-   
-    NSArray * timeChunks = [time componentsSeparatedByString: @":"];
-    int lastHours = (int)[timeChunks[0] integerValue];
-    int lastMinutes = (int)[timeChunks[1] integerValue];
-    
-    NSArray * time2Chunks = [time2 componentsSeparatedByString: @":"];
-    int nextHours = (int)[time2Chunks[0] integerValue];
-    int nextMinutes = (int)[time2Chunks[1] integerValue];
-    
-    if(lastHours<nextHours)
-        return YES;
-    if(lastHours == nextHours && lastMinutes<nextMinutes)
-        return YES;
-    
-    return NO;
-}
-
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     AppointmentModel*appt = [appModel getAppointmentAtIndex:indexPath.row];
     appModel.appointment=appt;
     
-    if(appt.hasVideo){
+   /* if(appt.hasVideo){
         [[NSNotificationCenter defaultCenter] postNotificationName:@"addVideoComplete" object:nil];
     }
     else{
@@ -156,30 +95,58 @@ static ApplicationModel * appModel;
     }
     else{
         [[NSNotificationCenter defaultCenter] postNotificationName:@"resetAudioImage" object:nil];
+    }*/
+}
+
+#pragma mark - Schedule Highlighting Logic
+/* -(BOOL) shouldHighlightCell:(NSInteger)index
+ Tests appointment time: if last appoitnment start time is earlier than now and
+ this appointment start time is later than now, this appointment should be highlighted */
+-(BOOL) shouldHighlightCell:(NSInteger)index{
+    
+    BOOL lastAppointmentEarlierThanNow = YES;
+    BOOL nowEarlierThanNextAppointment = NO;
+    AppointmentModel*lastAppt;
+    AppointmentModel*thisAppt;
+    if(index>0)    {
+        lastAppt = [appModel getAppointmentAtIndex:index-1];
+        if ([self isThisTime:lastAppt.start_time earlierThanThisTime:[appModel currentTimeAsString]]) {
+            lastAppointmentEarlierThanNow = YES;
+        }else{
+            lastAppointmentEarlierThanNow = NO;
+        }
     }
+    thisAppt =[appModel getAppointmentAtIndex:index];
+    if ([self isThisTime:[appModel currentTimeAsString] earlierThanThisTime:thisAppt.start_time]) {
+        nowEarlierThanNextAppointment = YES;
+    }else{
+        nowEarlierThanNextAppointment = NO;
+    }
+    return (lastAppointmentEarlierThanNow && nowEarlierThanNextAppointment);
 }
 
-#pragma mark - Utility
--(NSString*)currentTimeAsString {
-    NSDate *date = [NSDate date];
-    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
-    timeFormatter.dateFormat = @"HH:mm";
-    return [timeFormatter stringFromDate: date];
-}
-
--(NSString*)formattedTime:(NSString*)time {
+/*-(BOOL) isThisTime:(NSString*)time earlierThanThisTime:(NSString*)time2
+ Helper method returns if time is earlier than time2. */
+-(BOOL) isThisTime:(NSString*)time earlierThanThisTime:(NSString*)time2{
     
     NSArray * timeChunks = [time componentsSeparatedByString: @":"];
-    int hours = (int)[timeChunks[0] integerValue];
-    int minutes = (int)[timeChunks[1] integerValue];
-    NSString * suffix = @"AM";
-    if (hours>=12){
-        suffix = @"PM";
-        if(hours>12)
-            hours-=12;
-    }
-    return [NSString stringWithFormat:@"%d:%02d %@", hours, minutes, suffix, nil];
+    int lastHours = (int)[timeChunks[0] integerValue];
+    int lastMinutes = (int)[timeChunks[1] integerValue];
+    
+    NSArray * time2Chunks = [time2 componentsSeparatedByString: @":"];
+    int nextHours = (int)[time2Chunks[0] integerValue];
+    int nextMinutes = (int)[time2Chunks[1] integerValue];
+    
+    if(lastHours<nextHours)
+        return YES;
+    if(lastHours == nextHours && lastMinutes<nextMinutes)
+        return YES;
+    
+    return NO;
 }
+
+
+
 
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation

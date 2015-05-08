@@ -38,6 +38,47 @@
 }
 
 
+-(UIColor*) darkGreyColor{
+    return [UIColor colorWithRed:(228.0/255.0) green:(231.0/255.0) blue:(231.0/255.0) alpha:0.7];
+}
+
+
+-(NSString*) getFormattedDate{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd";
+    return [dateFormatter stringFromDate: date];
+}
+
+
+-(NSString*) getFormattedDateForPrompt{
+    NSDate *date = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.dateFormat = @"MMMM dd, yyyy";
+    return [dateFormatter stringFromDate: date];
+}
+
+-(NSString*)formattedTime:(NSString*)time {
+    
+    NSArray * timeChunks = [time componentsSeparatedByString: @":"];
+    int hours = (int)[timeChunks[0] integerValue];
+    int minutes = (int)[timeChunks[1] integerValue];
+    NSString * suffix = @"AM";
+    if (hours>=12){
+        suffix = @"PM";
+        if(hours>12)
+            hours-=12;
+    }
+    return [NSString stringWithFormat:@"%d:%02d %@", hours, minutes, suffix, nil];
+}
+
+-(NSString*)currentTimeAsString {
+    NSDate *date = [NSDate date];
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
+    timeFormatter.dateFormat = @"HH:mm";
+    return [timeFormatter stringFromDate: date];
+}
+
 
 +(id) sharedApplicationModel{
     static ApplicationModel*applicationModel =nil;

@@ -21,9 +21,7 @@
 
 
 @interface MapViewController ()
-@property MapNavigationController * mapNavController;
 @property GMSMapView * mapView;
-@property UserModel * userModel;
 @property NSMutableArray * locations;
 @property NSMutableArray * waypoints;
 @property NSMutableArray * waypointStrings;
@@ -37,8 +35,13 @@ static ApplicationModel * appModel;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
     mModel = [MessageModel sharedMessageModel];
     appModel = [ApplicationModel sharedApplicationModel];
+    
+    
+    NSString *dateString = [appModel getFormattedDateForPrompt];
+    self.navigationItem.prompt = dateString;
     
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0 longitude:0 zoom:12];
     
@@ -53,28 +56,16 @@ static ApplicationModel * appModel;
     _waypoints = [[NSMutableArray alloc]init];
     
     self.view = _mapView;
-    if(!_mapNavController){
-        _mapNavController= (MapNavigationController*)self.parentViewController;
-    }
-    _userModel = _mapNavController.userModel;
+    
     _mapView.delegate=self;
     
-    [self retrieveAppointmentsForUser:_mapNavController.userModel];
+    [self retrieveAppointmentsForUser:appModel.user];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelectedEditAppointmentFromMapMarker:)
                                                  name:@"shouldSegueToDetailView" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelectedRouteToAppointment:)
                                                  name:@"shouldRouteToAppointment" object:nil];
 }
-
-
-- (void)dealloc {
-    [_mapView removeObserver:self forKeyPath:@"myLocation" context:NULL];
-    mModel=nil;
-    appModel=nil;
-}
-
-
 
 /**-(void) userSelectedRouteToAppointment: (NSNotification *)notification */
 -(void) userSelectedRouteToAppointment: (NSNotification *)notification{
@@ -92,11 +83,7 @@ static ApplicationModel * appModel;
      */
 }
 
-/**-(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification */
--(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification{
-    NSLog(@"MapViewController::userSelectedEditAppointmentFromMapMarker, %@",notification.object);
-    [self performSegueWithIdentifier:@"showDetailViewFromMap" sender:self];
-}
+
 
 #pragma mark – Firebase Queries
 /** -(void) retrieveAppointmentsForUser:(UserModel*)userModel
@@ -104,11 +91,8 @@ static ApplicationModel * appModel;
  */
 -(void) retrieveAppointmentsForUser:(UserModel*)userModel
 {
-    NSString * empId = _userModel.employeeId;
-    NSDate *date = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    dateFormatter.dateFormat = @"yyyy-MM-dd";
-    NSString *dateString = [dateFormatter stringFromDate: date];
+    NSString * empId = appModel.user.employeeId;
+    NSString *dateString = [appModel getFormattedDate];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Appointments"];
     [query whereKey:@"emp_id" equalTo:empId];
@@ -118,7 +102,6 @@ static ApplicationModel * appModel;
         
         if (!error ) {
             for(PFObject*appt in results){
-               // NSLog(@"appt.time: %@", appt[@"start"]);
                 AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:appt[@"company"] address1:appt[@"address_1"] address2:appt[@"address_2"] city:appt[@"city"] state:appt[@"state"] zip:appt[@"zip"] startTime:appt[@"start"] notesDesc:appt[@"notes"] agendaDesc:appt[@"agenda"] contactId:appt[@"contact"] nextSteps:appt[@"next_steps"] apptId:appt.objectId];
                 gModel.hasAudio=(appt[@"audio_file"] == nil);
                 gModel.hasVideo=(appt[@"video_file"] == nil);
@@ -191,12 +174,13 @@ static ApplicationModel * appModel;
     }
 }
 
+/** -(UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
+    On user selection of marker, create custom marker & update labels and set appModel.appointment to selected appointment*/
 -(UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
     InfoWindow *view =  [[[NSBundle mainBundle] loadNibNamed:@"InfoWindowView" owner:self options:nil] objectAtIndex:0];
     //retrieve appointment details & update selected appointment from mapview
     AppointmentModel*thisAppt = [appModel getAppointmentAtIndex:[marker.userData integerValue]];
     appModel.appointment=thisAppt;
-    
     view.time.text = [mModel formattedTime:thisAppt.start_time];
     view.address_1.text = thisAppt.address_1;
     view.address_1.numberOfLines=0;
@@ -250,6 +234,7 @@ static ApplicationModel * appModel;
 /**-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
     updates CLLocation reference in model*/
 -(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+//TODO: test for change in location in model
     appModel.currentLocation=newLocation;
     NSLog(@"updating location");
 }
@@ -259,31 +244,47 @@ static ApplicationModel * appModel;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSegueToDetailView" object:nil];
 }
 
+#pragma mark - Navigation & Prep
+/**-(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification
+ Executes query before transitioning*/
+-(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification{
+    NSLog(@"MapViewController::userSelectedEditAppointmentFromMapMarker");
+    [self prepareForTransition:@"showDetailViewFromMap" withSender:self];
+}
 
+/**-(void) prepareForTransition:(NSString*)segueName withSender:(id)sender
+ query contact information before moving to next state*/
+-(void) prepareForTransition:(NSString*)segueName withSender:(id)sender{
+    
+    if(appModel.contact.contactId!= appModel.appointment.contactId){
+        PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
+        [query whereKey:@"contact_id" equalTo:appModel.appointment.contactId];
+        [query getFirstObjectInBackgroundWithBlock:^(PFObject *contact, NSError *error) {
+            if (!error ) {
+                ContactModel * contactM = [[ContactModel alloc] initWithFirstName:contact[@"first_name"] lastName:contact[@"last_name"] company:contact[@"company"] address1:contact[@"address_1"] address2:contact[@"address_1"] city:contact[@"city"] state:contact[@"state"] zip:contact[@"zip"] contactId:contact[@"contact_id"] officePhone:contact[@"phone_office"] mobilePhone:contact[@"phone_mobile"]];
+                [appModel setContact:contactM];
 
-#pragma mark - Navigation
+                //_contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", contact[@"first_name"],contact[@"last_name"]];
+                [self performSegueWithIdentifier:segueName sender:sender];
+            }
+        }];
+    }
+    else{
+        //same contact - no need to query again, just segue
+        [self performSegueWithIdentifier:segueName sender:sender];
+    }
+}
 
-/** -(void) passUserModel:(UserModel*) userModel
- * Passes UserModel to view controller before transitioning.
- */
+/** - (IBAction)showSchedule:(id)sender
+ * Transition to schedule table view*/
 - (IBAction)showSchedule:(id)sender {
     [self performSegueWithIdentifier:@"showSchedule" sender:sender];
 }
 
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
-     //NSLog(@"passing through map");
-  //   ScheduleNavigationViewController * target = (ScheduleNavigationViewController*)[segue destinationViewController];
-    // [target passAppointments:_locations];
-     
  }
 
-#pragma mark - Messaging
--(void) passUserModel:(UserModel*) userModel {
-    //NSLog(@"userModel set in MapViewController, employeeID: %@",userModel.employeeId);
-    _userModel=userModel;
-}
+
 
 @end

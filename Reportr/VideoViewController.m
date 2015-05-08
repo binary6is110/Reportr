@@ -36,7 +36,6 @@ static MessageModel *  mModel;
         [self.capturedVideo removeAllObjects];
     
     [self createImagePicker];
-    [self displayError:[mModel videoWarning]];
 }
 
 /* -(void) createImagePicker
@@ -74,13 +73,11 @@ static MessageModel *  mModel;
     }
 }
 
--(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker
-{
+-(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self cancelAndExit];
 }
 
 - (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    
     if(!error){
         [self processAndSaveVideo:^(BOOL success) {
             if(success){
@@ -102,7 +99,6 @@ static MessageModel *  mModel;
 }
 
 -(void) processAndSaveVideo:(processVideo)videoBlock{
-
     NSString * apptRef= [mModel appointmentId];
     NSData *videoData = [NSData dataWithContentsOfURL:self.videoURLRef];
     NSString*audioName= [NSString stringWithFormat:@"%@.mov", apptRef];
@@ -114,12 +110,10 @@ static MessageModel *  mModel;
     NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfItemAtPath:[self.videoURLRef path] error:&error];
     NSNumber *fileSizeNumber = [fileAttributes objectForKey:NSFileSize];
     
-    if(fileSizeNumber > [NSNumber numberWithInt:10000000])
-    {
-        [self displayError:[mModel videoSizeExceeded]];
+    if(fileSizeNumber > [NSNumber numberWithInt:10000000])    {
+        [mModel displayError:@"Video Error" withMessage:[mModel videoSizeExceeded]];
         return;
-    }
-    
+    }    
     [query getObjectInBackgroundWithId:apptRef block:^(PFObject *appointment, NSError *error) {
         if(!error){
             NSLog(@"success in save video");
@@ -139,22 +133,5 @@ static MessageModel *  mModel;
    self.imagePickerController = nil;
    [self dismissViewControllerAnimated: YES completion: nil];
 }
-
-#pragma mark - Utilities
--(void) displayError:(NSString*)errorMessage {
-    // display error on login failure
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 @end

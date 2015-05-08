@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 #import "AppointmentModel.h"
 #import "UserModel.h"
 #import "ContactModel.h"
-#import <GoogleMaps/GoogleMaps.h>
 
 @interface ApplicationModel : NSObject
 
@@ -27,7 +27,12 @@
 -(UIColor*) lightBlueColor;
 -(UIColor*) darkBlueColor;
 -(UIColor*) lightGreyColor;
+-(UIColor*) darkGreyColor;
+
+-(NSString*) getFormattedDate;
+-(NSString*) getFormattedDateForPrompt;
+-(NSString*)formattedTime:(NSString*)time;
+-(NSString*)currentTimeAsString;
 
 +(id) sharedApplicationModel;
-
 @end

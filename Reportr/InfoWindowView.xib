@@ -11,13 +11,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gGb-Oh-Jkn">
-                    <rect key="frame" x="3" y="1" width="220" height="84"/>
+                    <rect key="frame" x="2" y="1" width="221" height="84"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="markerImage@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-5Y-bvj">
-                            <rect key="frame" x="0.0" y="0.0" width="219" height="84"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="markerImageHollow@3x.png" translatesAutoresizingMaskIntoConstraints="NO" id="bRC-5Y-bvj">
+                            <rect key="frame" x="0.0" y="0.0" width="221" height="84"/>
                         </imageView>
                         <button contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6W-MN-qAx">
-                            <rect key="frame" x="150" y="12" width="60" height="60"/>
+                            <rect key="frame" x="151" y="12" width="60" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="65" id="Fn0-Jm-VHm"/>
                                 <constraint firstAttribute="height" constant="60" id="G1I-HF-5KE"/>
@@ -111,7 +111,7 @@
                         <constraint firstItem="byQ-2R-okL" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" constant="15" id="0jw-Pe-7FH"/>
                         <constraint firstItem="i6W-MN-qAx" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="5" id="3Of-qx-QLs"/>
                         <constraint firstItem="bRC-5Y-bvj" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" id="6cC-Xr-fGE"/>
-                        <constraint firstAttribute="width" constant="220" id="A8b-6F-ASh"/>
+                        <constraint firstAttribute="width" constant="221" id="A8b-6F-ASh"/>
                         <constraint firstAttribute="trailing" secondItem="i6W-MN-qAx" secondAttribute="trailing" priority="500" constant="5" id="E5R-Ju-1Ik"/>
                         <constraint firstItem="bRC-5Y-bvj" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" id="GOD-RN-ScD"/>
                         <constraint firstItem="byQ-2R-okL" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="5" id="HTC-hS-efx"/>
@@ -127,7 +127,7 @@
                         <constraint firstAttribute="trailing" secondItem="i6W-MN-qAx" secondAttribute="trailing" constant="10" id="gle-Ki-U4J"/>
                         <constraint firstItem="bRC-5Y-bvj" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" id="iHN-2W-5We"/>
                         <constraint firstAttribute="bottom" secondItem="i6W-MN-qAx" secondAttribute="bottom" constant="5" id="ipz-GM-2B9"/>
-                        <constraint firstAttribute="trailing" secondItem="bRC-5Y-bvj" secondAttribute="trailing" constant="1" id="j99-Rd-n6l"/>
+                        <constraint firstAttribute="trailing" secondItem="bRC-5Y-bvj" secondAttribute="trailing" id="j99-Rd-n6l"/>
                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="i6W-MN-qAx" secondAttribute="trailing" constant="5" id="nG6-DQ-Dh9"/>
                         <constraint firstAttribute="bottom" secondItem="byQ-2R-okL" secondAttribute="bottom" constant="5" id="wh7-tj-xWI"/>
                         <constraint firstItem="bRC-5Y-bvj" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" id="xGa-qj-RBk"/>
@@ -154,7 +154,7 @@
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="gGb-Oh-Jkn" secondAttribute="bottom" id="079-zR-Pnr"/>
                 <constraint firstAttribute="bottom" secondItem="gGb-Oh-Jkn" secondAttribute="bottom" id="2qt-EX-3Xy"/>
-                <constraint firstItem="gGb-Oh-Jkn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="3" id="AJH-so-dFo"/>
+                <constraint firstItem="gGb-Oh-Jkn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="2" id="AJH-so-dFo"/>
                 <constraint firstAttribute="trailing" secondItem="gGb-Oh-Jkn" secondAttribute="trailing" id="DCM-Oa-Vcw"/>
                 <constraint firstItem="gGb-Oh-Jkn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Y6E-u4-Ob9"/>
                 <constraint firstItem="gGb-Oh-Jkn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="1" id="bsX-nz-FpK"/>
@@ -184,6 +184,6 @@
     </objects>
     <resources>
         <image name="editButton@3x.png" width="179" height="179"/>
-        <image name="markerImage@3x.png" width="621" height="252"/>
+        <image name="markerImageHollow@3x.png" width="621" height="252"/>
     </resources>
 </document>

@@ -11,8 +11,6 @@
 #import <Parse/Parse.h>
 #import <GoogleMaps/GoogleMaps.h>
 
-
-
 @interface ScheduleViewController : UIViewController<UITextViewDelegate, UIScrollViewDelegate,GMSMapViewDelegate>
 - (IBAction)callTouched:(id)sender;
 - (IBAction)routeTouched:(id)sender;

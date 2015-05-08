@@ -19,13 +19,11 @@
 
 #define kKEYBOARD_OFFSET 90.0
 
-
 @interface LoginViewController ()
 @property BOOL loginSuccess;
 @property BOOL attemptInProgress;
 @property BOOL notificationsDone;
 @property float viewY;
-@property (strong, nonatomic)UserModel * userModel;
 @property (strong, nonatomic) IBOutlet UITextField *user_tf;
 @property (strong, nonatomic) IBOutlet UITextField *pass_tf;
 @property (strong, nonatomic) IBOutlet UIButton *signin_btn;
@@ -72,24 +70,20 @@ static MessageModel *  mModel;
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
     NSLog(@"didReceiveMemoryWarning: %@",@"LoginViewController");
 }
 
  #pragma mark - Parse Login
 // attempt login
-- (IBAction)signIn:(id)sender
-{
+- (IBAction)signIn:(id)sender {
     _loginSuccess=YES;
     //only accept one tap
-    if(!_attemptInProgress)
-    {
+    if(!_attemptInProgress){
         [self attemptLogin:sender];
     }
 }
 
--(BOOL) attemptLogin:(id)sender
-{
+-(BOOL) attemptLogin:(id)sender {
     if(_attemptInProgress)
         return NO;
     /*validation: username > "", password > ""*/
@@ -97,12 +91,12 @@ static MessageModel *  mModel;
     [self updateSignInBtnUI];
     //don't try login if there are empty fields
     if ([_user_tf.text isEqualToString:@""]){
-        [self displayError:@"Enter user name"];
+         [mModel displayError:@"Login Error" withMessage:@"Enter user name"];
         _loginSuccess=NO;
     }
      //don't try login if there are empty fields
     if (_loginSuccess && [_pass_tf.text isEqualToString:@""]){
-        [self displayError:@"Enter password"];
+        [mModel displayError:@"Login Error" withMessage:@"Enter password"];
         _loginSuccess=NO;
     }
     // only attempt login if username and password is present
@@ -116,14 +110,13 @@ static MessageModel *  mModel;
                 [query whereKey:@"employee_id" equalTo:empId.objectId];
                 [query getFirstObjectInBackgroundWithBlock:^(PFObject *employee, NSError *error) {
                     if (!error ) {
-                        _userModel= [[UserModel alloc] initWithId:_user_tf.text andPassword:_pass_tf.text andEmployeeId:empId.objectId];
-                        appModel.user=_userModel;
+                        appModel.user=[[UserModel alloc] initWithId:_user_tf.text andPassword:_pass_tf.text andEmployeeId:empId.objectId];
                         [self performSegueWithIdentifier:@"loginToMapView" sender:sender];
                     }
                 }];
             } else {
-                // The login failed. Check error to see why.
-                [self displayError:@"Unrecognized login credentials"];
+                // The login failed. TODOCheck error to see why.
+                [mModel displayError:@"Login Error" withMessage:@"Unrecognized login credentials"];
                 _loginSuccess=NO;
             }
         }];
@@ -133,26 +126,21 @@ static MessageModel *  mModel;
     return _loginSuccess;
 }
 
--(void) updateSignInBtnUI
-{
-    if(_attemptInProgress)
-    {
+-(void) updateSignInBtnUI {
+    if(_attemptInProgress) {
         _signin_btn.enabled=NO;
         _signin_btn.titleLabel.textColor = [UIColor grayColor];
-    }
-    else
-    {
+    } else {
         _signin_btn.enabled=YES;
-        _signin_btn.titleLabel.textColor = [UIColor whiteColor ];
+        _signin_btn.titleLabel.textColor = [UIColor whiteColor];
     }
 }
 
-#pragma mark - Textfield handling
+#pragma mark - Textfield delegate
 /* -(void)keyboardWillShow
  Notification handler: Prepares view for editing/keyboard showing*/
 -(void)keyboardWillShow{
     // Animate the current view out of the way
-
     if (self.view.frame.origin.y >= _viewY){
         [self adjustView:YES];
     }
@@ -174,21 +162,18 @@ static MessageModel *  mModel;
 
 /* -(void)adjustView:(BOOL)upward
  Adjust the view up/down when the keyboard is shown or dismissed*/
--(void)adjustView:(BOOL)upward
-{
+-(void)adjustView:(BOOL)upward{
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3];
     CGRect rect = self.view.frame;
     if (upward){
         rect.origin.y -= kKEYBOARD_OFFSET;
         rect.size.height += kKEYBOARD_OFFSET;
-    }
-    else  {
+    }   else  {
         rect.origin.y += kKEYBOARD_OFFSET;
         rect.size.height -= kKEYBOARD_OFFSET;
     }
     self.view.frame = rect;
-    
     [UIView commitAnimations];
 }
 
@@ -199,19 +184,10 @@ static MessageModel *  mModel;
     return NO;
 }
 
-#pragma mark -  Alerts
--(void) displayError:(NSString*)errorMessage {
-    // display error on login failure
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
-
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"loginToMapView"]) {
-        MapNavigationController* mapViewController = [segue destinationViewController];
-        [mapViewController passModel:_userModel];
     }
 }
 
