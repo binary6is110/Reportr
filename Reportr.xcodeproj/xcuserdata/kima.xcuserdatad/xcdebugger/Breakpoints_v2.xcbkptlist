@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "-updateVideoFlagWithSuccess:"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-keyboardWillHide"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "@implementation ScheduleViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "-updateImageFlagWithSuccess:"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "@implementation ScheduleViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
             <Locations>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -650,75 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[ScheduleViewController viewDidLoad]"
-                  moduleName = "Reportr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kima/Desktop/Workspace/Xcode/Reportr/Reportr/ScheduleViewController.m"
-                  timestampString = "452617953.62141"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "1188">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__37-[ScheduleViewController viewDidLoad]_block_invoke"
-                  moduleName = "Reportr"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/kima/Desktop/Workspace/Xcode/Reportr/Reportr/ScheduleViewController.m"
-                  timestampString = "452617953.621535"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "76"
-                  endingLineNumber = "76"
-                  offsetFromSymbolStart = "72">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
@@ -736,22 +672,6 @@
             startingLineNumber = "166"
             endingLineNumber = "166"
             landmarkName = "-keyboardWillHide"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "-init"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1030,11 +950,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1046,11 +966,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "226"
-            endingLineNumber = "226"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "@implementation ScheduleViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1062,11 +982,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
             landmarkName = "-updateImageFlagWithSuccess:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1078,11 +998,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "225"
-            endingLineNumber = "225"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "@implementation ScheduleViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1094,11 +1014,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-updateVideoFlagWithSuccess:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1110,11 +1030,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733283.804873"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "-retrieveAppointmentsForUser:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1158,27 +1078,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452731005.095448"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "-updateImageFlagWithSuccess:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1190,11 +1094,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733362.101221"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-mapView:markerInfoWindow:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1254,44 +1158,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Reportr/MapViewController.m"
-            timestampString = "452733362.101221"
+            timestampString = "452788218.295529"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "-mapView:markerInfoWindow:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reportr/ScheduleViewController.m"
-            timestampString = "452733283.804873"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
-            landmarkName = "-passAppointment:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Reportr/MapViewController.m"
-            timestampString = "452733362.101221"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "-mapView:didTapInfoWindowOfMarker:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1420,6 +1292,22 @@
             startingLineNumber = "32"
             endingLineNumber = "32"
             landmarkName = "-highlightCell"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Reportr/MessageModel.m"
+            timestampString = "452788218.295529"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "-displayError:withMessage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
 @interface MessageModel : NSObject
@@ -25,5 +26,6 @@
 
 +(id) sharedMessageModel;
 -(NSString*)formattedTime:(NSString*)time;
+-(void) displayError:(NSString*)errorType withMessage:(NSString*)errorMessage;
 
 @end

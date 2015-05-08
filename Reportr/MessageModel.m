@@ -15,6 +15,7 @@
 #define kVIDEO_SIZE_EXCEEDED @"Video is too large. Keep video around 1 minute."
 
 
+
 @implementation MessageModel
 
 -(NSString *)videoSizeExceeded{
@@ -64,6 +65,11 @@
     return [NSString stringWithFormat:@"%d:%02d %@", hours, minutes, suffix, nil];
 }
 
-
+#pragma mark -  Alerts
+-(void) displayError:(NSString*)errorType withMessage:(NSString*)errorMessage {
+    // display error on login failure
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorType message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+}
 
 @end

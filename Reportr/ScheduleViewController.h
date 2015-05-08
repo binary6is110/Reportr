@@ -14,7 +14,6 @@
 
 
 @interface ScheduleViewController : UIViewController<UITextViewDelegate, UIScrollViewDelegate,GMSMapViewDelegate>
--(void) passAppointment:(AppointmentModel *) appointment;
 - (IBAction)callTouched:(id)sender;
 - (IBAction)routeTouched:(id)sender;
 

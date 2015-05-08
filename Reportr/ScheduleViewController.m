@@ -32,45 +32,22 @@
 static MessageModel *  mModel;
 static ApplicationModel * appModel;
 
-/* -(id) init: register notifications */
--(id) init {
-    if ( self = [super init] )  {
-       
-    }
-    return self;
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   
-
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
-                                                 name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
-                                                 name:UIKeyboardWillHideNotification object:nil];
+    [self registerNotifications];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageFlagWithSuccess:)
-                                                 name:@"addImageComplete" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoFlagWithSuccess:)
-                                                 name:@"addVideoComplete" object:nil];    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAudioFlagWithSuccess:)
-                                                 name:@"addAudioComplete" object:nil];
- 
-
+    PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
+    [query whereKey:@"contact_id" equalTo:_aModel.contactId];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject *contact, NSError *error) {
+        if (!error ) {
+            ContactModel * contactM = [[ContactModel alloc] initWithFirstName:contact[@"first_name"] lastName:contact[@"last_name"] company:contact[@"company"] address1:contact[@"address_1"] address2:contact[@"address_1"] city:contact[@"city"] state:contact[@"state"] zip:contact[@"zip"] contactId:contact[@"contact_id"] officePhone:contact[@"phone_office"] mobilePhone:contact[@"phone_mobile"]];
+            [appModel setContact:contactM];
+            _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", contact[@"first_name"],contact[@"last_name"]];
+        }
+    }];
     
-    [[self.callBtn layer] setBorderWidth:1.0f];
-    [[self.callBtn layer] setBorderColor:[appModel darkBlueColor].CGColor];
-    [[self.routeBtn layer] setBorderWidth:1.0f];
-    [[self.routeBtn layer] setBorderColor:[appModel darkBlueColor].CGColor];
-    
-    [[self.meetingNotesBkgd layer] setCornerRadius:5.0f];
-    [[self.meetingNotesBkgd layer] setBorderWidth:1.0f];
-    [[self.meetingNotesBkgd layer] setBorderColor:[appModel lightGreyColor].CGColor];
-    
-    [[self.nextStepsBkgrd layer] setCornerRadius:5.0f];
-    [[self.nextStepsBkgrd layer] setBorderWidth:1.0f];
-    [[self.nextStepsBkgrd layer] setBorderColor:[appModel lightGreyColor].CGColor];
+    [self updateView];
 }
 
 /* -(void) viewWillDisappear:(BOOL)animated
@@ -86,35 +63,8 @@ static ApplicationModel * appModel;
     update view and set up text views for legibility */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    appModel = [ApplicationModel sharedApplicationModel];
-    mModel = [MessageModel sharedMessageModel];
-    _aModel=appModel.appointment;
-    mModel.appointmentId=_aModel.appointment_id;
-
-    _nextSteps_tview.delegate=self;
-    _nextSteps_tview.text=_aModel.next_steps;
-    [_nextSteps_tview setContentOffset:CGPointMake(0.0,0.0) animated:YES];
-    [_nextSteps_tview scrollRangeToVisible:NSMakeRange(0,1)];
-    
-    _notes_tview.delegate=self;
-    _notes_tview.text=_aModel.notes;
-    [_notes_tview setContentOffset:CGPointMake(0.0,0.0) animated:YES];
-    [_notes_tview scrollRangeToVisible:NSMakeRange(0,1)];
-    
-    _company_lbl.text=_aModel.company;
-    _date_lbl.text=_aModel.start_time;
     
     
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Contacts"];
-    [query whereKey:@"contact_id" equalTo:_aModel.contactId];
-    [query getFirstObjectInBackgroundWithBlock:^(PFObject *contact, NSError *error) {
-        if (!error ) {
-            ContactModel * contactM = [[ContactModel alloc] initWithFirstName:contact[@"first_name"] lastName:contact[@"last_name"] company:contact[@"company"] address1:contact[@"address_1"] address2:contact[@"address_1"] city:contact[@"city"] state:contact[@"state"] zip:contact[@"zip"] contactId:contact[@"contact_id"] officePhone:contact[@"phone_office"] mobilePhone:contact[@"phone_mobile"]];
-            [appModel setContact:contactM];
-            _contact_lbl.text=  [NSString stringWithFormat:@"%@ %@", contact[@"first_name"],contact[@"last_name"]];
-        }
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -177,58 +127,41 @@ static ApplicationModel * appModel;
 }
 
 #pragma mark - Event Handlers
-
+/* - (IBAction)callTouched:(id)sender {
+    Call button handler*/
 - (IBAction)callTouched:(id)sender {
     ContactModel*contactM=[appModel contact];
     [self makeCall:[contactM contact_phone_mobile]];
 }
 
--(BOOL)makeCall:(NSString *)number
-{
+/*  -(BOOL)makeCall:(NSString *)number
+   Tests for device capability & makes call if possible*/
+-(BOOL)makeCall:(NSString *)number {
     NSString *readyNumber = [NSString stringWithFormat:@"tel:%@",number];
     NSURL *tel = [NSURL URLWithString:readyNumber] ;
-    if([[UIApplication sharedApplication] canOpenURL:tel])
-    {
+    if([[UIApplication sharedApplication] canOpenURL:tel]) {
         [[UIApplication sharedApplication] openURL:tel];
         return YES;
-    }
-    else
-    {
-        [self displayError:@"Error" withMessage:@"Sorry, cannot place phone call with this device"];
+    } else {
+        [mModel displayError:@"Incompatible Hardware" withMessage:@"Sorry, cannot place phone call with this device"];
         return NO;
     }
 }
 
-#pragma mark -  Alerts
--(void) displayError:(NSString*)errorType withMessage:(NSString*)errorMessage {
-    // display error on login failure
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:errorType message:errorMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
-}
-
+/* - (IBAction)routeTouched:(id)sender {
+    Route button handler*/
 - (IBAction)routeTouched:(id)sender {
     NSLog(@"need directions to latitude: %f longitude: %f",[[appModel appointment] latitude], [[appModel appointment] longitude],nil);
-    
-    CLLocation *location = [appModel currentLocation];
-    CLLocationCoordinate2D start = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
-    
-    NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
-                                     start.latitude, start.longitude, [[appModel appointment] latitude], [[appModel appointment] longitude] ];
-    
-  
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapsURLString]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldRouteToAppointment" object:nil];
 }
 
-
-#pragma mark - Asset Update Notifications
-
+#pragma mark - Notification Handlers
 /**-(void) updateImageFlagWithSuccess: (NSNotification *)notification
      TODO: Update icon flag to reflect image for appointment */
 -(void) updateImageFlagWithSuccess: (NSNotification *)notification{
     NSLog(@"ScheduleViewController::updateImageFlagWithSuccess, %@",notification.object);
     //[ setImage:[UIImage imageNamed:@"anyImageName"]];
-     _aModel.hasImage=YES;
+   _aModel.hasImage=YES;
 }
 
 /**-(void) updateVideoFlagWithSuccess: (NSNotification *)notification
@@ -245,16 +178,6 @@ static ApplicationModel * appModel;
     _aModel.hasAudio=YES;
 }
 
-
-
-#pragma mark - Messaging
-/** -(void) passAppointment: (AppointmentModel *) appointment
-    Passes appointment object to view before segue
- */
--(void) passAppointment: (AppointmentModel *) appointment {
-    //_aModel=appointment;
-}
-
 #pragma mark - Navigation
  /** -(IBAction)prepareForUnwind:(UIStoryboardSegue *)segue
  Unwind stub.
@@ -263,12 +186,54 @@ static ApplicationModel * appModel;
     NSLog(@"ScheduleViewController::prepareForUnwind");
 }
 
-
-/* In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Setup Methods
+/** -(void) registerNotifications - Registers notification for ScheduleView */
+-(void) registerNotifications{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow)
+                                                 name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide)
+                                                 name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageFlagWithSuccess:)
+                                                 name:@"addImageComplete" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoFlagWithSuccess:)
+                                                 name:@"addVideoComplete" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAudioFlagWithSuccess:)
+                                                 name:@"addAudioComplete" object:nil];
 }
-*/
+
+/** -(void) updateView - Updates storyboard UI*/
+-(void) updateView{
+    
+    appModel = [ApplicationModel sharedApplicationModel];
+    mModel = [MessageModel sharedMessageModel];
+    _aModel=appModel.appointment;
+    mModel.appointmentId=_aModel.appointment_id;
+    
+    _nextSteps_tview.delegate=self;
+    _nextSteps_tview.text=_aModel.next_steps;
+    [_nextSteps_tview setContentOffset:CGPointMake(0.0,0.0) animated:YES];
+    [_nextSteps_tview scrollRangeToVisible:NSMakeRange(0,1)];
+    
+    _notes_tview.delegate=self;
+    _notes_tview.text=_aModel.notes;
+    [_notes_tview setContentOffset:CGPointMake(0.0,0.0) animated:YES];
+    [_notes_tview scrollRangeToVisible:NSMakeRange(0,1)];
+    
+    _company_lbl.text=_aModel.company;
+    _date_lbl.text=_aModel.start_time;
+
+    [[self.callBtn layer] setBorderWidth:1.0f];
+    [[self.callBtn layer] setBorderColor:[appModel darkBlueColor].CGColor];
+    [[self.routeBtn layer] setBorderWidth:1.0f];
+    [[self.routeBtn layer] setBorderColor:[appModel darkBlueColor].CGColor];
+    
+    [[self.meetingNotesBkgd layer] setCornerRadius:5.0f];
+    [[self.meetingNotesBkgd layer] setBorderWidth:1.0f];
+    [[self.meetingNotesBkgd layer] setBorderColor:[appModel lightGreyColor].CGColor];
+    
+    [[self.nextStepsBkgrd layer] setCornerRadius:5.0f];
+    [[self.nextStepsBkgrd layer] setBorderWidth:1.0f];
+    [[self.nextStepsBkgrd layer] setBorderColor:[appModel lightGreyColor].CGColor];
+}
 
 @end

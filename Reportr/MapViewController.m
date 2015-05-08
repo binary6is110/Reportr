@@ -62,12 +62,11 @@ static ApplicationModel * appModel;
     [self retrieveAppointmentsForUser:_mapNavController.userModel];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelectedEditAppointmentFromMapMarker:)
                                                  name:@"shouldSegueToDetailView" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userSelectedRouteToAppointment:)
+                                                 name:@"shouldRouteToAppointment" object:nil];
 }
 
--(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
-    appModel.currentLocation=newLocation;
-    NSLog(@"updating location");
-}
 
 - (void)dealloc {
     [_mapView removeObserver:self forKeyPath:@"myLocation" context:NULL];
@@ -75,6 +74,23 @@ static ApplicationModel * appModel;
     appModel=nil;
 }
 
+
+
+/**-(void) userSelectedRouteToAppointment: (NSNotification *)notification */
+-(void) userSelectedRouteToAppointment: (NSNotification *)notification{
+    NSLog(@"MapViewController::userSelectedRouteToAppointment, %@",notification.object);
+    
+    /*CLLocation *location = [appModel currentLocation];
+     CLLocationCoordinate2D start = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+     
+     NSString *googleMapsURLString = [NSString stringWithFormat:@"http://maps.google.com/?saddr=%1.6f,%1.6f&daddr=%1.6f,%1.6f",
+     start.latitude, start.longitude, [[appModel appointment] latitude], [[appModel appointment] longitude] ];
+     
+     
+     
+     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:googleMapsURLString]];
+     */
+}
 
 /**-(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification */
 -(void) userSelectedEditAppointmentFromMapMarker: (NSNotification *)notification{
@@ -118,7 +134,7 @@ static ApplicationModel * appModel;
     }];
 }
 
-#pragma mark - Google Mapping
+#pragma mark - Google Maps
 /** - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
  *  Creates markers and gets directions to locations for today's appointment
  */
@@ -175,13 +191,6 @@ static ApplicationModel * appModel;
     }
 }
 
-
--(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
-   
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSegueToDetailView" object:nil];
-}
-
-
 -(UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
     InfoWindow *view =  [[[NSBundle mainBundle] loadNibNamed:@"InfoWindowView" owner:self options:nil] objectAtIndex:0];
     //retrieve appointment details & update selected appointment from mapview
@@ -197,11 +206,10 @@ static ApplicationModel * appModel;
     return view;
 }
 
+#pragma mark - Google Maps: Routing between points
 /** - (void)addDirections:(NSDictionary *)json
- *  Draws routes on map between locations
- */
+ *  Draws routes on map between locations */
 - (void)addDirections:(NSDictionary *)json {
-    
     NSDictionary *routes = [json objectForKey:@"routes"][0];
     NSDictionary *route = [routes objectForKey:@"overview_polyline"];
     NSString *overview_route = [route objectForKey:@"points"];
@@ -217,8 +225,7 @@ static ApplicationModel * appModel;
 }
 
 /** - (CLLocationCoordinate2D) geoCodeUsingAddress:(NSString *)address
- * Reverse lookup finds coordinates for locations by address.
- */
+ * Reverse lookup finds coordinates for locations by address. */
 - (CLLocationCoordinate2D) geoCodeUsingAddress:(NSString *)address {
     double latitude = 0, longitude = 0;
     NSString *esc_addr =  [address stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -238,6 +245,20 @@ static ApplicationModel * appModel;
     center.longitude = longitude;
     return center;
 }
+
+#pragma mark - Google Maps: Event Handling
+/**-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+    updates CLLocation reference in model*/
+-(void) locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation{
+    appModel.currentLocation=newLocation;
+    NSLog(@"updating location");
+}
+
+-(void)mapView:(GMSMapView *)mapView didTapInfoWindowOfMarker:(GMSMarker *)marker{
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldSegueToDetailView" object:nil];
+}
+
 
 
 #pragma mark - Navigation
