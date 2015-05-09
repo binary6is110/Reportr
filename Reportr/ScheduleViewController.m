@@ -129,7 +129,7 @@ static ApplicationModel * appModel;
 /* - (IBAction)routeTouched:(id)sender {
     Route button handler - dispatches notification to mapviewcontroller.*/
 - (IBAction)routeTouched:(id)sender {
-    NSLog(@"need directions to latitude: %f longitude: %f",[[appModel appointment] latitude],[[appModel appointment] longitude],nil);
+   // NSLog(@"need directions to latitude: %f longitude: %f",[[appModel appointment] latitude],[[appModel appointment] longitude],nil);
     [[NSNotificationCenter defaultCenter] postNotificationName:@"shouldRouteToAppointment" object:nil];
 }
 

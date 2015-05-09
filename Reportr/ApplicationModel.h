@@ -17,10 +17,18 @@
 @interface ApplicationModel : NSObject
 
 @property (nonatomic,retain) AppointmentModel * appointment;
+
 @property (nonatomic,retain) NSMutableArray * appointments;
 @property (nonatomic,retain) ContactModel * contact;
 @property (nonatomic,retain) UserModel * user;
+
+
 @property (nonatomic,retain) CLLocation * currentLocation;
+@property (nonatomic,retain) AppointmentModel*userLocation;
+
+-(void) setStartLocation:(CLLocationCoordinate2D)location;
+-(CLLocationCoordinate2D) getStartLocation;
+
 
 -(AppointmentModel*)getAppointmentAtIndex:(NSInteger)index;
 

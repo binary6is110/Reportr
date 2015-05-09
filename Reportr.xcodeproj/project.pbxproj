@@ -20,6 +20,8 @@
 		3B0CC83D1AF3F55C00ADAC64 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B0CC83C1AF3F55C00ADAC64 /* AVKit.framework */; };
 		3B0CC8441AF4047E00ADAC64 /* AudioRecordPlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B0CC8431AF4047E00ADAC64 /* AudioRecordPlayViewController.m */; };
 		3B0CC84F1AF41D6600ADAC64 /* DemoSong.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 3B0CC84C1AF40D9B00ADAC64 /* DemoSong.m4a */; };
+		3B201E211AFEAAE500337FD6 /* OpenInGoogleMapsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B201E201AFEAAE500337FD6 /* OpenInGoogleMapsController.m */; };
+		3B201E241AFEAB3000337FD6 /* MapRequestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B201E231AFEAB3000337FD6 /* MapRequestModel.m */; };
 		3B210A4D1AFA6CD8004CD7F9 /* reportrCloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3B210A4C1AFA6CD8004CD7F9 /* reportrCloud.png */; };
 		3B210A511AFA767D004CD7F9 /* ApptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B210A4F1AFA767D004CD7F9 /* ApptTableViewCell.m */; };
 		3B300B841AFBACE90019A5BD /* InfoWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B300B831AFBACE90019A5BD /* InfoWindow.m */; };
@@ -124,6 +126,11 @@
 		3B0CC8421AF4047E00ADAC64 /* AudioRecordPlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioRecordPlayViewController.h; sourceTree = "<group>"; };
 		3B0CC8431AF4047E00ADAC64 /* AudioRecordPlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioRecordPlayViewController.m; sourceTree = "<group>"; };
 		3B0CC84C1AF40D9B00ADAC64 /* DemoSong.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = DemoSong.m4a; sourceTree = "<group>"; };
+		3B201E1F1AFEAAE500337FD6 /* OpenInGoogleMapsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenInGoogleMapsController.h; sourceTree = "<group>"; };
+		3B201E201AFEAAE500337FD6 /* OpenInGoogleMapsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenInGoogleMapsController.m; sourceTree = "<group>"; };
+		3B201E221AFEAB3000337FD6 /* MapRequestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapRequestModel.h; sourceTree = "<group>"; };
+		3B201E231AFEAB3000337FD6 /* MapRequestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapRequestModel.m; sourceTree = "<group>"; };
+		3B201E251AFEAB6A00337FD6 /* Enums.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enums.h; sourceTree = "<group>"; };
 		3B210A4C1AFA6CD8004CD7F9 /* reportrCloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reportrCloud.png; sourceTree = "<group>"; };
 		3B210A4E1AFA767D004CD7F9 /* ApptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApptTableViewCell.h; sourceTree = "<group>"; };
 		3B210A4F1AFA767D004CD7F9 /* ApptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApptTableViewCell.m; sourceTree = "<group>"; };
@@ -333,9 +340,12 @@
 			name = images;
 			sourceTree = "<group>";
 		};
-		3B8F9D171AE6EF7800F74EB0 /* Model */ = {
+		3B8F9D171AE6EF7800F74EB0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3B201E251AFEAB6A00337FD6 /* Enums.h */,
+				3B201E221AFEAB3000337FD6 /* MapRequestModel.h */,
+				3B201E231AFEAB3000337FD6 /* MapRequestModel.m */,
 				3B8F9D131AE6EF7300F74EB0 /* UserModel.h */,
 				3B8F9D141AE6EF7300F74EB0 /* UserModel.m */,
 				3B8F9D201AE84E7300F74EB0 /* AppointmentModel.h */,
@@ -347,7 +357,7 @@
 				3B300BAA1AFC1C3D0019A5BD /* ContactModel.h */,
 				3B300BAB1AFC1C3D0019A5BD /* ContactModel.m */,
 			);
-			name = Model;
+			name = Models;
 			sourceTree = "<group>";
 		};
 		3B928E2D1AC5B71000F27710 = {
@@ -469,8 +479,7 @@
 				3B928E3D1AC5B71000F27710 /* AppDelegate.h */,
 				3B928E3E1AC5B71000F27710 /* AppDelegate.m */,
 				3BA8AE521AE958760000C9A8 /* States */,
-				3BA8AE511AE9586E0000C9A8 /* Services */,
-				3B8F9D171AE6EF7800F74EB0 /* Model */,
+				3B8F9D171AE6EF7800F74EB0 /* Models */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -484,6 +493,7 @@
 				3B928E441AC5B71000F27710 /* MapViewController.m */,
 				3B300B821AFBACE90019A5BD /* InfoWindow.h */,
 				3B300B831AFBACE90019A5BD /* InfoWindow.m */,
+				3BA8AE511AE9586E0000C9A8 /* Services */,
 			);
 			name = MapView;
 			sourceTree = "<group>";
@@ -501,6 +511,8 @@
 		3BA8AE511AE9586E0000C9A8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3B201E1F1AFEAAE500337FD6 /* OpenInGoogleMapsController.h */,
+				3B201E201AFEAAE500337FD6 /* OpenInGoogleMapsController.m */,
 				3BA8AE531AE9589E0000C9A8 /* MDDirectionService.h */,
 				3BA8AE541AE9589E0000C9A8 /* MDDirectionService.m */,
 			);
@@ -683,12 +695,14 @@
 				3B8F9D151AE6EF7300F74EB0 /* UserModel.m in Sources */,
 				3B300BAC1AFC1C3D0019A5BD /* ContactModel.m in Sources */,
 				3B300BA51AFBE3580019A5BD /* ApplicationModel.m in Sources */,
+				3B201E241AFEAB3000337FD6 /* MapRequestModel.m in Sources */,
 				3B8F9D221AE84E7300F74EB0 /* AppointmentModel.m in Sources */,
 				3B928E3C1AC5B71000F27710 /* main.m in Sources */,
 				3B928E451AC5B71000F27710 /* MapViewController.m in Sources */,
 				3B95385E1AFAC9E000A59555 /* ImageButtonViewController.m in Sources */,
 				3B8102DA1AEAA67C00C1D076 /* ScheduleNavigationViewController.m in Sources */,
 				3B8F9D1E1AE70AF500F74EB0 /* MapNavigationController.m in Sources */,
+				3B201E211AFEAAE500337FD6 /* OpenInGoogleMapsController.m in Sources */,
 				3B8102DE1AEAA6B700C1D076 /* ScheduleTableViewController.m in Sources */,
 				3B0CC8441AF4047E00ADAC64 /* AudioRecordPlayViewController.m in Sources */,
 				3B0CC8351AF3D93A00ADAC64 /* MessageModel.m in Sources */,

@@ -7,6 +7,9 @@
 //
 
 #import "ApplicationModel.h"
+@interface ApplicationModel()
+@property (nonatomic) CLLocationCoordinate2D location;
+@end
 
 @implementation ApplicationModel
 
@@ -78,6 +81,15 @@
     timeFormatter.dateFormat = @"HH:mm";
     return [timeFormatter stringFromDate: date];
 }
+
+-(void) setStartLocation:(CLLocationCoordinate2D)location {
+    _location=location;
+}
+
+-(CLLocationCoordinate2D) getStartLocation{
+    return _location;
+}
+
 
 
 +(id) sharedApplicationModel{
