@@ -62,7 +62,7 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16" id="cYO-vQ-4gC"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
                                         <mask key="constraints">
@@ -78,7 +78,7 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="33" id="xV4-Q4-Eif"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                     <variation key="default">
                                         <mask key="constraints">

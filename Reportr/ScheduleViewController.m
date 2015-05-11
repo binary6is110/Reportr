@@ -210,7 +210,7 @@ static ApplicationModel * appModel;
     [_notes_tview scrollRangeToVisible:NSMakeRange(0,1)];
     
     _company_lbl.text=appModel.appointment.company;
-    _date_lbl.text=appModel.appointment.start_time;
+    _date_lbl.text=[appModel formattedTime:appModel.appointment.start_time];
 
     [[self.callBtn layer] setBorderWidth:1.0f];
     [[self.callBtn layer] setBorderColor:[appModel darkBlueColor].CGColor];
@@ -219,11 +219,11 @@ static ApplicationModel * appModel;
     
     [[self.meetingNotesBkgd layer] setCornerRadius:5.0f];
     [[self.meetingNotesBkgd layer] setBorderWidth:1.0f];
-    [[self.meetingNotesBkgd layer] setBorderColor:[appModel darkGreyColor].CGColor];
+    [[self.meetingNotesBkgd layer] setBorderColor:[appModel darkBlueColor].CGColor];
     
     [[self.nextStepsBkgrd layer] setCornerRadius:5.0f];
     [[self.nextStepsBkgrd layer] setBorderWidth:1.0f];
-    [[self.nextStepsBkgrd layer] setBorderColor:[appModel darkGreyColor].CGColor];
+    [[self.nextStepsBkgrd layer] setBorderColor:[appModel darkBlueColor].CGColor];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"checkImageIcon" object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"checkAudioIcon" object:nil];

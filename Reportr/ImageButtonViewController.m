@@ -11,7 +11,9 @@
 #import "AppointmentModel.h"
 
 @interface ImageButtonViewController ()
-
+@property (strong, nonatomic) IBOutlet UIButton *buttonBackground;
+@property (strong, nonatomic) IBOutlet UILabel *actionLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *cameraImg;
 @end
 
 @implementation ImageButtonViewController
@@ -20,6 +22,7 @@ static ApplicationModel * appModel;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appModel = [ApplicationModel sharedApplicationModel];
+    [self setView];
 
     // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateImageIconWithSuccess:)
@@ -30,6 +33,13 @@ static ApplicationModel * appModel;
                                                  name:@"checkImageIcon" object:nil];
 
 }
+
+-(void) setView{
+    self.actionLabel.textColor = [appModel lightBlueColor];
+    [[self.buttonBackground layer] setBorderWidth:1.0f];
+    [[self.buttonBackground layer] setBorderColor:[appModel darkBlueColor].CGColor];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

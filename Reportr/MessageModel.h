@@ -14,18 +14,14 @@
 
 
 @property (nonatomic, retain) NSString * message;
-
 @property (nonatomic, retain, getter=getUserName) NSString * userName;
 @property (nonatomic, retain, getter=getPassword) NSString * password;
-
 @property (nonatomic, retain) NSString * appointmentId;
-
 @property (nonatomic,retain, readonly) NSString * videoSizeExceeded;
 @property (nonatomic,retain, readonly) NSString * videoWarning;
 
 
 +(id) sharedMessageModel;
--(NSString*)formattedTime:(NSString*)time;
 -(void) displayError:(NSString*)errorType withMessage:(NSString*)errorMessage;
 
 

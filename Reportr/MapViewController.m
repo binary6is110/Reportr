@@ -240,7 +240,7 @@ static ApplicationModel * appModel;
     //retrieve appointment details & update selected appointment from mapview
     AppointmentModel*thisAppt = [appModel getAppointmentAtIndex:[marker.userData integerValue]];
     appModel.appointment=thisAppt;
-    view.time.text = [mModel formattedTime:thisAppt.start_time];
+    view.time.text = [appModel formattedTime:thisAppt.start_time];
     view.address_1.text = thisAppt.address_1;
     view.address_1.numberOfLines=0;
     [view.address_1 sizeToFit];

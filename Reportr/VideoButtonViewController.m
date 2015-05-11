@@ -12,7 +12,8 @@
 
 @interface VideoButtonViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *videoImg;
-
+@property (strong, nonatomic) IBOutlet UIButton *buttonBackground;
+@property (strong, nonatomic) IBOutlet UILabel *actionLabel;
 @end
 
 @implementation VideoButtonViewController
@@ -21,14 +22,21 @@ static ApplicationModel * appModel;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appModel = [ApplicationModel sharedApplicationModel];
-
-    // Do any additional setup after loading the view.
+    [self setView];
+    
+       // Do any additional setup after loading the view.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVideoIconWithSuccess:)
                                                  name:@"addVideoComplete" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetVideoIconWithSuccess:)
                                                  name:@"resetVideoImage" object:nil];    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAudioIcon)
                                                  name:@"checkAudioIcon" object:nil];
+}
+
+-(void) setView{
+    self.actionLabel.textColor = [appModel lightBlueColor];
+    [[self.buttonBackground layer] setBorderWidth:1.0f];
+    [[self.buttonBackground layer] setBorderColor:[appModel darkBlueColor].CGColor];
 }
 
 /**-(void) updateAudioIcon

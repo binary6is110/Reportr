@@ -11,6 +11,9 @@
 #import "AppointmentModel.h"
 
 @interface AudioButtonViewController ()
+@property (strong, nonatomic) IBOutlet UIButton *buttonBackground;
+@property (strong, nonatomic) IBOutlet UILabel *actionLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *micImg;
 
 @end
 
@@ -20,19 +23,27 @@ static ApplicationModel * appModel;
 - (void)viewDidLoad {
     [super viewDidLoad];
     appModel = [ApplicationModel sharedApplicationModel];
-    
+    [self setView];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAudioIconWithSuccess:)
                                                  name:@"addAudioComplete" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetAudioIconWithSuccess:)
-                                                 name:@"resetAudioImage" object:nil];    
+                                                 name:@"resetAudioImage" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateAudioIcon)
-                                                 name:@"checkAudiIcon" object:nil];
+                                                 name:@"checkAudioIcon" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) setView{
+    self.actionLabel.textColor = [appModel lightBlueColor];
+    [[self.buttonBackground layer] setBorderWidth:1.0f];
+    [[self.buttonBackground layer] setBorderColor:[appModel darkBlueColor].CGColor];
+}
+
 
 /**-(void) updateAudioIcon
  Sets icon image to reflect audio for appointment */
