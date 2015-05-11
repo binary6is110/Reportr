@@ -40,6 +40,9 @@ static ApplicationModel * appModel;
     appModel = [ApplicationModel sharedApplicationModel];
     mModel = [MessageModel sharedMessageModel];
     
+   // NSString *dateString = [appModel getFormattedDateForPrompt];
+    //self.navigationItem.prompt = dateString;
+    
     [self updateContact];
     [self registerNotifications];
     [self updateView];

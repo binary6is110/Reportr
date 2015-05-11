@@ -75,8 +75,6 @@
     return [NSString stringWithFormat:@"%d:%02d %@", hours, minutes, suffix, nil];
 }
 
-
-
 -(NSString*)currentTimeAsString {
     NSDate *date = [NSDate date];
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc]init];
@@ -91,8 +89,6 @@
 -(CLLocationCoordinate2D) getStartLocation{
     return _location;
 }
-
-
 
 +(id) sharedApplicationModel{
     static ApplicationModel*applicationModel =nil;

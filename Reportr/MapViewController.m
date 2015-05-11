@@ -33,7 +33,7 @@
 @property(nonatomic, strong) UIActionSheet *travelModeActionSheet;
 @end
 
-static NSString * const kOpenInMapsSampleURLScheme = @"Reportr://";
+static NSString * const kOpenInMapsSampleURLScheme = @"Reportr://?resume=true";
 
 @implementation MapViewController
 static MessageModel *  mModel;
@@ -213,13 +213,9 @@ static ApplicationModel * appModel;
             
             positionString = [[NSString alloc] initWithFormat:@"%f,%f",thisSpot.latitude,thisSpot.longitude];
             [_waypointStrings addObject:positionString];
-            
             obj.location=thisSpot;
-            //obj.latitude= thisSpot.latitude;
-           // obj.longitude= thisSpot.longitude;
             [coords insertObject:obj atIndex:coords.count];
-        }
-        
+        }        
         if([_waypoints count]>1)
         {
             NSString *sensor = @"false";

@@ -17,13 +17,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="221" height="84"/>
                         </imageView>
                         <button contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i6W-MN-qAx">
-                            <rect key="frame" x="151" y="12" width="60" height="60"/>
+                            <rect key="frame" x="151" y="17" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="65" id="Fn0-Jm-VHm"/>
-                                <constraint firstAttribute="height" constant="60" id="G1I-HF-5KE"/>
+                                <constraint firstAttribute="height" constant="50" id="G1I-HF-5KE"/>
                                 <constraint firstAttribute="width" constant="65" id="Rcn-8E-Coi"/>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="f4X-Qp-ZQ5"/>
-                                <constraint firstAttribute="width" constant="60" id="v2W-HF-Krw"/>
+                                <constraint firstAttribute="width" constant="50" id="v2W-HF-Krw"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="xip-6n-Dni"/>
                             </constraints>
                             <state key="normal" image="editButton@3x.png"/>
@@ -124,7 +124,7 @@
                         <constraint firstAttribute="bottom" secondItem="bRC-5Y-bvj" secondAttribute="bottom" id="Wdw-l8-pZl"/>
                         <constraint firstAttribute="trailing" secondItem="bRC-5Y-bvj" secondAttribute="trailing" id="WpL-ib-wbv"/>
                         <constraint firstItem="i6W-MN-qAx" firstAttribute="top" secondItem="gGb-Oh-Jkn" secondAttribute="top" constant="5" id="X3g-T9-dMd"/>
-                        <constraint firstAttribute="trailing" secondItem="i6W-MN-qAx" secondAttribute="trailing" constant="10" id="gle-Ki-U4J"/>
+                        <constraint firstAttribute="trailing" secondItem="i6W-MN-qAx" secondAttribute="trailing" constant="20" id="gle-Ki-U4J"/>
                         <constraint firstItem="bRC-5Y-bvj" firstAttribute="leading" secondItem="gGb-Oh-Jkn" secondAttribute="leading" id="iHN-2W-5We"/>
                         <constraint firstAttribute="bottom" secondItem="i6W-MN-qAx" secondAttribute="bottom" constant="5" id="ipz-GM-2B9"/>
                         <constraint firstAttribute="trailing" secondItem="bRC-5Y-bvj" secondAttribute="trailing" id="j99-Rd-n6l"/>
