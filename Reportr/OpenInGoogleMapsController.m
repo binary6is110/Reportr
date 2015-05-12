@@ -21,8 +21,7 @@
 // Constants for URL schemes and arguments defined by Google Maps and Chrome.
 static NSString * const kGoogleMapsScheme = @"comgooglemaps://";
 static NSString * const kGoogleMapsCallbackScheme = @"comgooglemaps-x-callback://";
-static NSString* const kGoogleChromeOpenLink =
-    @"googlechrome-x-callback://x-callback-url/open/?url=";
+static NSString* const kGoogleChromeOpenLink =  @"googlechrome-x-callback://x-callback-url/open/?url=";
 
 static NSString * const kGoogleMapsStringTraffic = @"traffic";
 static NSString * const kGoogleMapsStringTransit = @"transit";

@@ -18,7 +18,7 @@
 #import "AppointmentModel.h"
 
 #import "Enums.h"
-#import "MapRequestModel.h"
+//#import "MapRequestModel.h"
 #import "OpenInGoogleMapsController.h"
 
 @interface MapViewController ()
@@ -26,14 +26,10 @@
 @property NSMutableArray * locations;
 @property NSMutableArray * waypoints;
 @property NSMutableArray * waypointStrings;
-@property BOOL firstLocationUpdate;
-// OpenInGoogleMaps properties
-@property(nonatomic, strong) MapRequestModel *model;
-@property(nonatomic, assign) LocationGroup pendingLocationGroup;
-@property(nonatomic, strong) UIActionSheet *travelModeActionSheet;
+//@property BOOL firstLocationUpdate;
 @end
 
-static NSString * const kOpenInMapsSampleURLScheme = @"Reportr://?resume=true";
+static NSString * const kOpenInMapsSampleURLScheme = @"Reportr://";
 
 @implementation MapViewController
 static MessageModel *  mModel;
@@ -42,7 +38,6 @@ static ApplicationModel * appModel;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _model = [[MapRequestModel alloc] init];
     mModel = [MessageModel sharedMessageModel];
     appModel = [ApplicationModel sharedApplicationModel];
     
@@ -62,14 +57,9 @@ static ApplicationModel * appModel;
     
     self.view = _mapView;
     _mapView.delegate=self;
-    /*[self pickLocationController:nil
-               pickedQueryString:@"1600 Amphitheatre Parkway, Mountain View, CA 94043"
-                        forGroup:kLocationGroupStart];*/
-    //[self typeOfMapChanged:self.pickMapTypeSC];
     
     // And let's set our callback URL right away!
-    [OpenInGoogleMapsController sharedInstance].callbackURL =
-    [NSURL URLWithString:kOpenInMapsSampleURLScheme];
+   [OpenInGoogleMapsController sharedInstance].callbackURL = [NSURL URLWithString:kOpenInMapsSampleURLScheme];
     
     // If the user doesn't have Google Maps installed, let's try Chrome. And if they don't
     // have Chrome installed, let's use Apple Maps. This gives us the best chance of having an
@@ -88,9 +78,9 @@ static ApplicationModel * appModel;
 -(void) userSelectedRouteToAppointment: (NSNotification *)notification{
     NSLog(@"MapViewController::userSelectedRouteToAppointment");
     
-    if (![[OpenInGoogleMapsController sharedInstance] isGoogleMapsInstalled]) {
+  /*  if (![[OpenInGoogleMapsController sharedInstance] isGoogleMapsInstalled]) {
         NSLog(@"Google Maps not installed, but using our fallback strategy");
-    }
+    }*/
     
     [self openDirectionsInGoogleMaps];
 }
@@ -98,22 +88,17 @@ static ApplicationModel * appModel;
 #pragma mark - OpenInMaps
 - (void)openDirectionsInGoogleMaps {
    GoogleDirectionsDefinition *directionsDefinition = [[GoogleDirectionsDefinition alloc] init];
-    if (self.model.startCurrentLocation) {
-        directionsDefinition.startingPoint = nil;
-    } else {
+   
         GoogleDirectionsWaypoint *startingPoint = [[GoogleDirectionsWaypoint alloc] init];
         startingPoint.queryString = [[appModel userLocation] getAddressAsQueryString];
         startingPoint.location = [appModel getStartLocation];
         directionsDefinition.startingPoint = startingPoint;
-    }
-    if (self.model.destinationCurrentLocation) {
-        directionsDefinition.destinationPoint = nil;
-    } else {
+   
         GoogleDirectionsWaypoint *destination = [[GoogleDirectionsWaypoint alloc] init];
         destination.queryString = appModel.appointment.getAddressAsQueryString;
         destination.location = appModel.appointment.getLocation;
         directionsDefinition.destinationPoint = destination;
-    }
+   
     directionsDefinition.travelMode = kGoogleMapsTravelModeDriving;
     [[OpenInGoogleMapsController sharedInstance] openDirections:directionsDefinition];
 }
@@ -154,7 +139,6 @@ static ApplicationModel * appModel;
     [query whereKey:@"date" equalTo:dateString];
     [query orderByAscending:@"start"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *results, NSError *error){
-        
         if (!error ) {
             for(PFObject*appt in results){
                 AppointmentModel * gModel = [[AppointmentModel alloc] initWithCompany:appt[@"company"] address1:appt[@"address_1"] address2:appt[@"address_2"] city:appt[@"city"] state:appt[@"state"] zip:appt[@"zip"] startTime:appt[@"start"] notesDesc:appt[@"notes"] agendaDesc:appt[@"agenda"] contactId:appt[@"contact"] nextSteps:appt[@"next_steps"] apptId:appt.objectId];
@@ -177,10 +161,7 @@ static ApplicationModel * appModel;
  *  Creates markers and gets directions to locations for today's appointment
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
-    if (!_firstLocationUpdate) {
-        // If the first location update has not yet been recieved, then jump to that location.
-        _firstLocationUpdate = YES;
-        
+    
         NSMutableArray * coords = [[NSMutableArray alloc] init];
         CLLocation *location = [change objectForKey:NSKeyValueChangeNewKey];
         appModel.currentLocation=location;
@@ -226,7 +207,7 @@ static ApplicationModel * appModel;
             SEL selector = @selector(addDirections:);
             [mds setDirectionsQuery:query withSelector:selector withDelegate:self];
         }
-    }
+    
 }
 
 /** -(UIView*)mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker{
